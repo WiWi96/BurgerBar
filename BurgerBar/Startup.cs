@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using BurgerBar.Data;
 
 namespace BurgerBar
 {
@@ -27,6 +29,19 @@ namespace BurgerBar
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info
+                {
+                    Title = "Burger Bar API",
+                    Version = "v1"
+                });
+            });
+
+            services.AddDbContext<BurgerBarContext>(options =>
+                    //options.UseInMemoryDatabase("BurgerBar"));
+                    options.UseSqlServer(Configuration.GetConnectionString("BurgerBarContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +60,12 @@ namespace BurgerBar
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Burger Bar API v1");
+            });
 
             app.UseMvc(routes =>
             {
@@ -65,6 +86,7 @@ namespace BurgerBar
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
         }
     }
 }
