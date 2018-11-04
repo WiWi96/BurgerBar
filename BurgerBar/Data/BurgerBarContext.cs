@@ -14,6 +14,13 @@ namespace BurgerBar.Data
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Burger>()
+                .Property(b => b.Number)
+                .HasDefaultValue(string.Empty);
+        }
+
         public DbSet<Burger> Burger { get; set; }
         public DbSet<Ingredient> Ingredient { get; set; }
         public DbSet<Order> Order { get; set; }

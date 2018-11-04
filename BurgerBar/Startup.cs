@@ -1,12 +1,11 @@
+using BurgerBar.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
-using BurgerBar.Data;
 
 namespace BurgerBar
 {
@@ -50,6 +49,13 @@ namespace BurgerBar
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                //using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+                //{
+                //    var context = serviceScope.ServiceProvider.GetRequiredService<BurgerBarContext>();
+                //    context.Database.EnsureDeleted();
+                //    context.Database.Migrate();
+                //}
             }
             else
             {
