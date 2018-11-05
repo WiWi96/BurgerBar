@@ -1,3 +1,4 @@
+using BurgerBar.Resources.Localization;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,6 +15,8 @@ namespace BurgerBar.Model
         
         public Bun Bun { get; set; }
 
+        [Required(ErrorMessageResourceName = "IngredientsRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
+        [MinLength(1, ErrorMessageResourceName = "IngredientsRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
         public ICollection<BurgerIngredient> Ingredients { get; set; }
     }
 }

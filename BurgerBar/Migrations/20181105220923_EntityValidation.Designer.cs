@@ -4,14 +4,16 @@ using BurgerBar.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BurgerBar.Migrations
 {
     [DbContext(typeof(BurgerBarContext))]
-    partial class BurgerBarContextModelSnapshot : ModelSnapshot
+    [Migration("20181105220923_EntityValidation")]
+    partial class EntityValidation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,10 +27,6 @@ namespace BurgerBar.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ApartmentNumber")
-                        .IsRequired()
-                        .HasMaxLength(8);
-
                     b.Property<string>("HouseNumber")
                         .HasMaxLength(8);
 
@@ -39,6 +37,10 @@ namespace BurgerBar.Migrations
                     b.Property<string>("Street")
                         .IsRequired()
                         .HasMaxLength(50);
+
+                    b.Property<string>("StreetNumber")
+                        .IsRequired()
+                        .HasMaxLength(8);
 
                     b.Property<string>("Town")
                         .IsRequired()

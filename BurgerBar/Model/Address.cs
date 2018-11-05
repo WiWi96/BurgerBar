@@ -1,17 +1,36 @@
+using BurgerBar.Resources.Localization;
+using System.ComponentModel.DataAnnotations;
+
 namespace BurgerBar.Model
 {
     public class Address
     {
         public long Id { get; set; }
 
+        [Display(ResourceType = typeof(Labels), Name = "Street")]
+        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = "StringRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
+        [StringLength(50, MinimumLength = 3, ErrorMessageResourceName = "StringLengthError", ErrorMessageResourceType = typeof(ErrorMessages))]
+        [RegularExpression("(\\p{L})+", ErrorMessageResourceName = "NameFormatError", ErrorMessageResourceType = typeof(ErrorMessages))]
         public string Street { get; set; }
 
-        public string StreetNumber { get; set; }
+        [Display(ResourceType = typeof(Labels), Name = "ApartmentNumber")]
+        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = "StringRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
+        [StringLength(8, MinimumLength = 1, ErrorMessageResourceName = "StringLengthError", ErrorMessageResourceType = typeof(ErrorMessages))]
+        public string ApartmentNumber { get; set; }
 
+        [Display(ResourceType = typeof(Labels), Name = "HouseNumber")]
+        [StringLength(8, ErrorMessageResourceName = "StringLengthError", ErrorMessageResourceType = typeof(ErrorMessages))]
         public string HouseNumber { get; set; }
 
+        [Display(ResourceType = typeof(Labels), Name = "PostalCode")]
+        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = "StringRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
+        [StringLength(10, MinimumLength = 4, ErrorMessageResourceName = "StringLengthError", ErrorMessageResourceType = typeof(ErrorMessages))]
         public string PostalCode { get; set; }
 
+        [Display(ResourceType = typeof(Labels), Name = "Town")]
+        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = "StringRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
+        [StringLength(50, MinimumLength = 2, ErrorMessageResourceName = "StringLengthError", ErrorMessageResourceType = typeof(ErrorMessages))]
+        [RegularExpression("(\\p{L})+", ErrorMessageResourceName = "NameFormatError", ErrorMessageResourceType = typeof(ErrorMessages))]
         public string Town { get; set; }
     }
 }

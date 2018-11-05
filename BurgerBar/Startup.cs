@@ -1,11 +1,13 @@
 using BurgerBar.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Globalization;
 
 namespace BurgerBar
 {
@@ -41,6 +43,21 @@ namespace BurgerBar
             services.AddDbContext<BurgerBarContext>(options =>
                     //options.UseInMemoryDatabase("BurgerBar"));
                     options.UseSqlServer(Configuration.GetConnectionString("BurgerBarContext")));
+
+            services.AddLocalization(o => o.ResourcesPath = "Resources");
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                var supportedCultures = new[]
+                {
+                    new CultureInfo("en-US"),
+                    new CultureInfo("pl-PL")
+                };
+                options.DefaultRequestCulture = new RequestCulture("pl-PL", "pl-PL");
+
+                options.SupportedCultures = supportedCultures;
+
+                options.SupportedUICultures = supportedCultures;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
