@@ -11,10 +11,6 @@ namespace BurgerBar.Model
     {
         public long Id { get; set; }
 
-        [Display(ResourceType = typeof(Labels), Name = "Order")]
-        [Required(ErrorMessageResourceName = "ReferenceRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
-        public Order Order { get; set; }
-
         [Display(ResourceType = typeof(Labels), Name = "Product")]
         [Required(ErrorMessageResourceName = "ReferenceRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
         public Product Product { get; set; }
