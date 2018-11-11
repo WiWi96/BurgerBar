@@ -1,0 +1,11 @@
+@import 'mixins.scss';
+
+.body-content {
+  padding-top: 50px;
+}
+
+@include media-breakpoint-down(sm) {
+  .body-content {
+    padding-top: 80px;
+  }
+}
