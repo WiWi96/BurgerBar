@@ -6,7 +6,7 @@
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <IsPackable>false</IsPackable>
     <SpaRoot>ClientApp\</SpaRoot>
-    <DefaultItemExcludes>$(DefaultItemExcludes)</DefaultItemExcludes>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
 
     <!-- Set this to true if you enable server-side prerendering -->
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
@@ -28,12 +28,35 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="ClientApp\node_modules\**" />
     <Content Remove="$(SpaRoot)**" />
-    <None Include="$(SpaRoot)**" />
+    <Content Remove="ClientApp\node_modules\**" />
+    <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="ClientApp\node_modules\**" />
+    <None Remove="ClientApp\node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="Migrations\20181103152240_PaymentType.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\app\models\address.ts" />
+    <None Remove="ClientApp\src\app\models\bun.ts" />
+    <None Remove="ClientApp\src\app\models\burger-ingredient.ts" />
+    <None Remove="ClientApp\src\app\models\burger.ts" />
+    <None Remove="ClientApp\src\app\models\customer.ts" />
+    <None Remove="ClientApp\src\app\models\delivery-type.ts" />
+    <None Remove="ClientApp\src\app\models\enums\creation-type.ts" />
+    <None Remove="ClientApp\src\app\models\enums\ingredient-type.ts" />
+    <None Remove="ClientApp\src\app\models\ingredient.ts" />
+    <None Remove="ClientApp\src\app\models\order.ts" />
+    <None Remove="ClientApp\src\app\models\ordered-product.ts" />
+    <None Remove="ClientApp\src\app\models\payment-type.ts" />
+    <None Remove="ClientApp\src\app\models\product.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -54,9 +77,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\app\models\" />
     <Folder Include="ClientApp\src\app\services\" />
     <Folder Include="ClientApp\src\assets\fonts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\models\enums\creation-type.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\enums\ingredient-type.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\product.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\payment-type.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\ordered-product.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\order.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\ingredient.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\delivery-type.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\customer.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\burger-ingredient.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\burger.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\bun.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\address.ts" />
   </ItemGroup>
 
   <ItemGroup>
