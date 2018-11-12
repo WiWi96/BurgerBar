@@ -77,13 +77,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\app\services\" />
     <Folder Include="ClientApp\src\assets\fonts\" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\models\enums\creation-type.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\models\enums\ingredient-type.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\ingredient-type.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\product.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\payment-type.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\ordered-product.ts" />

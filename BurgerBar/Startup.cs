@@ -67,12 +67,12 @@ namespace BurgerBar
             {
                 app.UseDeveloperExceptionPage();
 
-                //using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-                //{
-                //    var context = serviceScope.ServiceProvider.GetRequiredService<BurgerBarContext>();
-                //    context.Database.EnsureDeleted();
-                //    context.Database.Migrate();
-                //}
+                using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+                {
+                    var context = serviceScope.ServiceProvider.GetRequiredService<BurgerBarContext>();
+                    context.Database.EnsureDeleted();
+                    context.Database.Migrate();
+                }
             }
             else
             {

@@ -1,0 +1,28 @@
+<button class="btn btn-primary">Add ingredient</button>
+<div *ngFor="let type of types">
+	<h2>{{type.name}}</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Type</th>
+				<th>Type</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let ingredient of getIngredientsOfType(type)">
+				<td>{{ingredient.id}}</td>
+				<td>{{ingredient.name}}</td>
+				<td>{{ingredient.description}}</td>
+				<td>{{ingredient.type}}</td>
+				<td>
+					<button class="btn btn-link">
+						<fa-icon [icon]="faWrench"></fa-icon>
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

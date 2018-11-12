@@ -56,6 +56,14 @@
             Contact
           </a>
         </li>
+        <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+          <a class="nav-link" [routerLink]='["/settings"]' (click)='collapse()'>
+            <span class="nav-link-item">
+              <fa-icon [icon]="faCog"></fa-icon>
+            </span>
+            Settings
+          </a>
+        </li>
       </ul>
     </div>
   </nav>

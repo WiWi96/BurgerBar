@@ -151,6 +151,15 @@ namespace BurgerBar.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ingredient Type.
+        /// </summary>
+        public static string IngredientType {
+            get {
+                return ResourceManager.GetString("IngredientType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last Name.
         /// </summary>
         public static string LastName {

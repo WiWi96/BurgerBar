@@ -8,4 +8,10 @@ var IngredientType;
     IngredientType[IngredientType["Vegetable"] = 3] = "Vegetable";
     IngredientType[IngredientType["Spice"] = 4] = "Spice";
 })(IngredientType = exports.IngredientType || (exports.IngredientType = {}));
+(function (IngredientType) {
+    function values() {
+        return Object.keys(IngredientType).filter(function (type) { return isNaN(type) && type !== 'values'; });
+    }
+    IngredientType.values = values;
+})(IngredientType = exports.IngredientType || (exports.IngredientType = {}));
 //# sourceMappingURL=ingredient-type.js.map

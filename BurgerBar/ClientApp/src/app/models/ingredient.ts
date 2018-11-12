@@ -1,4 +1,4 @@
-import { IngredientType } from "./enums/ingredient-type";
+import { IngredientType } from "./ingredient-type";
 
 export class Ingredient {
   id?: number;

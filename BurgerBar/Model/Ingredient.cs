@@ -21,6 +21,8 @@ namespace BurgerBar.Model
         [StringLength(300, ErrorMessageResourceName = "StringLengthError", ErrorMessageResourceType = typeof(ErrorMessages))]
         public string Description { get; set; }
 
+        [Display(ResourceType = typeof(Labels), Name = "IngredientType")]
+        [Required(ErrorMessageResourceName = "ReferenceRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
         public IngredientType Type { get; set; }
 
         public string Picture { get; set; }

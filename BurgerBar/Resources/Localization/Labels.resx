@@ -147,6 +147,9 @@
   <data name="Ingredients" xml:space="preserve">
     <value>Ingredients</value>
   </data>
+  <data name="IngredientType" xml:space="preserve">
+    <value>Ingredient Type</value>
+  </data>
   <data name="LastName" xml:space="preserve">
     <value>Last Name</value>
   </data>

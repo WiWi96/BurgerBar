@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -116,6 +116,13 @@ namespace BurgerBar.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(ingredient);
+        }
+
+        // GET: api/Ingredients/types
+        [HttpGet("types")]
+        public IEnumerable<IngredientType> GetIngredientTypes()
+        {
+            return _context.IngredientType;
         }
 
         private bool IngredientExists(long id)
