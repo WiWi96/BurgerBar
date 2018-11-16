@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BurgerBar.Data;
-using BurgerBar.Model;
+using BurgerBar.Entities;
+using BurgerBar.Services;
 
 namespace BurgerBar.Controllers
 {
@@ -14,18 +15,18 @@ namespace BurgerBar.Controllers
     [ApiController]
     public class BurgersController : ControllerBase
     {
-        private readonly BurgerBarContext _context;
+        private readonly IBurgersService burgersService;
 
-        public BurgersController(BurgerBarContext context)
+        public BurgersController(IBurgersService burgersService)
         {
-            _context = context;
+            this.burgersService = burgersService;
         }
 
         // GET: api/Burgers
         [HttpGet]
-        public IEnumerable<Burger> GetBurger()
+        public async Task<IEnumerable<Burger>> GetAllBurgersAsync()
         {
-            return _context.Burger;
+            return await burgersService.GetAllAsync();
         }
 
         // GET: api/Burgers/5
@@ -37,7 +38,7 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            var burger = await _context.Burger.FindAsync(id);
+            var burger = await burgersService.GetAsync(id);
 
             if (burger == null)
             {
@@ -61,25 +62,14 @@ namespace BurgerBar.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(burger).State = EntityState.Modified;
+            burger = await burgersService.UpdateAsync(id, burger);
 
-            try
+            if (burger == null)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!BurgerExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NotFound();
             }
 
-            return NoContent();
+            return Ok(burger);
         }
 
         // POST: api/Burgers
@@ -91,8 +81,7 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            _context.Burger.Add(burger);
-            await _context.SaveChangesAsync();
+            await burgersService.AddAsync(burger);
 
             return CreatedAtAction("GetBurger", new { id = burger.Id }, burger);
         }
@@ -106,21 +95,13 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            var burger = await _context.Burger.FindAsync(id);
+            var burger = await burgersService.DeleteAsync(id);
             if (burger == null)
             {
                 return NotFound();
             }
 
-            _context.Burger.Remove(burger);
-            await _context.SaveChangesAsync();
-
             return Ok(burger);
-        }
-
-        private bool BurgerExists(long id)
-        {
-            return _context.Burger.Any(e => e.Id == id);
         }
     }
 }

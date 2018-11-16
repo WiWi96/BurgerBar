@@ -1,4 +1,4 @@
-using BurgerBar.Model;
+using BurgerBar.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace BurgerBar.Data

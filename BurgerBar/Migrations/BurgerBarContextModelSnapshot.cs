@@ -19,7 +19,7 @@ namespace BurgerBar.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("BurgerBar.Model.Address", b =>
+            modelBuilder.Entity("BurgerBar.Entities.Address", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -49,7 +49,7 @@ namespace BurgerBar.Migrations
                     b.ToTable("Address");
                 });
 
-            modelBuilder.Entity("BurgerBar.Model.BurgerIngredient", b =>
+            modelBuilder.Entity("BurgerBar.Entities.BurgerIngredient", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -70,7 +70,7 @@ namespace BurgerBar.Migrations
                     b.ToTable("BurgerIngredient");
                 });
 
-            modelBuilder.Entity("BurgerBar.Model.Customer", b =>
+            modelBuilder.Entity("BurgerBar.Entities.Customer", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -97,7 +97,7 @@ namespace BurgerBar.Migrations
                     b.ToTable("Customer");
                 });
 
-            modelBuilder.Entity("BurgerBar.Model.DeliveryType", b =>
+            modelBuilder.Entity("BurgerBar.Entities.DeliveryType", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -121,7 +121,7 @@ namespace BurgerBar.Migrations
                     b.ToTable("DeliveryType");
                 });
 
-            modelBuilder.Entity("BurgerBar.Model.Ingredient", b =>
+            modelBuilder.Entity("BurgerBar.Entities.Ingredient", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -150,7 +150,7 @@ namespace BurgerBar.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Ingredient");
                 });
 
-            modelBuilder.Entity("BurgerBar.Model.IngredientType", b =>
+            modelBuilder.Entity("BurgerBar.Entities.IngredientType", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -172,7 +172,7 @@ namespace BurgerBar.Migrations
                     );
                 });
 
-            modelBuilder.Entity("BurgerBar.Model.Order", b =>
+            modelBuilder.Entity("BurgerBar.Entities.Order", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -198,7 +198,7 @@ namespace BurgerBar.Migrations
                     b.ToTable("Order");
                 });
 
-            modelBuilder.Entity("BurgerBar.Model.OrderedProduct", b =>
+            modelBuilder.Entity("BurgerBar.Entities.OrderedProduct", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -219,7 +219,7 @@ namespace BurgerBar.Migrations
                     b.ToTable("OrderedProduct");
                 });
 
-            modelBuilder.Entity("BurgerBar.Model.PaymentType", b =>
+            modelBuilder.Entity("BurgerBar.Entities.PaymentType", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -235,7 +235,7 @@ namespace BurgerBar.Migrations
                     b.ToTable("PaymentType");
                 });
 
-            modelBuilder.Entity("BurgerBar.Model.Product", b =>
+            modelBuilder.Entity("BurgerBar.Entities.Product", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -262,7 +262,7 @@ namespace BurgerBar.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Product");
                 });
 
-            modelBuilder.Entity("BurgerBar.Model.User", b =>
+            modelBuilder.Entity("BurgerBar.Entities.User", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -281,9 +281,9 @@ namespace BurgerBar.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("BurgerBar.Model.Bun", b =>
+            modelBuilder.Entity("BurgerBar.Entities.Bun", b =>
                 {
-                    b.HasBaseType("BurgerBar.Model.Ingredient");
+                    b.HasBaseType("BurgerBar.Entities.Ingredient");
 
                     b.Property<string>("BottomPicture");
 
@@ -294,9 +294,9 @@ namespace BurgerBar.Migrations
                     b.HasDiscriminator().HasValue("Bun");
                 });
 
-            modelBuilder.Entity("BurgerBar.Model.Burger", b =>
+            modelBuilder.Entity("BurgerBar.Entities.Burger", b =>
                 {
-                    b.HasBaseType("BurgerBar.Model.Product");
+                    b.HasBaseType("BurgerBar.Entities.Product");
 
                     b.Property<long?>("BunId");
 
@@ -311,66 +311,66 @@ namespace BurgerBar.Migrations
                     b.HasDiscriminator().HasValue("Burger");
                 });
 
-            modelBuilder.Entity("BurgerBar.Model.BurgerIngredient", b =>
+            modelBuilder.Entity("BurgerBar.Entities.BurgerIngredient", b =>
                 {
-                    b.HasOne("BurgerBar.Model.Burger")
+                    b.HasOne("BurgerBar.Entities.Burger")
                         .WithMany("Ingredients")
                         .HasForeignKey("BurgerId");
 
-                    b.HasOne("BurgerBar.Model.Ingredient", "Ingredient")
+                    b.HasOne("BurgerBar.Entities.Ingredient", "Ingredient")
                         .WithMany()
                         .HasForeignKey("IngredientId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("BurgerBar.Model.Customer", b =>
+            modelBuilder.Entity("BurgerBar.Entities.Customer", b =>
                 {
-                    b.HasOne("BurgerBar.Model.Address", "Address")
+                    b.HasOne("BurgerBar.Entities.Address", "Address")
                         .WithMany()
                         .HasForeignKey("AddressId");
                 });
 
-            modelBuilder.Entity("BurgerBar.Model.Ingredient", b =>
+            modelBuilder.Entity("BurgerBar.Entities.Ingredient", b =>
                 {
-                    b.HasOne("BurgerBar.Model.IngredientType", "Type")
+                    b.HasOne("BurgerBar.Entities.IngredientType", "Type")
                         .WithMany()
                         .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("BurgerBar.Model.Order", b =>
+            modelBuilder.Entity("BurgerBar.Entities.Order", b =>
                 {
-                    b.HasOne("BurgerBar.Model.Customer", "Customer")
+                    b.HasOne("BurgerBar.Entities.Customer", "Customer")
                         .WithMany()
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("BurgerBar.Model.DeliveryType", "DeliveryType")
+                    b.HasOne("BurgerBar.Entities.DeliveryType", "DeliveryType")
                         .WithMany()
                         .HasForeignKey("DeliveryTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("BurgerBar.Model.PaymentType", "PaymentType")
+                    b.HasOne("BurgerBar.Entities.PaymentType", "PaymentType")
                         .WithMany()
                         .HasForeignKey("PaymentTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("BurgerBar.Model.OrderedProduct", b =>
+            modelBuilder.Entity("BurgerBar.Entities.OrderedProduct", b =>
                 {
-                    b.HasOne("BurgerBar.Model.Order")
+                    b.HasOne("BurgerBar.Entities.Order")
                         .WithMany("Products")
                         .HasForeignKey("OrderId");
 
-                    b.HasOne("BurgerBar.Model.Product", "Product")
+                    b.HasOne("BurgerBar.Entities.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("BurgerBar.Model.Burger", b =>
+            modelBuilder.Entity("BurgerBar.Entities.Burger", b =>
                 {
-                    b.HasOne("BurgerBar.Model.Bun", "Bun")
+                    b.HasOne("BurgerBar.Entities.Bun", "Bun")
                         .WithMany()
                         .HasForeignKey("BunId");
                 });

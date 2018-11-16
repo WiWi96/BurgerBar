@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BurgerBar.Model
+namespace BurgerBar.Entities
 {
     public class Bun : Ingredient
     {

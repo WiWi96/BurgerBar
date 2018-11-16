@@ -1,12 +1,9 @@
-﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using BurgerBar.Data;
-using BurgerBar.Model;
+using BurgerBar.Entities;
+using BurgerBar.Services;
 
 namespace BurgerBar.Controllers
 {
@@ -14,18 +11,18 @@ namespace BurgerBar.Controllers
     [ApiController]
     public class OrdersController : ControllerBase
     {
-        private readonly BurgerBarContext _context;
+        private readonly IOrdersService ordersService;
 
-        public OrdersController(BurgerBarContext context)
+        public OrdersController(IOrdersService ordersService)
         {
-            _context = context;
+            this.ordersService = ordersService;
         }
 
         // GET: api/Orders
         [HttpGet]
-        public IEnumerable<Order> GetOrder()
+        public async Task<IEnumerable<Order>> GetOrder()
         {
-            return _context.Order;
+            return await ordersService.GetAllAsync();
         }
 
         // GET: api/Orders/5
@@ -37,7 +34,7 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            var order = await _context.Order.FindAsync(id);
+            var order = await ordersService.GetAsync(id);
 
             if (order == null)
             {
@@ -61,25 +58,14 @@ namespace BurgerBar.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(order).State = EntityState.Modified;
+            order = await ordersService.UpdateAsync(id, order);
 
-            try
+            if (order == null)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!OrderExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NotFound();
             }
 
-            return NoContent();
+            return Ok(order);
         }
 
         // POST: api/Orders
@@ -91,8 +77,7 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            _context.Order.Add(order);
-            await _context.SaveChangesAsync();
+            await ordersService.AddAsync(order);
 
             return CreatedAtAction("GetOrder", new { id = order.Id }, order);
         }
@@ -106,21 +91,13 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            var order = await _context.Order.FindAsync(id);
+            var order = await ordersService.DeleteAsync(id);
             if (order == null)
             {
                 return NotFound();
             }
 
-            _context.Order.Remove(order);
-            await _context.SaveChangesAsync();
-
             return Ok(order);
-        }
-
-        private bool OrderExists(long id)
-        {
-            return _context.Order.Any(e => e.Id == id);
         }
     }
 }

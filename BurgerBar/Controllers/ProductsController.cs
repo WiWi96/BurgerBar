@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BurgerBar.Data;
-using BurgerBar.Model;
+using BurgerBar.Entities;
+using BurgerBar.Services;
 
 namespace BurgerBar.Controllers
 {
@@ -14,18 +15,18 @@ namespace BurgerBar.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly BurgerBarContext _context;
+        private readonly IProductsService productsService;
 
-        public ProductsController(BurgerBarContext context)
+        public ProductsController(IProductsService productsService)
         {
-            _context = context;
+            this.productsService = productsService;
         }
 
         // GET: api/Products
         [HttpGet]
-        public IEnumerable<Product> GetProduct()
+        public async Task<IEnumerable<Product>> GetProduct()
         {
-            return _context.Product;
+            return await productsService.GetAllAsync();
         }
 
         // GET: api/Products/5
@@ -37,7 +38,7 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            var product = await _context.Product.FindAsync(id);
+            var product = await productsService.GetAsync(id);
 
             if (product == null)
             {
@@ -61,25 +62,14 @@ namespace BurgerBar.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(product).State = EntityState.Modified;
+            product = await productsService.UpdateAsync(id, product);
 
-            try
+            if (product == null)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NotFound();
             }
 
-            return NoContent();
+            return Ok(product);
         }
 
         // POST: api/Products
@@ -91,8 +81,7 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            _context.Product.Add(product);
-            await _context.SaveChangesAsync();
+            await productsService.AddAsync(product);
 
             return CreatedAtAction("GetProduct", new { id = product.Id }, product);
         }
@@ -106,21 +95,13 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            var product = await _context.Product.FindAsync(id);
+            var product = await productsService.DeleteAsync(id);
             if (product == null)
             {
                 return NotFound();
             }
 
-            _context.Product.Remove(product);
-            await _context.SaveChangesAsync();
-
             return Ok(product);
-        }
-
-        private bool ProductExists(long id)
-        {
-            return _context.Product.Any(e => e.Id == id);
         }
     }
 }

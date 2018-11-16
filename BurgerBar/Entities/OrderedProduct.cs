@@ -5,12 +5,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BurgerBar.Model
+namespace BurgerBar.Entities
 {
-    public class OrderedProduct
+    public class OrderedProduct : BaseEntity
     {
-        public long Id { get; set; }
-
         [Display(ResourceType = typeof(Labels), Name = "Product")]
         [Required(ErrorMessageResourceName = "ReferenceRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
         public Product Product { get; set; }

@@ -6,12 +6,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BurgerBar.Model
+namespace BurgerBar.Entities
 {
-    public class Order
+    public class Order : BaseEntity
     {
-        public long Id { get; set; }
-
         [Display(ResourceType = typeof(Labels), Name = "Customer")]
         [Required(ErrorMessageResourceName = "ReferenceRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
         public Customer Customer { get; set; }

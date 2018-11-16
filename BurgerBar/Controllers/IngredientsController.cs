@@ -6,7 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BurgerBar.Data;
-using BurgerBar.Model;
+using BurgerBar.Entities;
+using BurgerBar.Services;
 
 namespace BurgerBar.Controllers
 {
@@ -14,18 +15,18 @@ namespace BurgerBar.Controllers
     [ApiController]
     public class IngredientsController : ControllerBase
     {
-        private readonly BurgerBarContext _context;
+        private readonly IIngredientsService ingredientsService;
 
-        public IngredientsController(BurgerBarContext context)
+        public IngredientsController(IIngredientsService ingredientsService)
         {
-            _context = context;
+            this.ingredientsService = ingredientsService;
         }
 
         // GET: api/Ingredients
         [HttpGet]
-        public IEnumerable<Ingredient> GetIngredient()
+        public async Task<IEnumerable<Ingredient>> GetIngredient()
         {
-            return _context.Ingredient;
+            return await ingredientsService.GetAllAsync();
         }
 
         // GET: api/Ingredients/5
@@ -37,7 +38,7 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            var ingredient = await _context.Ingredient.FindAsync(id);
+            var ingredient = await ingredientsService.GetAsync(id);
 
             if (ingredient == null)
             {
@@ -61,25 +62,14 @@ namespace BurgerBar.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(ingredient).State = EntityState.Modified;
+            ingredient = await ingredientsService.UpdateAsync(id, ingredient);
 
-            try
+            if (ingredient == null)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!IngredientExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NotFound();
             }
 
-            return NoContent();
+            return Ok(ingredient);
         }
 
         // POST: api/Ingredients
@@ -91,8 +81,7 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            _context.Ingredient.Add(ingredient);
-            await _context.SaveChangesAsync();
+            await ingredientsService.AddAsync(ingredient);
 
             return CreatedAtAction("GetIngredient", new { id = ingredient.Id }, ingredient);
         }
@@ -106,14 +95,11 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            var ingredient = await _context.Ingredient.FindAsync(id);
+            var ingredient = await ingredientsService.DeleteAsync(id);
             if (ingredient == null)
             {
                 return NotFound();
             }
-
-            _context.Ingredient.Remove(ingredient);
-            await _context.SaveChangesAsync();
 
             return Ok(ingredient);
         }
@@ -123,11 +109,6 @@ namespace BurgerBar.Controllers
         public IEnumerable<IngredientType> GetIngredientTypes()
         {
             return _context.IngredientType;
-        }
-
-        private bool IngredientExists(long id)
-        {
-            return _context.Ingredient.Any(e => e.Id == id);
         }
     }
 }

@@ -1,12 +1,10 @@
 using BurgerBar.Resources.Localization;
 using System.ComponentModel.DataAnnotations;
 
-namespace BurgerBar.Model
+namespace BurgerBar.Entities
 {
-    public class Address
+    public class Address : BaseEntity
     {
-        public long Id { get; set; }
-
         [Display(ResourceType = typeof(Labels), Name = "Street")]
         [Required(AllowEmptyStrings = false, ErrorMessageResourceName = "StringRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
         [StringLength(50, MinimumLength = 3, ErrorMessageResourceName = "StringLengthError", ErrorMessageResourceType = typeof(ErrorMessages))]

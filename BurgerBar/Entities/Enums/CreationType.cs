@@ -1,4 +1,4 @@
-namespace BurgerBar.Model
+namespace BurgerBar.Entities
 {
     public enum CreationType
     {

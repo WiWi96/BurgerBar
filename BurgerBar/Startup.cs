@@ -1,4 +1,5 @@
 using BurgerBar.Data;
+using BurgerBar.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
@@ -41,8 +42,11 @@ namespace BurgerBar
             });
 
             services.AddDbContext<BurgerBarContext>(options =>
-                    //options.UseInMemoryDatabase("BurgerBar"));
                     options.UseSqlServer(Configuration.GetConnectionString("BurgerBarContext")));
+
+            services.AddScoped<IBurgersService, BurgersService>();
+            services.AddScoped<IOrdersService, OrdersService>();
+            services.AddScoped<IIngredientsService, IngredientsService>();
 
             services.AddLocalization(o => o.ResourcesPath = "Resources");
             services.Configure<RequestLocalizationOptions>(options =>

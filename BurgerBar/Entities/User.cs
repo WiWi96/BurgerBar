@@ -4,12 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BurgerBar.Model
+namespace BurgerBar.Entities
 {
-    public class User
+    public class User : BaseEntity
     {
-        public long Id { get; set; }
-
         [Required]
         [StringLength(15, MinimumLength = 3)]
         public string Username { get; set; }

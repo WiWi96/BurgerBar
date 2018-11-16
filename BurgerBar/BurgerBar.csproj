@@ -41,6 +41,7 @@
 
   <ItemGroup>
     <Compile Remove="Migrations\20181103152240_PaymentType.cs" />
+    <Compile Remove="Migrations\20181115221548_BaseEntity.cs" />
   </ItemGroup>
 
   <ItemGroup>

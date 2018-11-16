@@ -4,12 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BurgerBar.Model
+namespace BurgerBar.Entities
 {
-    public class PaymentType
+    public class PaymentType : BaseEntity
     {
-        public long Id { get; set; }
-
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
 
