@@ -8,7 +8,7 @@ namespace BurgerBar.Entities
         [Display(ResourceType = typeof(Labels), Name = "Street")]
         [Required(AllowEmptyStrings = false, ErrorMessageResourceName = "StringRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
         [StringLength(50, MinimumLength = 3, ErrorMessageResourceName = "StringLengthError", ErrorMessageResourceType = typeof(ErrorMessages))]
-        [RegularExpression("(\\p{L})+", ErrorMessageResourceName = "NameFormatError", ErrorMessageResourceType = typeof(ErrorMessages))]
+        [RegularExpression("(\\p{L}|\\p{Nd})+", ErrorMessageResourceName = "NameFormatError", ErrorMessageResourceType = typeof(ErrorMessages))]
         public string Street { get; set; }
 
         [Display(ResourceType = typeof(Labels), Name = "ApartmentNumber")]

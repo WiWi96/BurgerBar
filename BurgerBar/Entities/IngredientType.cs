@@ -11,6 +11,8 @@ namespace BurgerBar.Entities
     {
         [Display(ResourceType = typeof(Labels), Name = "Name")]
         [Required(AllowEmptyStrings = false, ErrorMessageResourceName = "StringRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
+        [StringLength(30, MinimumLength = 2, ErrorMessageResourceName = "StringLengthError", ErrorMessageResourceType = typeof(ErrorMessages))]
+        [RegularExpression("(\\p{L}|\\p{Nd})+", ErrorMessageResourceName = "NameFormatError", ErrorMessageResourceType = typeof(ErrorMessages))]
         public string Name { get; set; }
     }
 }

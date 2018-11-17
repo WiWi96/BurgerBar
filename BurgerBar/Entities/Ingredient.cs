@@ -12,7 +12,7 @@ namespace BurgerBar.Entities
         [Display(ResourceType = typeof(Labels), Name = "Name")]
         [Required(AllowEmptyStrings = false, ErrorMessageResourceName = "StringRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
         [StringLength(30, MinimumLength = 3, ErrorMessageResourceName = "StringLengthError", ErrorMessageResourceType = typeof(ErrorMessages))]
-        [RegularExpression("(\\p{L})+", ErrorMessageResourceName = "NameFormatError", ErrorMessageResourceType = typeof(ErrorMessages))]
+        [RegularExpression("(\\p{L}|\\p{Nd})+", ErrorMessageResourceName = "NameFormatError", ErrorMessageResourceType = typeof(ErrorMessages))]
         public string Name { get; set; }
 
         [Display(ResourceType = typeof(Labels), Name = "Description")]
@@ -24,5 +24,7 @@ namespace BurgerBar.Entities
         public IngredientType Type { get; set; }
 
         public string Picture { get; set; }
+
+        public bool Active { get; set; } = true;
     }
 }

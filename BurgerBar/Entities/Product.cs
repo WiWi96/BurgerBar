@@ -9,7 +9,7 @@ namespace BurgerBar.Entities
         [Display(ResourceType = typeof(Labels), Name = "Name")]
         [Required(AllowEmptyStrings = false, ErrorMessageResourceName = "StringRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
         [StringLength(20, MinimumLength = 4, ErrorMessageResourceName = "StringLengthError", ErrorMessageResourceType = typeof(ErrorMessages))]
-        [RegularExpression("(\\p{L})+", ErrorMessageResourceName = "NameFormatError", ErrorMessageResourceType = typeof(ErrorMessages))]
+        [RegularExpression("(\\p{L}|\\p{Nd})+", ErrorMessageResourceName = "NameFormatError", ErrorMessageResourceType = typeof(ErrorMessages))]
         public string Name { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
@@ -18,5 +18,7 @@ namespace BurgerBar.Entities
         public bool IsInMenu { get; set; }
 
         public CreationType CreationType { get; set; }
+
+        public bool Active { get; set; } = true;
     }
 }
