@@ -18,6 +18,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="5.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.1" />
@@ -42,6 +44,7 @@
   <ItemGroup>
     <Compile Remove="Migrations\20181103152240_PaymentType.cs" />
     <Compile Remove="Migrations\20181115221548_BaseEntity.cs" />
+    <Compile Remove="Migrations\20181117000917_ForeignKey.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -78,6 +81,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\src\app\components\modals\" />
     <Folder Include="ClientApp\src\assets\fonts\" />
   </ItemGroup>
 

@@ -106,9 +106,9 @@ namespace BurgerBar.Controllers
 
         // GET: api/Ingredients/types
         [HttpGet("types")]
-        public IEnumerable<IngredientType> GetIngredientTypes()
+        public async Task<IEnumerable<IngredientType>> GetIngredientTypes()
         {
-            return _context.IngredientType;
+            return await ingredientsService.GetIngredientTypes();
         }
     }
 }

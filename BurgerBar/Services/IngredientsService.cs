@@ -10,17 +10,20 @@ namespace BurgerBar.Services
     public class IngredientsService : IIngredientsService
     {
         protected readonly BurgerBarContext context;
-        protected readonly DbSet<Ingredient> dbSet;
+        protected readonly DbSet<Ingredient> ingredientsSet;
+        protected readonly DbSet<IngredientType> ingredientTypesSet;
 
         public IngredientsService(BurgerBarContext context)
         {
             this.context = context;
-            dbSet = context.Ingredient;
+            ingredientsSet = context.Ingredient;
+            ingredientTypesSet = context.IngredientType;
         }
 
         public async Task<Ingredient> AddAsync(Ingredient obj)
         {
-            dbSet.Add(obj);
+            ingredientsSet.Add(obj);
+            context.Entry(obj.Type).State = EntityState.Unchanged;
             await context.SaveChangesAsync();
             return obj;
         }
@@ -33,19 +36,19 @@ namespace BurgerBar.Services
                 return null;
             }
 
-            dbSet.Remove(obj);
+            ingredientsSet.Remove(obj);
             await context.SaveChangesAsync();
             return obj;
         }
 
         public async Task<Ingredient> GetAsync(long id)
         {
-            return await dbSet.FindAsync(id);
+            return await ingredientsSet.FindAsync(id);
         }
 
         public async Task<IEnumerable<Ingredient>> GetAllAsync()
         {
-            return await Task.FromResult(dbSet.AsEnumerable());
+            return await Task.FromResult(ingredientsSet.Include(x => x.Type).AsEnumerable());
         }
 
         public async Task<Ingredient> UpdateAsync(long id, Ingredient obj)
@@ -74,7 +77,12 @@ namespace BurgerBar.Services
 
         private bool Exists(long id)
         {
-            return dbSet.Any(e => e.Id == id);
+            return ingredientsSet.Any(e => e.Id == id);
+        }
+
+        public async Task<IEnumerable<IngredientType>> GetIngredientTypes()
+        {
+            return await Task.FromResult(ingredientTypesSet.AsEnumerable());
         }
     }
 }

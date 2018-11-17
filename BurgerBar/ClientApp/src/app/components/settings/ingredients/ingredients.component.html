@@ -1,4 +1,4 @@
-<button class="btn btn-primary">Add ingredient</button>
+<button class="btn btn-primary" (click)="addIngredient()">Add ingredient</button>
 <div *ngFor="let type of types">
 	<h2>{{type.name}}</h2>
 	<table class="table">
@@ -16,9 +16,9 @@
 				<td>{{ingredient.id}}</td>
 				<td>{{ingredient.name}}</td>
 				<td>{{ingredient.description}}</td>
-				<td>{{ingredient.type}}</td>
+				<td>{{ingredient.type?.name}}</td>
 				<td>
-					<button class="btn btn-link">
+					<button class="btn btn-link" (click)="editIngredient(ingredient)">
 						<fa-icon [icon]="faWrench"></fa-icon>
 					</button>
 				</td>

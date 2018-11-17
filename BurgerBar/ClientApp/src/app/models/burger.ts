@@ -1,9 +1,9 @@
-import { IngredientType } from "./enums/ingredient-type";
+import { Product } from "./product";
+import { Bun } from "./bun";
+import { Ingredient } from "./ingredient";
 
-export class Burger {
-  id?: number;
-  name: string;
-  description?: string;
-  type: IngredientType;
-  picture?: string;
+export class Burger extends Product {
+    number?: number;
+    bun: Bun;
+    ingredients: Array<Ingredient> = [];
 }
