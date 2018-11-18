@@ -11,7 +11,7 @@ import { Ingredient } from '../../../models/ingredient';
 })
 export class IngredientModalComponent implements OnInit {
 
-    private ingredientTypes: IngredientType[];
+    ingredientTypes: IngredientType[];
     editedItem: Ingredient;
     ingredient: Ingredient;
     items: Array<Ingredient> = [];

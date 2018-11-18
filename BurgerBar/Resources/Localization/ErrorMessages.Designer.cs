@@ -106,6 +106,15 @@ namespace BurgerBar.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An item price is required..
+        /// </summary>
+        public static string PriceRequiredError {
+            get {
+                return ResourceManager.GetString("PriceRequiredError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The collection of ordered products cannot be empty..
         /// </summary>
         public static string ProductsRequiredError {

@@ -180,4 +180,7 @@
   <data name="Town" xml:space="preserve">
     <value>Miejscowość</value>
   </data>
+  <data name="ProductType" xml:space="preserve">
+    <value>Rodzaj produktu</value>
+  </data>
 </root>

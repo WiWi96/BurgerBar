@@ -132,6 +132,9 @@
   <data name="PhoneFormatError" xml:space="preserve">
     <value>Wartość pola z numerem telefonu jest niepoprawna.</value>
   </data>
+  <data name="PriceRequiredError" xml:space="preserve">
+    <value>Cena artykułu jest wymagana.</value>
+  </data>
   <data name="ProductsRequiredError" xml:space="preserve">
     <value>Kolekcja zamówionych produktów nie może być pusta.</value>
   </data>

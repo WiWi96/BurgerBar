@@ -40,6 +40,39 @@ namespace BurgerBar.Data
                 }
             );
 
+            modelBuilder.Entity<ProductType>().HasData(
+                new ProductType()
+                {
+                    Id = 1,
+                    Name = "Appetizers"
+                },
+                new ProductType()
+                {
+                    Id = 2,
+                    Name = "Soup"
+                },
+                new ProductType()
+                {
+                    Id = 3,
+                    Name = "Main courses"
+                },
+                new ProductType()
+                {
+                    Id = 4,
+                    Name = "Salads"
+                },
+                new ProductType()
+                {
+                    Id = 5,
+                    Name = "Desserts"
+                },
+                new ProductType()
+                {
+                    Id = 6,
+                    Name = "Beverages"
+                }
+            );
+
             modelBuilder.Entity<Burger>()
                 .Property(b => b.Number)
                 .HasDefaultValue(string.Empty);

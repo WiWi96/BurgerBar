@@ -5,5 +5,6 @@ export class Ingredient {
     name: string;
     description?: string;
     type: IngredientType;
+    price?: number;
     picture?: string;
 }

@@ -4,14 +4,16 @@ using BurgerBar.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BurgerBar.Migrations
 {
     [DbContext(typeof(BurgerBarContext))]
-    partial class BurgerBarContextModelSnapshot : ModelSnapshot
+    [Migration("20181118184637_Price")]
+    partial class Price
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -255,30 +257,11 @@ namespace BurgerBar.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<long>("TypeId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("TypeId");
 
                     b.ToTable("Product");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Product");
-                });
-
-            modelBuilder.Entity("BurgerBar.Entities.ProductType", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(30);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProductType");
                 });
 
             modelBuilder.Entity("BurgerBar.Entities.User", b =>
@@ -384,14 +367,6 @@ namespace BurgerBar.Migrations
                     b.HasOne("BurgerBar.Entities.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("BurgerBar.Entities.Product", b =>
-                {
-                    b.HasOne("BurgerBar.Entities.ProductType", "Type")
-                        .WithMany()
-                        .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

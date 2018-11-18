@@ -132,6 +132,9 @@
   <data name="PhoneFormatError" xml:space="preserve">
     <value>The Phone field value format is incorrect.</value>
   </data>
+  <data name="PriceRequiredError" xml:space="preserve">
+    <value>An item price is required.</value>
+  </data>
   <data name="ProductsRequiredError" xml:space="preserve">
     <value>The collection of ordered products cannot be empty.</value>
   </data>

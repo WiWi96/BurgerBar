@@ -180,4 +180,7 @@
   <data name="Town" xml:space="preserve">
     <value>Town</value>
   </data>
+  <data name="ProductType" xml:space="preserve">
+    <value>Product Type</value>
+  </data>
 </root>

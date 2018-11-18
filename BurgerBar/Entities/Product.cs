@@ -13,7 +13,12 @@ namespace BurgerBar.Entities
         public string Name { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
+        [Required(ErrorMessageResourceName = "PriceRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
         public decimal Price { get; set; }
+
+        [Display(ResourceType = typeof(Labels), Name = "ProductType")]
+        [Required(ErrorMessageResourceName = "ReferenceRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
+        public ProductType Type { get; set; }
 
         public bool IsInMenu { get; set; }
 
