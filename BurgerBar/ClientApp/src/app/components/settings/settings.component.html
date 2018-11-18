@@ -3,7 +3,16 @@
 	<tab heading="Common">
 
 	</tab>
-	<tab heading="Ingredients">
-		<app-ingredients></app-ingredients>
+	<tab heading="Buns" (select)="bunsLoaded = true" (deselect)="bunsLoaded = false">
+		<app-buns *ngIf="bunsLoaded"></app-buns>
+	</tab>
+    <tab heading="Burgers" (select)="burgersLoaded = true" (deselect)="burgersLoaded = false">
+		<app-burgers *ngIf="burgersLoaded"></app-burgers>
+	</tab>
+    <tab heading="Ingredients" (select)="ingredientsLoaded = true" (deselect)="ingredientsLoaded = false">
+		<app-ingredients *ngIf="ingredientsLoaded"></app-ingredients>
+	</tab>
+    <tab heading="Products" (select)="productsLoaded = true" (deselect)="productsLoaded = false">
+		<app-products *ngIf="productsLoaded"></app-products>
 	</tab>
 </tabset>
