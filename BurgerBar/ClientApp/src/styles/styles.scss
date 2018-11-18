@@ -1,5 +1,39 @@
+@import 'colors.scss';
+@import 'mixins.scss';
+
 @import url("../assets/fonts/Montserrat/Montserrat.css");
 
 body {
-  font-family: Montserrat, sans-serif;
+    font-family: Montserrat, sans-serif;
+}
+
+tabset {
+    .tab-content {
+        .tab-buttons {
+            border-bottom: 1px solid $border-color;
+            padding: 3px 0;
+            margin-bottom: 10px;
+
+            button {
+                margin-right: 2px;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .sticky-tabs {
+        ul.nav.nav-tabs, .sticky-buttons {
+            position: sticky;
+            background-color: $background;
+        }
+
+        ul.nav.nav-tabs {
+            top: 0;
+        }
+
+        .sticky-buttons {
+            top: calc(1rem + 1.5em + 1.5px);
+        }
+    }
 }

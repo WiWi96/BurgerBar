@@ -1,3 +1,39 @@
-<p>
-  burgers works!
-</p>
+<div class="tab-buttons sticky-buttons">
+    <button class="btn btn-primary" [routerLink]="['/configure']">Add burger</button>
+</div>
+<table class="table" *ngIf="burgers?.length;else noBurgers">
+    <colgroup>
+        <col style="width: 5%" />
+        <col style="width: 5%" />
+        <col style="width: 60%" />
+        <col style="width: 25%" />
+        <col style="width: 5%" />
+    </colgroup>
+    <thead>
+        <tr>
+            <th class="text-center"></th>
+            <th class="text-center">Id</th>
+            <th>Name</th>
+            <th>Number</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of burgers">
+            <td class="text-center">
+                <a href="">
+                    <fa-icon [icon]="faAngleDown"></fa-icon>
+                </a>
+            </td>
+            <td class="text-center">{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.number}}</td>
+            <td class="text-center">
+                <button class="btn btn-link" [routerLink]="['/configure/{item.number}']">
+                    <fa-icon [icon]="faWrench"></fa-icon>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<ng-template #noBurgers>There are no burgers yet.</ng-template>

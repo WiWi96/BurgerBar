@@ -44,6 +44,7 @@ import { IngredientModalComponent } from './components/modals/ingredient-modal/i
         FontAwesomeModule,
         RouterModule.forRoot([
             { path: '', component: HomeComponent, pathMatch: 'full' },
+            { path: 'configure', component: ConfiguratorComponent, pathMatch: 'full' },
             { path: 'settings', component: SettingsComponent, pathMatch: 'full' }
         ])
     ],
