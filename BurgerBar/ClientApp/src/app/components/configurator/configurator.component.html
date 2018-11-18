@@ -1,3 +1,33 @@
-<p>
-  configurator works!
-</p>
+<h1>Configurator</h1>
+<p>Create a new burger configuration or find and modify an existing one!</p>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Browse existing configurations</h5>
+                    <p class="card-text">Just enter the code and find the burger created by you or other users. Then you'll have an opportunity to edit the configuration or simply order it.</p>
+                    <form>
+                        <div class="form-group">
+                            <label for="burgerCodeInput">Burger unique code</label>
+                            <input class="form-control" id="burgerCodeInput" placeholder="Burger code" name="burgerCode" [(ngModel)]="code" />
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-lg" type="submit" (click)="findConfiguration()">Find!</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Imagine your own burger</h5>
+                    <p class="card-text">You can create a new burger configuration by adding your favorite ingredients. As you finish, you'll be able to order the burger.</p>
+                    <button class="btn btn-lg btn-primary">Create new configuration</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

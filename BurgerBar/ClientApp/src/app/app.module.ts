@@ -27,6 +27,7 @@ import { OrderService } from './services/order/order.service';
 import { PaymentTypeService } from './services/payment-type/payment-type.service';
 import { registerLocaleData } from '@angular/common';
 import localePl from '@angular/common/locales/pl';
+import { ConfiguratorViewerComponent } from './components/configurator/configurator-viewer/configurator-viewer.component';
 
 registerLocaleData(localePl, 'pl');
 
@@ -43,7 +44,8 @@ registerLocaleData(localePl, 'pl');
         BunsComponent,
         MenuComponent,
         IngredientModalComponent,
-        ProductModalComponent
+        ProductModalComponent,
+        ConfiguratorViewerComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -56,6 +58,7 @@ registerLocaleData(localePl, 'pl');
         RouterModule.forRoot([
             { path: '', component: HomeComponent, pathMatch: 'full' },
             { path: 'configure', component: ConfiguratorComponent, pathMatch: 'full' },
+            { path: 'configure/:code', component: ConfiguratorViewerComponent, pathMatch: 'full' },
             { path: 'settings', component: SettingsComponent, pathMatch: 'full' }
         ])
     ],
