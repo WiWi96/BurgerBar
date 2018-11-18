@@ -22,8 +22,6 @@ namespace BurgerBar.Entities
 
         public bool IsInMenu { get; set; }
 
-        public CreationType CreationType { get; set; }
-
         public bool Active { get; set; } = true;
     }
 }

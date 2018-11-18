@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -19,6 +19,16 @@ import { BurgersComponent } from './components/settings/burgers/burgers.componen
 import { BunsComponent } from './components/settings/buns/buns.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { IngredientModalComponent } from './components/modals/ingredient-modal/ingredient-modal.component';
+import { ProductModalComponent } from './components/modals/product-modal/product-modal.component';
+import { ProductService } from './services/product/product.service';
+import { BunService } from './services/bun/bun.service';
+import { DeliveryTypeService } from './services/delivery-type/delivery-type.service';
+import { OrderService } from './services/order/order.service';
+import { PaymentTypeService } from './services/payment-type/payment-type.service';
+import { registerLocaleData } from '@angular/common';
+import localePl from '@angular/common/locales/pl';
+
+registerLocaleData(localePl, 'pl');
 
 @NgModule({
     declarations: [
@@ -32,7 +42,8 @@ import { IngredientModalComponent } from './components/modals/ingredient-modal/i
         BurgersComponent,
         BunsComponent,
         MenuComponent,
-        IngredientModalComponent
+        IngredientModalComponent,
+        ProductModalComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -48,8 +59,8 @@ import { IngredientModalComponent } from './components/modals/ingredient-modal/i
             { path: 'settings', component: SettingsComponent, pathMatch: 'full' }
         ])
     ],
-    providers: [BurgerService, IngredientService],
+    providers: [{ provide: LOCALE_ID, useValue: 'pl' }, BurgerService, IngredientService, ProductService, BunService, DeliveryTypeService, OrderService, PaymentTypeService],
     bootstrap: [AppComponent],
-    entryComponents: [IngredientModalComponent]
+    entryComponents: [IngredientModalComponent, ProductModalComponent]
 })
 export class AppModule { }

@@ -103,5 +103,12 @@ namespace BurgerBar.Controllers
 
             return Ok(product);
         }
+
+        // GET: api/Products/types
+        [HttpGet("types")]
+        public async Task<IEnumerable<ProductType>> GetProductTypes()
+        {
+            return await productsService.GetProductTypes();
+        }
     }
 }

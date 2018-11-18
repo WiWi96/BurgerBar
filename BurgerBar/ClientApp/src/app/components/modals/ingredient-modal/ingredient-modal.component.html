@@ -8,7 +8,7 @@
     <form>
         <div class="form-group">
             <label for="ingredientNameInput">Name</label>
-            <input class="form-control" id="ingredientNameInput" placeholder="Name" [(ngModel)]="ingredient.name" name="name"/>
+            <input class="form-control" id="ingredientNameInput" placeholder="Name" [(ngModel)]="ingredient.name" name="name" />
         </div>
         <div class="form-group">
             <label for="ingredientTypeSelect">Type</label>
@@ -19,6 +19,14 @@
         <div class="form-group">
             <label for="ingredientDescriptionTextarea">Description</label>
             <textarea class="form-control" id="ingredientDescriptionTextarea" [(ngModel)]="ingredient.description" name="description"></textarea>
+        </div>
+        <div class="form-check form-check-inline">
+            <input type="checkbox" class="form-check-input" id="ingredientActiveCheckbox" [(ngModel)]="ingredient.active" name="active" checked />
+            <label class="form-check-label" for="ingredientActiveCheckbox">Active</label>
+        </div>
+        <div class="form-group">
+            <label for="ingredientPriceInput">Price</label>
+            <input type="number" class="form-control" id="ingredientPriceInput" placeholder="Price" [(ngModel)]="ingredient.price" name="price" />
         </div>
     </form>
 </div>

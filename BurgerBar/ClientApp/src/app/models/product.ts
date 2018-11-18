@@ -1,4 +1,3 @@
-import { CreationType } from "./enums/creation-type";
 import { ProductType } from "./product-type";
 
 export class Product {
@@ -7,5 +6,4 @@ export class Product {
     price: number;
     type: ProductType;
     isInMenu: boolean;
-    creationType: CreationType;
 }

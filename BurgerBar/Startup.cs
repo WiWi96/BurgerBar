@@ -63,6 +63,7 @@ namespace BurgerBar
             services.AddScoped<IBurgersService, BurgersService>();
             services.AddScoped<IOrdersService, OrdersService>();
             services.AddScoped<IIngredientsService, IngredientsService>();
+            services.AddScoped<IProductsService, ProductsService>();
 
             services.AddLocalization(o => o.ResourcesPath = "Resources");
             services.Configure<RequestLocalizationOptions>(options =>
@@ -87,12 +88,12 @@ namespace BurgerBar
             {
                 app.UseDeveloperExceptionPage();
 
-                //using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-                //{
-                //    var context = serviceScope.ServiceProvider.GetRequiredService<BurgerBarContext>();
-                //    context.Database.EnsureDeleted();
-                //    context.Database.Migrate();
-                //}
+                using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+                {
+                    var context = serviceScope.ServiceProvider.GetRequiredService<BurgerBarContext>();
+                    context.Database.EnsureCreated();
+                    context.Database.Migrate();
+                }
             }
             else
             {

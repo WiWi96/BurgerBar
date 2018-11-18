@@ -1,3 +1,50 @@
-<p>
-  products works!
-</p>
+<div class="tab-buttons sticky-buttons">
+    <button class="btn btn-primary" (click)="addProduct()">Add product</button>
+</div>
+<div *ngIf="types?.length; else noTypes">
+    <div *ngFor="let type of types">
+        <h4>{{type.name}}</h4>
+        <div *ngIf="getProductsOfType(type) as productsOfType; else noProducts">
+            <table class="table" *ngIf="productsOfType?.length; else noProducts">
+                <colgroup>
+                    <col style="width: 5%" />
+                    <col style="width: 50%" />
+                    <col style="width: 10%" />
+                    <col style="width: 10%" />
+                    <col style="width: 20%" />
+                    <col style="width: 5%" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th class="text-center">Id</th>
+                        <th>Name</th>
+                        <th>In Menu</th>
+                        <th>Active</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of productsOfType">
+                        <td class="text-center">{{product.id}}</td>
+                        <td>{{product.name}}</td>
+                        <td>{{product.isInMenu}}</td>
+                        <td>{{product.active}}</td>
+                        <td>{{product.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</td>
+                        <td class="text-center">
+                            <button class="btn btn-link" (click)="editProduct(product)">
+                                <fa-icon [icon]="faWrench"></fa-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <ng-template #noProducts>
+            There are no products.
+        </ng-template>
+    </div>
+</div>
+<ng-template #noTypes>
+    There are no product types.
+</ng-template>

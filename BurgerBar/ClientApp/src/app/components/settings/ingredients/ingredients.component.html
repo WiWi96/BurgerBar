@@ -5,11 +5,12 @@
     <div *ngFor="let type of types">
         <h4>{{type.name}}</h4>
         <div *ngIf="getIngredientsOfType(type) as ingredientsOfType; else noIngredients">
-            <table class="table" *ngIf="ingredientsOfType; else noIngredients">
+            <table class="table" *ngIf="ingredientsOfType?.length; else noIngredients">
                 <colgroup>
                     <col style="width: 5%" />
                     <col style="width: 30%" />
-                    <col style="width: 60%" />
+                    <col style="width: 50%" />
+                    <col style="width: 10%" />
                     <col style="width: 5%" />
                 </colgroup>
                 <thead>
@@ -17,6 +18,7 @@
                         <th class="text-center">Id</th>
                         <th>Name</th>
                         <th>Description</th>
+                        <th>Price</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -25,6 +27,7 @@
                         <td class="text-center">{{ingredient.id}}</td>
                         <td>{{ingredient.name}}</td>
                         <td>{{ingredient.description}}</td>
+                        <td>{{ingredient.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</td>
                         <td class="text-center">
                             <button class="btn btn-link" (click)="editIngredient(ingredient)">
                                 <fa-icon [icon]="faWrench"></fa-icon>

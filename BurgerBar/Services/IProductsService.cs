@@ -13,5 +13,6 @@ namespace BurgerBar.Services
         Task<Product> UpdateAsync(long id, Product product);
         Task<Product> AddAsync(Product burger);
         Task<Product> DeleteAsync(long id);
+        Task<IEnumerable<ProductType>> GetProductTypes();
     }
 }

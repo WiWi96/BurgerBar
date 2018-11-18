@@ -18,5 +18,7 @@ namespace BurgerBar.Entities
         [Required(ErrorMessageResourceName = "IngredientsRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
         [MinLength(1, ErrorMessageResourceName = "IngredientsRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
         public ICollection<BurgerIngredient> Ingredients { get; set; }
+
+        public CreationType CreationType { get; set; }
     }
 }

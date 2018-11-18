@@ -81,6 +81,7 @@ namespace BurgerBar.Data
         public DbSet<Burger> Burger { get; set; }
         public DbSet<Ingredient> Ingredient { get; set; }
         public DbSet<IngredientType> IngredientType { get; set; }
+        public DbSet<ProductType> ProductType { get; set; }
         public DbSet<Order> Order { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<Bun> Bun { get; set; }

@@ -1,0 +1,42 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Product</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="form-group">
+            <label for="productNameInput">Name</label>
+            <input class="form-control" id="productNameInput" placeholder="Name" [(ngModel)]="product.name" name="name" />
+        </div>
+        <div class="form-group">
+            <label for="productTypeSelect">Type</label>
+            <select class="form-control" id="productTypeSelect" [(ngModel)]="product.type" name="type" [compareWith]="compareTypes">
+                <option *ngFor="let type of productTypes" [ngValue]="type">{{type.name}}</option>
+            </select>
+        </div>
+        <div class="form-check form-check-inline">
+            <input type="checkbox" class="form-check-input" id="productActiveCheckbox" [(ngModel)]="product.active" name="active" checked />
+            <label class="form-check-label" for="productActiveCheckbox">Active</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input type="checkbox" class="form-check-input" id="productInMenuCheckbox" [(ngModel)]="product.isInMenu" name="isInMenu" checked />
+            <label class="form-check-label" for="productInMenuCheckbox">In menu</label>
+        </div>
+        <div class="form-group">
+            <label for="productPriceInput">Price</label>
+            <input type="number" class="form-control" id="productPriceInput" placeholder="Price" [(ngModel)]="product.price" name="price" />
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <div>
+        <button type="button" class="btn btn-primary" (click)="saveProduct()">
+            Save
+        </button>
+        <button type="button" class="btn" (click)="bsModalRef.hide()">
+            Cancel
+        </button>
+    </div>
+</div>

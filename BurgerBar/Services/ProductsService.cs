@@ -21,6 +21,7 @@ namespace BurgerBar.Services
         public async Task<Product> AddAsync(Product product)
         {
             dbSet.Add(product);
+            context.Entry(product.Type).State = EntityState.Unchanged;
             await context.SaveChangesAsync();
             return product;
         }
@@ -45,7 +46,7 @@ namespace BurgerBar.Services
 
         public async Task<IEnumerable<Product>> GetAllAsync()
         {
-            return await Task.FromResult(dbSet.AsEnumerable());
+            return await Task.FromResult(dbSet.Include(x => x.Type).AsEnumerable());
         }
 
         public async Task<Product> UpdateAsync(long id, Product product)
@@ -75,6 +76,11 @@ namespace BurgerBar.Services
         private bool ProductExists(long id)
         {
             return dbSet.Any(e => e.Id == id);
+        }
+
+        public async Task<IEnumerable<ProductType>> GetProductTypes()
+        {
+            return await Task.FromResult(context.ProductType.AsEnumerable());
         }
     }
 }
