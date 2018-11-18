@@ -39,6 +39,6 @@ export class IngredientModalComponent implements OnInit {
         this.bsModalRef.hide();
     }
 
-    compareTypes = (a, b) => a.id === b.id;
+    compareTypes = (a, b) => a && b && a.id === b.id;
 
 }
