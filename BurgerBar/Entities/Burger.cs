@@ -11,7 +11,7 @@ namespace BurgerBar.Entities
     public class Burger : Product
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string Number { get; set; }
+        public string Code { get; set; }
         
         public Bun Bun { get; set; }
 

@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BurgerService } from '../../services/burger/burger.service';
-import { Burger } from '../../models/burger';
 
 @Component({
     selector: 'app-home',
@@ -8,15 +6,8 @@ import { Burger } from '../../models/burger';
 })
 export class HomeComponent implements OnInit {
 
-    burgers: Burger[];
-
-    constructor(private service: BurgerService) { }
+    constructor() { }
 
     ngOnInit() {
-        this.getBurgers();
-    }
-
-    getBurgers() {
-        this.service.getBurgers().subscribe(data => this.burgers = data);
     }
 }

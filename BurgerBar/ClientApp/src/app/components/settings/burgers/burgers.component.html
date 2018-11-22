@@ -14,7 +14,7 @@
             <th class="text-center"></th>
             <th class="text-center">Id</th>
             <th>Name</th>
-            <th>Number</th>
+            <th>Code</th>
             <th></th>
         </tr>
     </thead>
@@ -27,7 +27,7 @@
             </td>
             <td class="text-center">{{item.id}}</td>
             <td>{{item.name}}</td>
-            <td>{{item.number}}</td>
+            <td>{{item.code}}</td>
             <td class="text-center">
                 <button class="btn btn-link" [routerLink]="['/configure/{item.number}']">
                     <fa-icon [icon]="faWrench"></fa-icon>

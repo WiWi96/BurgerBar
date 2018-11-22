@@ -43,7 +43,7 @@ namespace BurgerBar.Services
 
         public async Task<Ingredient> GetAsync(long id)
         {
-            return await ingredientsSet.FindAsync(id);
+            return await ingredientsSet.Include(x => x.Type).FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<IEnumerable<Ingredient>> GetAllAsync()

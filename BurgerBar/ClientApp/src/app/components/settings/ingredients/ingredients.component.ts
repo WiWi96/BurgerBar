@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { IngredientService } from '../../../services/ingredient/ingredient.service';
-import { Ingredient } from '../../../models/ingredient';
+import { IngredientDetails } from '../../../models/ingredient-details';
 import { faWrench } from '@fortawesome/free-solid-svg-icons';
 import { IngredientType } from '../../../models/ingredient-type';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { IngredientModalComponent } from '../../modals/ingredient-modal/ingredient-modal.component';
+import { Ingredient } from '../../../models/ingredient';
 
 @Component({
     selector: 'app-ingredients',
@@ -39,21 +40,27 @@ export class IngredientsComponent implements OnInit {
         this.openIngredientModal();
     }
 
-    editIngredient(ingredient: Ingredient) {
-        this.openIngredientModal(ingredient);
+    editIngredient(index: number) {
+        this.openIngredientModal(index);
     }
 
     getIngredientsOfType(type: IngredientType): Ingredient[] {
         if (this.ingredients) {
-            return this.ingredients.filter(x => (x.type && x.type.id === type.id));
+            return this.ingredients.filter(x => (x.typeId === type.id));
         }
     }
 
-    openIngredientModal(ingredient?: Ingredient) {
+    openIngredientModal(index?: any) {
         const initialState = {
-            editedItem: ingredient,
-            items: this.ingredients
-        }
+            id: typeof (index) === 'number' ? this.ingredients[index].id : null
+        };
         this.bsModalRef = this.modalService.show(IngredientModalComponent, { initialState });
+        this.bsModalRef.content.onClose.subscribe(result => {
+            if (typeof (index) === 'number') {
+                this.ingredients[index] = result;
+            } else {
+                this.ingredients.push(result);
+            }
+        });
     }
 }

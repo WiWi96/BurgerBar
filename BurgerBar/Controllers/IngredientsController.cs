@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using BurgerBar.Data;
 using BurgerBar.Entities;
 using BurgerBar.Services;
+using AutoMapper;
+using BurgerBar.ViewModels;
 
 namespace BurgerBar.Controllers
 {
@@ -15,18 +17,22 @@ namespace BurgerBar.Controllers
     [ApiController]
     public class IngredientsController : ControllerBase
     {
-        private readonly IIngredientsService ingredientsService;
+        private readonly IIngredientsService _ingredientsService;
+        private readonly IMapper _mapper;
 
-        public IngredientsController(IIngredientsService ingredientsService)
+        public IngredientsController(IIngredientsService ingredientsService, IMapper mapper)
         {
-            this.ingredientsService = ingredientsService;
+            _ingredientsService = ingredientsService;
+            _mapper = mapper;
         }
 
         // GET: api/Ingredients
         [HttpGet]
-        public async Task<IEnumerable<Ingredient>> GetIngredient()
+        public async Task<IEnumerable<IngredientDTO>> GetIngredients()
         {
-            return await ingredientsService.GetAllAsync();
+            IEnumerable<Ingredient> ingredients = await _ingredientsService.GetAllAsync();
+            var model = _mapper.Map<IEnumerable<IngredientDTO>>(ingredients);
+            return model;
         }
 
         // GET: api/Ingredients/5
@@ -38,7 +44,7 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            var ingredient = await ingredientsService.GetAsync(id);
+            var ingredient = await _ingredientsService.GetAsync(id);
 
             if (ingredient == null)
             {
@@ -62,14 +68,15 @@ namespace BurgerBar.Controllers
                 return BadRequest();
             }
 
-            ingredient = await ingredientsService.UpdateAsync(id, ingredient);
+            ingredient = await _ingredientsService.UpdateAsync(id, ingredient);
 
             if (ingredient == null)
             {
                 return NotFound();
             }
 
-            return Ok(ingredient);
+            var model = _mapper.Map<IngredientDTO>(ingredient);
+            return Ok(model);
         }
 
         // POST: api/Ingredients
@@ -81,9 +88,10 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            await ingredientsService.AddAsync(ingredient);
+            await _ingredientsService.AddAsync(ingredient);
+            var model = _mapper.Map<IngredientDTO>(ingredient);
 
-            return CreatedAtAction("GetIngredient", new { id = ingredient.Id }, ingredient);
+            return CreatedAtAction("GetIngredient", new { id = ingredient.Id }, model);
         }
 
         // DELETE: api/Ingredients/5
@@ -95,20 +103,22 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            var ingredient = await ingredientsService.DeleteAsync(id);
+            var ingredient = await _ingredientsService.DeleteAsync(id);
             if (ingredient == null)
             {
                 return NotFound();
             }
 
-            return Ok(ingredient);
+            var model = _mapper.Map<IngredientDTO>(ingredient);
+
+            return Ok(model);
         }
 
         // GET: api/Ingredients/types
         [HttpGet("types")]
         public async Task<IEnumerable<IngredientType>> GetIngredientTypes()
         {
-            return await ingredientsService.GetIngredientTypes();
+            return await _ingredientsService.GetIngredientTypes();
         }
     }
 }

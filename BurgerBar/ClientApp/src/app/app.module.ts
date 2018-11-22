@@ -28,6 +28,8 @@ import { PaymentTypeService } from './services/payment-type/payment-type.service
 import { registerLocaleData } from '@angular/common';
 import localePl from '@angular/common/locales/pl';
 import { ConfiguratorViewerComponent } from './components/configurator/configurator-viewer/configurator-viewer.component';
+import { BunModalComponent } from './components/modals/bun-modal/bun-modal.component';
+import { BurgerModalComponent } from './components/modals/burger-modal/burger-modal.component';
 
 registerLocaleData(localePl, 'pl');
 
@@ -45,7 +47,9 @@ registerLocaleData(localePl, 'pl');
         MenuComponent,
         IngredientModalComponent,
         ProductModalComponent,
-        ConfiguratorViewerComponent
+        ConfiguratorViewerComponent,
+        BunModalComponent,
+        BurgerModalComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -64,6 +68,6 @@ registerLocaleData(localePl, 'pl');
     ],
     providers: [{ provide: LOCALE_ID, useValue: 'pl' }, BurgerService, IngredientService, ProductService, BunService, DeliveryTypeService, OrderService, PaymentTypeService],
     bootstrap: [AppComponent],
-    entryComponents: [IngredientModalComponent, ProductModalComponent]
+    entryComponents: [IngredientModalComponent, ProductModalComponent, BunModalComponent, BurgerModalComponent]
 })
 export class AppModule { }

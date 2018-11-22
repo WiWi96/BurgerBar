@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using BurgerBar.Data;
 using BurgerBar.Entities;
 using BurgerBar.Services;
+using AutoMapper;
+using BurgerBar.ViewModels;
 
 namespace BurgerBar.Controllers
 {
@@ -15,18 +17,22 @@ namespace BurgerBar.Controllers
     [ApiController]
     public class BurgersController : ControllerBase
     {
-        private readonly IBurgersService burgersService;
+        private readonly IBurgersService _burgersService;
+        private readonly IMapper _mapper;
 
-        public BurgersController(IBurgersService burgersService)
+        public BurgersController(IBurgersService burgersService, IMapper mapper)
         {
-            this.burgersService = burgersService;
+            _burgersService = burgersService;
+            _mapper = mapper;
         }
 
         // GET: api/Burgers
         [HttpGet]
-        public async Task<IEnumerable<Burger>> GetAllBurgersAsync()
+        public async Task<IEnumerable<BurgerDTO>> GetAllBurgersAsync()
         {
-            return await burgersService.GetAllAsync();
+            var burgers = await _burgersService.GetAllAsync();
+            var model = _mapper.Map<IEnumerable<BurgerDTO>>(burgers);
+            return model;
         }
 
         // GET: api/Burgers/5
@@ -38,7 +44,7 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            var burger = await burgersService.GetAsync(id);
+            var burger = await _burgersService.GetAsync(id);
 
             if (burger == null)
             {
@@ -62,14 +68,16 @@ namespace BurgerBar.Controllers
                 return BadRequest();
             }
 
-            burger = await burgersService.UpdateAsync(id, burger);
+            burger = await _burgersService.UpdateAsync(id, burger);
 
             if (burger == null)
             {
                 return NotFound();
             }
 
-            return Ok(burger);
+            var model = _mapper.Map<BurgerDTO>(burger);
+
+            return Ok(model);
         }
 
         // POST: api/Burgers
@@ -81,9 +89,10 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            await burgersService.AddAsync(burger);
+            await _burgersService.AddAsync(burger);
+            var model = _mapper.Map<BurgerDTO>(burger);
 
-            return CreatedAtAction("GetBurger", new { id = burger.Id }, burger);
+            return CreatedAtAction("GetBurger", new { id = burger.Id }, model);
         }
 
         // DELETE: api/Burgers/5
@@ -95,13 +104,14 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            var burger = await burgersService.DeleteAsync(id);
+            var burger = await _burgersService.DeleteAsync(id);
             if (burger == null)
             {
                 return NotFound();
             }
+            var model = _mapper.Map<BurgerDTO>(burger);
 
-            return Ok(burger);
+            return Ok(model);
         }
     }
 }

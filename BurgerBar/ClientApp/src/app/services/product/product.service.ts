@@ -4,6 +4,7 @@ import { Product } from '../../models/product';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { ProductType } from '../../models/product-type';
+import { ProductDetails } from '../../models/product-details';
 
 @Injectable({
   providedIn: 'root'
@@ -18,15 +19,15 @@ export class ProductService {
         return this.client.get<Product[]>(this.apiPath);
     }
 
-    public getProduct(id: number): Observable<Product> {
-        return this.client.get<Product>(this.apiPath + '/' + id);
+    public getProductDetails(id: number): Observable<ProductDetails> {
+        return this.client.get<ProductDetails>(this.apiPath + '/' + id);
     }
 
-    public postProduct(product: Product): Observable<Product> {
+    public postProduct(product: ProductDetails): Observable<Product> {
         return this.client.post<Product>(this.apiPath, product);
     }
 
-    public putProduct(id: number, product: Product): Observable<Product> {
+    public putProduct(id: number, product: ProductDetails): Observable<Product> {
         return this.client.put<Product>(this.apiPath + '/' + id, product);
     }
 

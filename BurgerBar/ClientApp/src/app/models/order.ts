@@ -1,7 +1,7 @@
-import { Customer } from "./customer";
-import { OrderedProduct } from "./ordered-product";
-import { DeliveryType } from "./delivery-type";
-import { PaymentType } from "./payment-type";
+import { Customer } from './customer';
+import { OrderedProduct } from './ordered-product';
+import { DeliveryType } from './delivery-type';
+import { PaymentType } from './payment-type';
 
 export class Order {
   id?: number;

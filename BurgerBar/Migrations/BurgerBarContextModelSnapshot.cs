@@ -49,6 +49,33 @@ namespace BurgerBar.Migrations
                     b.ToTable("Address");
                 });
 
+            modelBuilder.Entity("BurgerBar.Entities.Bun", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Active");
+
+                    b.Property<string>("BottomPicture");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(300);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30);
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("TopPicture");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Bun");
+                });
+
             modelBuilder.Entity("BurgerBar.Entities.BurgerIngredient", b =>
                 {
                     b.Property<long>("Id")
@@ -132,9 +159,6 @@ namespace BurgerBar.Migrations
                     b.Property<string>("Description")
                         .HasMaxLength(300);
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired();
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(30);
@@ -151,8 +175,6 @@ namespace BurgerBar.Migrations
                     b.HasIndex("TypeId");
 
                     b.ToTable("Ingredient");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Ingredient");
                 });
 
             modelBuilder.Entity("BurgerBar.Entities.IngredientType", b =>
@@ -315,30 +337,17 @@ namespace BurgerBar.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("BurgerBar.Entities.Bun", b =>
-                {
-                    b.HasBaseType("BurgerBar.Entities.Ingredient");
-
-                    b.Property<string>("BottomPicture");
-
-                    b.Property<string>("TopPicture");
-
-                    b.ToTable("Bun");
-
-                    b.HasDiscriminator().HasValue("Bun");
-                });
-
             modelBuilder.Entity("BurgerBar.Entities.Burger", b =>
                 {
                     b.HasBaseType("BurgerBar.Entities.Product");
 
                     b.Property<long?>("BunId");
 
-                    b.Property<int>("CreationType");
-
-                    b.Property<string>("Number")
+                    b.Property<string>("Code")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValue("");
+
+                    b.Property<int>("CreationType");
 
                     b.HasIndex("BunId");
 

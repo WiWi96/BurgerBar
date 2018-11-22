@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using BurgerBar.Entities;
 using BurgerBar.Services;
+using BurgerBar.ViewModels;
+using AutoMapper;
 
 namespace BurgerBar.Controllers
 {
@@ -11,18 +13,22 @@ namespace BurgerBar.Controllers
     [ApiController]
     public class BunsController : ControllerBase
     {
-        private readonly IBunsService bunsService;
+        private readonly IBunsService _bunsService;
+        private readonly IMapper _mapper;
 
-        public BunsController(IBunsService bunsService)
+        public BunsController(IBunsService bunsService, IMapper mapper)
         {
-            this.bunsService = bunsService;
+            _bunsService = bunsService;
+            _mapper = mapper;
         }
 
         // GET: api/Buns
         [HttpGet]
-        public async Task<IEnumerable<Bun>> GetBun()
+        public async Task<IEnumerable<BunDTO>> GetBuns()
         {
-            return await bunsService.GetAllAsync();
+            var buns = await _bunsService.GetAllAsync();
+            var model = _mapper.Map<IEnumerable<BunDTO>>(buns);
+            return model;
         }
 
         // GET: api/Buns/5
@@ -34,7 +40,7 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            var bun = await bunsService.GetAsync(id);
+            var bun = await _bunsService.GetAsync(id);
 
             if (bun == null)
             {
@@ -58,7 +64,7 @@ namespace BurgerBar.Controllers
                 return BadRequest();
             }
 
-            bun = await bunsService.UpdateAsync(id, bun);
+            bun = await _bunsService.UpdateAsync(id, bun);
 
             if (bun == null)
             {
@@ -77,9 +83,10 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            await bunsService.AddAsync(bun);
+            await _bunsService.AddAsync(bun);
+            var model = _mapper.Map<BunDTO>(bun);
 
-            return CreatedAtAction("GetBun", new { id = bun.Id }, bun);
+            return CreatedAtAction("GetBun", new { id = bun.Id }, model);
         }
 
         // DELETE: api/Buns/5
@@ -91,13 +98,15 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            var bun = await bunsService.DeleteAsync(id);
+            var bun = await _bunsService.DeleteAsync(id);
             if (bun == null)
             {
                 return NotFound();
             }
 
-            return Ok(bun);
+            var model = _mapper.Map<BunDTO>(bun);
+
+            return Ok(model);
         }
     }
 }

@@ -21,6 +21,7 @@ namespace BurgerBar.Services
         public async Task<Burger> AddAsync(Burger burger)
         {
             dbSet.Add(burger);
+            //context.Entry(burger.Ingredients).State = EntityState.Unchanged;
             await context.SaveChangesAsync();
             return burger;
         }

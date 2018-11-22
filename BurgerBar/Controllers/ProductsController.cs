@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using BurgerBar.Data;
 using BurgerBar.Entities;
 using BurgerBar.Services;
+using AutoMapper;
+using BurgerBar.ViewModels;
 
 namespace BurgerBar.Controllers
 {
@@ -15,18 +17,22 @@ namespace BurgerBar.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IProductsService productsService;
+        private readonly IProductsService _productsService;
+        private readonly IMapper _mapper;
 
-        public ProductsController(IProductsService productsService)
+        public ProductsController(IProductsService productsService, IMapper mapper)
         {
-            this.productsService = productsService;
+            _productsService = productsService;
+            _mapper = mapper;
         }
 
         // GET: api/Products
         [HttpGet]
-        public async Task<IEnumerable<Product>> GetProduct()
+        public async Task<IEnumerable<ProductDTO>> GetProduct()
         {
-            return await productsService.GetAllAsync();
+            var products = await _productsService.GetAllAsync();
+            var model = _mapper.Map<IEnumerable<ProductDTO>>(products);
+            return model;
         }
 
         // GET: api/Products/5
@@ -38,7 +44,7 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            var product = await productsService.GetAsync(id);
+            var product = await _productsService.GetAsync(id);
 
             if (product == null)
             {
@@ -62,14 +68,16 @@ namespace BurgerBar.Controllers
                 return BadRequest();
             }
 
-            product = await productsService.UpdateAsync(id, product);
+            product = await _productsService.UpdateAsync(id, product);
 
             if (product == null)
             {
                 return NotFound();
             }
 
-            return Ok(product);
+            var model = _mapper.Map<ProductDTO>(product);
+
+            return Ok(model);
         }
 
         // POST: api/Products
@@ -81,9 +89,10 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            await productsService.AddAsync(product);
+            await _productsService.AddAsync(product);
+            var model = _mapper.Map<ProductDTO>(product);
 
-            return CreatedAtAction("GetProduct", new { id = product.Id }, product);
+            return CreatedAtAction("GetProduct", new { id = product.Id }, model);
         }
 
         // DELETE: api/Products/5
@@ -95,20 +104,21 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            var product = await productsService.DeleteAsync(id);
+            var product = await _productsService.DeleteAsync(id);
             if (product == null)
             {
                 return NotFound();
             }
+            var model = _mapper.Map<ProductDTO>(product);
 
-            return Ok(product);
+            return Ok(model);
         }
 
         // GET: api/Products/types
         [HttpGet("types")]
         public async Task<IEnumerable<ProductType>> GetProductTypes()
         {
-            return await productsService.GetProductTypes();
+            return await _productsService.GetProductTypes();
         }
     }
 }

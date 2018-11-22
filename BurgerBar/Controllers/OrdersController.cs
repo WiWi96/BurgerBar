@@ -11,18 +11,18 @@ namespace BurgerBar.Controllers
     [ApiController]
     public class OrdersController : ControllerBase
     {
-        private readonly IOrdersService ordersService;
+        private readonly IOrdersService _ordersService;
 
         public OrdersController(IOrdersService ordersService)
         {
-            this.ordersService = ordersService;
+            _ordersService = ordersService;
         }
 
         // GET: api/Orders
         [HttpGet]
         public async Task<IEnumerable<Order>> GetOrder()
         {
-            return await ordersService.GetAllAsync();
+            return await _ordersService.GetAllAsync();
         }
 
         // GET: api/Orders/5
@@ -34,7 +34,7 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            var order = await ordersService.GetAsync(id);
+            var order = await _ordersService.GetAsync(id);
 
             if (order == null)
             {
@@ -58,7 +58,7 @@ namespace BurgerBar.Controllers
                 return BadRequest();
             }
 
-            order = await ordersService.UpdateAsync(id, order);
+            order = await _ordersService.UpdateAsync(id, order);
 
             if (order == null)
             {
@@ -77,7 +77,7 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            await ordersService.AddAsync(order);
+            await _ordersService.AddAsync(order);
 
             return CreatedAtAction("GetOrder", new { id = order.Id }, order);
         }
@@ -91,7 +91,7 @@ namespace BurgerBar.Controllers
                 return BadRequest(ModelState);
             }
 
-            var order = await ordersService.DeleteAsync(id);
+            var order = await _ordersService.DeleteAsync(id);
             if (order == null)
             {
                 return NotFound();

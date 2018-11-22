@@ -25,14 +25,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let product of productsOfType">
+                    <tr *ngFor="let product of productsOfType; let i = index;">
                         <td class="text-center">{{product.id}}</td>
                         <td>{{product.name}}</td>
-                        <td>{{product.isInMenu}}</td>
-                        <td>{{product.active}}</td>
+                        <!-- <td>{{product.isInMenu}}</td>
+                        <td>{{product.active}}</td> -->
                         <td>{{product.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</td>
                         <td class="text-center">
-                            <button class="btn btn-link" (click)="editProduct(product)">
+                            <button class="btn btn-link" (click)="editProduct(i)">
                                 <fa-icon [icon]="faWrench"></fa-icon>
                             </button>
                         </td>

@@ -1,7 +1,7 @@
-import { Ingredient } from "./ingredient";
+import { IngredientDetails } from './ingredient-details';
 
 export class BurgerIngredient {
   id?: number;
-  ingredient: Ingredient;
+  ingredient: IngredientDetails;
   position: number;
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faAngleDown, faWrench } from '@fortawesome/free-solid-svg-icons';
-import { Burger } from '../../../models/burger';
 import { BurgerService } from '../../../services/burger/burger.service';
+import { Burger } from '../../../models/burger';
 
 @Component({
   selector: 'app-burgers',

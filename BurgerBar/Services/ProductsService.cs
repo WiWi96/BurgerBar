@@ -41,7 +41,7 @@ namespace BurgerBar.Services
 
         public async Task<Product> GetAsync(long id)
         {
-            return await dbSet.FindAsync(id);
+            return await dbSet.Include(x => x.Type).FirstOrDefaultAsync(x => x.Id == id); ;
         }
 
         public async Task<IEnumerable<Product>> GetAllAsync()

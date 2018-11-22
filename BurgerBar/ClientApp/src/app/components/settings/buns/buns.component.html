@@ -1,3 +1,39 @@
-<p>
-  buns works!
-</p>
+<div class="tab-buttons sticky-buttons">
+    <button class="btn btn-primary" (click)="addBun()">Add bun</button>
+</div>
+<table class="table" *ngIf="buns?.length;else noBuns">
+    <colgroup>
+        <col style="width: 5%" />
+        <col style="width: 15%" />
+        <col style="width: 40%" />
+        <col style="width: 25%" />
+        <col style="width: 15%" />
+    </colgroup>
+    <thead>
+        <tr>
+            <th></th>
+            <th class="text-center">Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of buns; let i = index;">
+            <td class="text-center">
+                <a href="">
+                    <fa-icon [icon]="faAngleDown"></fa-icon>
+                </a>
+            </td>
+            <td class="text-center">{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</td>
+            <td>
+                <button class="btn btn-link" (click)="editBun(i)">
+                    <fa-icon [icon]="faWrench"></fa-icon>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<ng-template #noBuns>There are no buns yet.</ng-template>

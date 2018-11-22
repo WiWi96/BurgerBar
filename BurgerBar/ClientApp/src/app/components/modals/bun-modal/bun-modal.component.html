@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Bun</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="form-group">
+            <label for="bunNameInput">Name</label>
+            <input class="form-control" id="bunNameInput" placeholder="Name" [(ngModel)]="bun.name" name="name" />
+        </div>
+        <div class="form-group">
+            <label for="bunDescriptionTextarea">Description</label>
+            <textarea class="form-control" id="bunDescriptionTextarea" [(ngModel)]="bun.description" name="description"></textarea>
+        </div>
+        <div class="form-check form-check-inline">
+            <input type="checkbox" class="form-check-input" id="bunActiveCheckbox" [(ngModel)]="bun.active" name="active" checked />
+            <label class="form-check-label" for="bunActiveCheckbox">Active</label>
+        </div>
+        <div class="form-group">
+            <label for="bunPriceInput">Price</label>
+            <input type="number" class="form-control" id="bunPriceInput" placeholder="Price" [(ngModel)]="bun.price" name="price" />
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <div>
+        <button type="button" class="btn btn-primary" (click)="saveBun()">
+            Save
+        </button>
+        <button type="button" class="btn" (click)="bsModalRef.hide()">
+            Cancel
+        </button>
+    </div>
+</div>

@@ -1,11 +1,9 @@
-import { Product } from "./product";
-import { Bun } from "./bun";
-import { Ingredient } from "./ingredient";
-import { CreationType } from "./enums/creation-type";
+import { Bun } from './bun';
+import { Ingredient } from './ingredient';
+import { Product } from './product';
 
 export class Burger extends Product {
-    number?: number;
+    code: string;
     bun: Bun;
     ingredients: Array<Ingredient> = [];
-    creationType: CreationType;
 }

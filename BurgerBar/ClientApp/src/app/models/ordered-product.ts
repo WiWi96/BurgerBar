@@ -1,7 +1,7 @@
-import { Product } from "./product";
+import { ProductDetails } from './product-details';
 
 export class OrderedProduct {
   id?: number;
-  product: Product;
+  product: ProductDetails;
   quantity: number;
 }

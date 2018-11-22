@@ -74,7 +74,7 @@ namespace BurgerBar.Data
             );
 
             modelBuilder.Entity<Burger>()
-                .Property(b => b.Number)
+                .Property(b => b.Code)
                 .HasDefaultValue(string.Empty);
         }
 

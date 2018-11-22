@@ -38,9 +38,15 @@ namespace BurgerBar
                     });
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
 
-            services.AddAutoMapper();
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -60,6 +66,7 @@ namespace BurgerBar
             services.AddDbContext<BurgerBarContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("BurgerBarContext")));
 
+            services.AddScoped<IBunsService, BunsService>();
             services.AddScoped<IBurgersService, BurgersService>();
             services.AddScoped<IOrdersService, OrdersService>();
             services.AddScoped<IIngredientsService, IngredientsService>();

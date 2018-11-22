@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../../models/product';
 import { ProductType } from '../../../models/product-type';
 import { faWrench } from '@fortawesome/free-solid-svg-icons';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ProductService } from '../../../services/product/product.service';
 import { ProductModalComponent } from '../../modals/product-modal/product-modal.component';
+import { Product } from '../../../models/product';
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+    selector: 'app-products',
+    templateUrl: './products.component.html',
+    styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
     products: Product[];
@@ -38,22 +38,28 @@ export class ProductsComponent implements OnInit {
         this.openProductModal();
     }
 
-    editProduct(product: Product) {
-        this.openProductModal(product);
+    editProduct(index: number) {
+        this.openProductModal(index);
     }
 
     getProductsOfType(type: ProductType): Product[] {
         if (this.products) {
-            return this.products.filter(x => (x.type && x.type.id === type.id));
+            return this.products.filter(x => (x.typeId === type.id));
         }
         return null;
     }
 
-    openProductModal(product?: Product) {
+    openProductModal(index?: any) {
         const initialState = {
-            editedItem: product,
-            items: this.products
-        }
+            id: typeof (index) === 'number' ? this.products[index].id : null
+        };
         this.bsModalRef = this.modalService.show(ProductModalComponent, { initialState });
+        this.bsModalRef.content.onClose.subscribe(result => {
+            if (typeof (index) === 'number') {
+                this.products[index] = result;
+            } else {
+                this.products.push(result);
+            }
+        });
     }
 }

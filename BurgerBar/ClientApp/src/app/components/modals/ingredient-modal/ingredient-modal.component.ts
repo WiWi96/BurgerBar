@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap';
 import { IngredientService } from '../../../services/ingredient/ingredient.service';
 import { IngredientType } from '../../../models/ingredient-type';
-import { Ingredient } from '../../../models/ingredient';
+import { IngredientDetails } from '../../../models/ingredient-details';
+import { Subject } from 'rxjs';
+import { BunDetails } from '../../../models/bun-details';
 
 @Component({
     selector: 'app-ingredient-modal',
@@ -10,35 +12,36 @@ import { Ingredient } from '../../../models/ingredient';
     styleUrls: ['./ingredient-modal.component.scss']
 })
 export class IngredientModalComponent implements OnInit {
+    public onClose: Subject<BunDetails>;
 
+    id: any;
     ingredientTypes: IngredientType[];
-    editedItem: Ingredient;
-    ingredient: Ingredient;
-    items: Array<Ingredient> = [];
+    ingredient: IngredientDetails = new IngredientDetails();
 
     constructor(public bsModalRef: BsModalRef,
         private ingredientsService: IngredientService) { }
 
     ngOnInit() {
+        this.onClose = new Subject();
         this.ingredientsService.getIngredientTypes().subscribe(
             data => this.ingredientTypes = data);
-        this.ingredient = { ...this.editedItem };
+        if (typeof (this.id) === 'number') {
+            this.ingredientsService.getIngredientDetails(this.id).subscribe(data => this.ingredient = data);
+        }
     }
 
     saveIngredient() {
-        if (this.editedItem) {
-            this.ingredientsService.putIngredient(this.editedItem.id, this.ingredient).subscribe(data => {
-                var index = this.items.findIndex(el => this.compareTypes(el, data));
-                if (index > -1)
-                    this.items[index] = data;
-            });
+        if (typeof (this.id) === 'number') {
+            this.ingredientsService.putIngredient(this.id, this.ingredient).subscribe(data => this.onSuccess(data));
+        } else {
+            this.ingredientsService.postIngredient(this.ingredient).subscribe(data => this.onSuccess(data));
         }
-        else {
-            this.ingredientsService.postIngredient(this.ingredient).subscribe(data => this.items.push(data));
-        }
+    }
+
+    onSuccess(data) {
+        this.onClose.next(data);
         this.bsModalRef.hide();
     }
 
     compareTypes = (a, b) => a && b && a.id === b.id;
-
 }

@@ -1,6 +1,7 @@
-import { Ingredient } from "./ingredient";
-
-export class Bun extends Ingredient {
-  topPicture?: string;
-  bottomPicture?: string;
+export class Bun {
+    id: number;
+    name: string;
+    price?: number;
+    topPicture: string;
+    bottomPicture: string;
 }
