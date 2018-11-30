@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { TabsModule, BsModalService, ModalModule, BsDropdownModule } from 'ngx-bootstrap';
+import { TabsModule, BsModalService, ModalModule, BsDropdownModule, SortableModule } from 'ngx-bootstrap';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { HomeComponent } from './components/home/home.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -30,6 +30,9 @@ import localePl from '@angular/common/locales/pl';
 import { ConfiguratorViewerComponent } from './components/configurator/configurator-viewer/configurator-viewer.component';
 import { BunModalComponent } from './components/modals/bun-modal/bun-modal.component';
 import { BurgerModalComponent } from './components/modals/burger-modal/burger-modal.component';
+import { ConfiguratorEditorComponent } from './components/configurator/configurator-editor/configurator-editor.component';
+import { IngredientCardComponent } from './components/configurator/ingredient-card/ingredient-card.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 registerLocaleData(localePl, 'pl');
 
@@ -49,25 +52,32 @@ registerLocaleData(localePl, 'pl');
         ProductModalComponent,
         ConfiguratorViewerComponent,
         BunModalComponent,
-        BurgerModalComponent
+        BurgerModalComponent,
+        ConfiguratorEditorComponent,
+        IngredientCardComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
         HttpClientModule,
         FormsModule,
+        ReactiveFormsModule,
+        DragDropModule,
         TabsModule.forRoot(),
         ModalModule.forRoot(),
         BsDropdownModule.forRoot(),
+        SortableModule.forRoot(),
         FontAwesomeModule,
         RouterModule.forRoot([
             { path: '', component: HomeComponent, pathMatch: 'full' },
             { path: 'configure', component: ConfiguratorComponent, pathMatch: 'full' },
             { path: 'configure/:code', component: ConfiguratorViewerComponent, pathMatch: 'full' },
+            { path: 'edit', component: ConfiguratorEditorComponent, pathMatch: 'full' },
+            { path: 'edit/:code', component: ConfiguratorEditorComponent, pathMatch: 'full' },
             { path: 'settings', component: SettingsComponent, pathMatch: 'full' }
         ])
     ],
     providers: [{ provide: LOCALE_ID, useValue: 'pl' }, BurgerService, IngredientService, ProductService, BunService, DeliveryTypeService, OrderService, PaymentTypeService],
     bootstrap: [AppComponent],
-    entryComponents: [IngredientModalComponent, ProductModalComponent, BunModalComponent, BurgerModalComponent]
+    entryComponents: [IngredientModalComponent, ProductModalComponent, BunModalComponent, BurgerModalComponent, IngredientCardComponent]
 })
 export class AppModule { }

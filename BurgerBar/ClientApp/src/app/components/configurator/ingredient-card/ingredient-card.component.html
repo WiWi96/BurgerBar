@@ -1,0 +1,8 @@
+<div class="row my-3">
+    <div class="form-group" [formGroup]="ingredientForm">
+        <select class="form-control" id="ingredientSelect" formControlName="ingredient" name="ingredient" [compareWith]="compare">
+            <option *ngFor="let item of ingredients" [ngValue]="item">{{item.name}}</option>
+        </select>
+    </div>
+    <button class="btn" (click)="deleteIngredient()">Delete</button>
+</div>
