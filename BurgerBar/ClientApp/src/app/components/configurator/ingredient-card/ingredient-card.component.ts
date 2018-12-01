@@ -56,7 +56,8 @@ export class IngredientCardComponent implements OnInit {//, ControlValueAccessor
         this.deleted.emit(this.index);
     }
 
-    ingredientSelected(id: number) {
+    ingredientSelected() {
+        let id = +this.ingredientForm.get('ingredient').value.id;
         this.ingredientService.getIngredientDetails(id).subscribe(
             data => this.ingredientDetails = data
         );

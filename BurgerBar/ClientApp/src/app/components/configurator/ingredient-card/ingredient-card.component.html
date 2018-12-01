@@ -10,8 +10,8 @@
         </div>
         <div class="content col">
             <div class="form-group" [formGroup]="ingredientForm">
-                <select class="form-control" id="ingredientSelect" formControlName="ingredient" [compareWith]="compare" (change)="ingredientSelected($event.target.value)">
-                    <option *ngFor="let item of ingredients" value="{{item.id}}">{{item.name}}</option>
+                <select class="form-control" id="ingredientSelect" formControlName="ingredient" [compareWith]="compare" (change)="ingredientSelected()">
+                    <option *ngFor="let item of ingredients" [ngValue]="item">{{item.name}}</option>
                 </select>
             </div>
             <p class="m-2"><small>{{ingredientDetails?.description}}</small></p>

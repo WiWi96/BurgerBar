@@ -1,24 +1,46 @@
-@import '../../../../styles/colors.scss';
+@import 'colors.scss';
+@import 'mixins.scss';
 
-.form-group {
-    .section-header {
-        display: flex;
-        align-items: center;
+form {
+    padding-bottom: 130px;
 
-        h1, h2, h3, h4, h5, h6 {
-            display: inline;
-            margin-right: 10px;
+    .form-group {
+        .section-header {
+            display: flex;
+            align-items: center;
+
+            h1, h2, h3, h4, h5, h6 {
+                display: inline;
+                margin-right: 10px;
+            }
+
+            h1 {
+                color: $orange;
+            }
         }
 
-        h1 {
-            color: $orange;
+        .section-body {
+            border: 1px solid $border-color;
+            border-radius: 3px;
+            box-shadow: $border-color 0 10px 15px;
+            padding: 20px 15px 30px;
         }
     }
 
-    .section-body {
-        border: 1px solid $border-color;
-        border-radius: 3px;
-        box-shadow: $border-color 0 10px 15px;
-        padding: 20px 15px 30px;
+    .footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 130px;
+        box-shadow: $border-color 0 -10px 15px;
+        background-color: $background;
+        display: flex;
+        text-align: center;
+        align-items: center;
+
+        @include media-breakpoint-up(md) {
+            left: calc(20% + 20px);
+        }
     }
 }

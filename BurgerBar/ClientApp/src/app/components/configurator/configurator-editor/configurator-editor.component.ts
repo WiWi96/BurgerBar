@@ -19,11 +19,13 @@ import { BurgerToAdd } from '../../../models/burger-to-add';
 })
 export class ConfiguratorEditorComponent implements OnInit {
     public form: FormGroup;
+
     burger: BurgerToAdd;
     buns: Bun[] = [];
     ingredients: Ingredient[] = [];
     code: string;
     bun: BunDetails;
+    price = 0.0;
 
     constructor(private activatedRoute: ActivatedRoute,
         private formBuilder: FormBuilder,
@@ -47,6 +49,18 @@ export class ConfiguratorEditorComponent implements OnInit {
             ingredients: this.formBuilder.array([
                 this.initIngredient()
             ], this.validationService.minLengthArray(2))
+        });
+
+        this.onChanges();
+    }
+
+    onChanges(): void {
+        this.form.valueChanges.subscribe(val => {
+            this.price = val.bun ? val.bun.price : 0.0;
+            val.ingredients.forEach(item => {
+                if (item.ingredient)
+                    this.price += item.ingredient.price;
+            });
         });
     }
 
@@ -78,15 +92,16 @@ export class ConfiguratorEditorComponent implements OnInit {
     }
 
     save(model: any) {
-        console.log(model.value);
         let tmpModel = { ...model.value };
-        tmpModel.ingredients = model.value.ingredients.map(o => o.ingredient);
-        console.log(model.value);
+
+        tmpModel.bun = tmpModel.bun.id;
+        tmpModel.ingredients = tmpModel.ingredients.map(o => o.ingredient.id);
 
         this.burgerService.postBurger(tmpModel).subscribe(data => console.log(data));
     }
 
-    bunSelected(id: number) {
+    bunSelected() {
+        let id = +this.form.get('bun').value.id;
         this.bunService.getBunDetails(id).subscribe(
             data => this.bun = data
         );
