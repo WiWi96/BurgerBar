@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Burger } from '../../models/burger';
 import { environment } from '../../../environments/environment';
 import { BurgerDetails } from '../../models/burger-details';
+import { BurgerToAdd } from '../../models/burger-to-add';
 
 @Injectable({
     providedIn: 'root'
@@ -21,7 +22,7 @@ export class BurgerService {
         return this.client.get<BurgerDetails>(this.apiPath + '/' + id);
     }
 
-    public postBurger(burger: BurgerDetails): Observable<Burger> {
+    public postBurger(burger: BurgerToAdd): Observable<Burger> {
         return this.client.post<Burger>(this.apiPath, burger);
     }
 

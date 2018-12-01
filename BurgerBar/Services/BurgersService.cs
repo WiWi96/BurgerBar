@@ -21,7 +21,13 @@ namespace BurgerBar.Services
         public async Task<Burger> AddAsync(Burger burger)
         {
             dbSet.Add(burger);
-            //context.Entry(burger.Ingredients).State = EntityState.Unchanged;
+            foreach(BurgerIngredient burgerIngredient in burger.Ingredients)
+            {
+                burgerIngredient.Burger = burger;
+                context.Set<BurgerIngredient>().Add(burgerIngredient);
+                context.Entry(burgerIngredient.Ingredient).State = EntityState.Unchanged;
+            }
+            context.Entry(burger.Bun).State = EntityState.Unchanged;
             await context.SaveChangesAsync();
             return burger;
         }
@@ -41,7 +47,9 @@ namespace BurgerBar.Services
 
         public async Task<Burger> GetAsync(long id)
         {
-            return await dbSet.FindAsync(id);
+            return await dbSet
+                .Include(x => x.Bun)
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<IEnumerable<Burger>> GetAllAsync()

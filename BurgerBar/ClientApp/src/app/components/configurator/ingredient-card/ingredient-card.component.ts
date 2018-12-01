@@ -2,23 +2,21 @@ import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@ang
 import { IngredientDetails } from '../../../models/ingredient-details';
 import { IngredientService } from '../../../services/ingredient/ingredient.service';
 import { Ingredient } from '../../../models/ingredient';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { faTh, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-ingredient-card',
     templateUrl: './ingredient-card.component.html',
-    styleUrls: ['./ingredient-card.component.scss'],
-    providers: [
-        {
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: forwardRef(() => IngredientCardComponent),
-            multi: true
-        }
-    ]
+    styleUrls: ['./ingredient-card.component.scss']
 })
 export class IngredientCardComponent implements OnInit {//, ControlValueAccessor {
-    //@Input()
-    ingredient: IngredientDetails;
+    ingredient: Ingredient;
+    ingredientDetails: IngredientDetails;
+
+    faTh = faTh;
+    faTrashAlt = faTrashAlt;
+
     @Input()
     index: number;
 
@@ -27,8 +25,6 @@ export class IngredientCardComponent implements OnInit {//, ControlValueAccessor
 
     @Output()
     deleted = new EventEmitter<number>();
-
-    //onChange = (_: any) => {};
 
     ingredients: Ingredient[] = [];
 
@@ -60,5 +56,11 @@ export class IngredientCardComponent implements OnInit {//, ControlValueAccessor
         this.deleted.emit(this.index);
     }
 
-    compare = (a, b) => a && b && a.id == b.id;
+    ingredientSelected(id: number) {
+        this.ingredientService.getIngredientDetails(id).subscribe(
+            data => this.ingredientDetails = data
+        );
+    }
+
+    compare = (a, b) => a == b;
 }

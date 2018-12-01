@@ -1,0 +1,24 @@
+@import '../../../../styles/colors.scss';
+
+.form-group {
+    .section-header {
+        display: flex;
+        align-items: center;
+
+        h1, h2, h3, h4, h5, h6 {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        h1 {
+            color: $orange;
+        }
+    }
+
+    .section-body {
+        border: 1px solid $border-color;
+        border-radius: 3px;
+        box-shadow: $border-color 0 10px 15px;
+        padding: 20px 15px 30px;
+    }
+}

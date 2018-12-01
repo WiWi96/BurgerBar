@@ -4,14 +4,16 @@ using BurgerBar.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BurgerBar.Migrations
 {
     [DbContext(typeof(BurgerBarContext))]
-    partial class BurgerBarContextModelSnapshot : ModelSnapshot
+    [Migration("20181201202645_BurgerIngredient")]
+    partial class BurgerIngredient
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -283,7 +285,7 @@ namespace BurgerBar.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<long?>("TypeId");
+                    b.Property<long>("TypeId");
 
                     b.HasKey("Id");
 
@@ -418,7 +420,8 @@ namespace BurgerBar.Migrations
                 {
                     b.HasOne("BurgerBar.Entities.ProductType", "Type")
                         .WithMany()
-                        .HasForeignKey("TypeId");
+                        .HasForeignKey("TypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("BurgerBar.Entities.Burger", b =>

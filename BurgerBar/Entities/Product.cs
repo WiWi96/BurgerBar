@@ -17,7 +17,6 @@ namespace BurgerBar.Entities
         public decimal Price { get; set; }
 
         [Display(ResourceType = typeof(Labels), Name = "ProductType")]
-        [Required(ErrorMessageResourceName = "ReferenceRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
         public ProductType Type { get; set; }
 
         public bool IsInMenu { get; set; }

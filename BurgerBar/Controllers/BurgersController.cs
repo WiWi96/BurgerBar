@@ -82,13 +82,14 @@ namespace BurgerBar.Controllers
 
         // POST: api/Burgers
         [HttpPost]
-        public async Task<IActionResult> PostBurger([FromBody] Burger burger)
+        public async Task<IActionResult> PostBurger([FromBody] AddBurgerDTO burgerDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            var burger = _mapper.Map<Burger>(burgerDTO);
             await _burgersService.AddAsync(burger);
             var model = _mapper.Map<BurgerDTO>(burger);
 

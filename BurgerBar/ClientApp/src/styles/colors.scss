@@ -7,5 +7,9 @@ $orange: rgba(209, 96, 61, 1);
 $light: rgba(221, 185, 103, 1);
 $green: rgba(208, 227, 127, 1);
 
+$gray: rgb(107, 107, 107);
+$gray-light: lighten($gray, 30%);
+$gray-dark: darken($gray, 5%);
+
 $background: white;
 $border-color: #dee2e6;

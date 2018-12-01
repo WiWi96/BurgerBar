@@ -1,42 +1,42 @@
-<form [formGroup]="form" (ngSubmit)="save(form)">
-    <div class="container">
-        <h1>1</h1>
-        <h4>Choose bun</h4>
+<form [formGroup]="form" (ngSubmit)="save(form)" class="container">
+    <div class="form-group">
+        <div class="section-header">
+            <h1>1</h1>
+            <h4>Give burger a name</h4>
+        </div>
         <div class="row">
-            <select class="form-control" id="bunSelect" formControlName="bun" name="bun" [compareWith]="compare">
-                <option *ngFor="let bun of buns" [ngValue]="bun">{{bun.name}}</option>
-            </select>
+            <label for="nameInput">Burger name</label>
+            <input class="form-control" id="nameInput" formControlName="name" name="name" />
         </div>
     </div>
-    <div formArrayName="ingredients" class="container">
-        <h1>2</h1>
-        <h4>Add ingredients</h4>
-        <!--<div #ingredient></div>-->
+    <div class="form-group">
+        <div class="section-header">
+            <h1>2</h1>
+            <h4>Choose bun</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-6 section-body">
+                <select class="form-control" id="bunSelect" formControlName="bun" name="bun" [compareWith]="compare" (change)="bunSelected($event.target.value)">
+                    <option *ngFor="let bun of buns" value="{{bun.id}}">{{bun.name}}</option>
+                </select>
+                <p class="m-2"><small>{{bun?.description}}</small></p>
+                <h5 class="text-right"><strong>{{bun?.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</strong></h5>
+            </div>
+        </div>
+    </div>
+    <div formArrayName="ingredients" class="form-group">
+        <div class="section-header">
+            <h1>3</h1>
+            <h4>Add ingredients</h4>
+        </div>
         <div class="ingredients-list" cdkDropList (cdkDropListDropped)="drop($event)">
             <div *ngFor="let ingredient of form.controls.ingredients.controls; let i = index;" cdkDrag>
-                <div [formGroupName]="i">
+                <div class="my-3" [formGroupName]="i">
                     <app-ingredient-card [index]="i" [group]="form.controls.ingredients.controls[i]" (deleted)="deleteIngredient($event)"></app-ingredient-card>
-                </div>
-                <div class="example-handle" cdkDragHandle>
-                    <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
-                        <path d="M0 0h24v24H0z" fill="none"></path>
-                    </svg>
                 </div>
             </div>
         </div>
-        <!--<bs-sortable [(ngModel)]="burger.ingredients"
-                     [itemTemplate]="ingredient"
-                     itemClass="sortable-item"
-                     itemActiveClass="sortable-item-active"
-                     placeholderItem="Empty"
-                     placeholderClass="placeholderStyle"
-                     wrapperClass="sortable-wrapper"></bs-sortable>
-        <ng-template #ingredient let-item="item" let-index="index">
-            <app-ingredient-card [(ngModel)]="item.value" (deleted)="deleteIngredient($event)"></app-ingredient-card>
-        </ng-template>-->
-        <pre class="code-preview">model: {{ burger | json }}</pre>
-        <button class="btn btn-primary" (click)="addIngredient()">Add ingredient</button>
+        <button type="button" class="btn btn-primary" (click)="addIngredient()">Add ingredient</button>
     </div>
     <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
 </form>

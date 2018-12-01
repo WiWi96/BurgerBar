@@ -1,0 +1,30 @@
+@import '../../../../styles/colors.scss';
+
+.section-body {
+    background-color: $background;
+    border: 1px solid $border-color;
+    border-radius: 3px;
+    box-shadow: $border-color 0 10px 15px;
+    padding: 20px 15px 30px;
+    display: flex;
+
+    .left-pane {
+        text-align: center;
+
+        div {
+            color: $gray-light;
+
+            &:hover {
+                color: $gray;
+            }
+        }
+    }
+
+    .drag-handle {
+        cursor: move;
+    }
+
+    .clickable {
+        cursor: pointer;
+    }
+}

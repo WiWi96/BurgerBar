@@ -1,8 +1,21 @@
-<div class="row my-3">
-    <div class="form-group" [formGroup]="ingredientForm">
-        <select class="form-control" id="ingredientSelect" formControlName="ingredient" name="ingredient" [compareWith]="compare">
-            <option *ngFor="let item of ingredients" [ngValue]="item">{{item.name}}</option>
-        </select>
+<div class="row">
+    <div class="col-md-6 section-body">
+        <div class="left-pane">
+            <div class="drag-handle" cdkDragHandle>
+                <fa-icon [icon]="faTh"></fa-icon>
+            </div>
+            <div class="clickable" (click)="deleteIngredient()">
+                <fa-icon [icon]="faTrashAlt"></fa-icon>
+            </div>
+        </div>
+        <div class="content col">
+            <div class="form-group" [formGroup]="ingredientForm">
+                <select class="form-control" id="ingredientSelect" formControlName="ingredient" [compareWith]="compare" (change)="ingredientSelected($event.target.value)">
+                    <option *ngFor="let item of ingredients" value="{{item.id}}">{{item.name}}</option>
+                </select>
+            </div>
+            <p class="m-2"><small>{{ingredientDetails?.description}}</small></p>
+            <h5 class="text-right"><strong>{{ingredientDetails?.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</strong></h5>
+        </div>
     </div>
-    <button class="btn" (click)="deleteIngredient()">Delete</button>
 </div>

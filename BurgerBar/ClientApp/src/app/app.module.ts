@@ -33,6 +33,7 @@ import { BurgerModalComponent } from './components/modals/burger-modal/burger-mo
 import { ConfiguratorEditorComponent } from './components/configurator/configurator-editor/configurator-editor.component';
 import { IngredientCardComponent } from './components/configurator/ingredient-card/ingredient-card.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ValidationService } from './services/validation/validation.service';
 
 registerLocaleData(localePl, 'pl');
 
@@ -76,7 +77,7 @@ registerLocaleData(localePl, 'pl');
             { path: 'settings', component: SettingsComponent, pathMatch: 'full' }
         ])
     ],
-    providers: [{ provide: LOCALE_ID, useValue: 'pl' }, BurgerService, IngredientService, ProductService, BunService, DeliveryTypeService, OrderService, PaymentTypeService],
+    providers: [{ provide: LOCALE_ID, useValue: 'pl' }, BurgerService, IngredientService, ProductService, BunService, DeliveryTypeService, OrderService, PaymentTypeService, ValidationService],
     bootstrap: [AppComponent],
     entryComponents: [IngredientModalComponent, ProductModalComponent, BunModalComponent, BurgerModalComponent, IngredientCardComponent]
 })

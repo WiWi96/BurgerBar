@@ -9,6 +9,9 @@ namespace BurgerBar.Entities
 {
     public class BurgerIngredient : BaseEntity
     {
+        [Display(ResourceType = typeof(Labels), Name = "Burger")]
+        [Required(ErrorMessageResourceName = "ReferenceRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
+        public Burger Burger { get; set; }
 
         [Display(ResourceType = typeof(Labels), Name = "Ingredient")]
         [Required(ErrorMessageResourceName = "ReferenceRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]

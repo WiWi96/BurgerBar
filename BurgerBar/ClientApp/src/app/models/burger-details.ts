@@ -7,5 +7,5 @@ export class BurgerDetails extends ProductDetails {
     code?: number;
     bun: BunDetails;
     ingredients: Array<IngredientDetails> = [];
-    creationType: CreationType;
+    creationType?: CreationType;
 }
