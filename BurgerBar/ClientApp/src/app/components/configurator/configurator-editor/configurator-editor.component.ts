@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { BurgerService } from '../../../services/burger/burger.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BurgerDetails } from '../../../models/burger-details';
 import { BunService } from '../../../services/bun/bun.service';
 import { Bun } from '../../../models/bun';
@@ -26,8 +26,10 @@ export class ConfiguratorEditorComponent implements OnInit {
     code: string;
     bun: BunDetails;
     price = 0.0;
+    formSubmitted: boolean = false;
 
     constructor(private activatedRoute: ActivatedRoute,
+        private router: Router,
         private formBuilder: FormBuilder,
         private burgerService: BurgerService,
         private bunService: BunService,
@@ -92,12 +94,19 @@ export class ConfiguratorEditorComponent implements OnInit {
     }
 
     save(model: any) {
+        this.formSubmitted = true;
         let tmpModel = { ...model.value };
 
         tmpModel.bun = tmpModel.bun.id;
         tmpModel.ingredients = tmpModel.ingredients.map(o => o.ingredient.id);
 
-        this.burgerService.postBurger(tmpModel).subscribe(data => console.log(data));
+        this.burgerService
+            .postBurger(tmpModel)
+            .subscribe(
+                data => this.router.navigateByUrl(`/configure/${data.code}`),
+                _ => {
+                    this.formSubmitted = false
+                });
     }
 
     bunSelected() {
