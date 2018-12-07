@@ -84,5 +84,13 @@ namespace BurgerBar.Services
         {
             return await Task.FromResult(ingredientTypesSet.AsEnumerable());
         }
+
+        public Task<decimal> GetIngredientPriceAsync(long id)
+        {
+            return ingredientsSet
+                .Where(b => b.Id == id)
+                .Select(b => b.Price)
+                .FirstOrDefaultAsync();
+        }
     }
 }

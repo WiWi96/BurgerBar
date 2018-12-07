@@ -13,5 +13,6 @@ namespace BurgerBar.Services
         Task<Bun> UpdateAsync(long id, Bun bun);
         Task<Bun> AddAsync(Bun burger);
         Task<Bun> DeleteAsync(long id);
+        Task<decimal> GetBunPriceAsync(long id);
     }
 }

@@ -12,6 +12,8 @@ namespace BurgerBar.ViewModels
 
         public decimal Price { get; set; }
 
+        public string Description { get; set; }
+
         public string TopPicture { get; set; }
 
         public string BottomPicture { get; set; }

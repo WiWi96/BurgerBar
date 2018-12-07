@@ -76,5 +76,13 @@ namespace BurgerBar.Services
         {
             return dbSet.Any(e => e.Id == id);
         }
+
+        public Task<decimal> GetBunPriceAsync(long id)
+        {
+            return dbSet
+                .Where(b => b.Id == id)
+                .Select(b => b.Price)
+                .FirstOrDefaultAsync();
+        }
     }
 }

@@ -1,3 +1,4 @@
+using BurgerBar.Entities;
 using System;
 
 namespace BurgerBar.ViewModels
@@ -11,6 +12,6 @@ namespace BurgerBar.ViewModels
 
         public decimal Price { get; set; }
 
-        public long TypeId { get; set; }
+        public ProductType Type { get; set; }
     }
 }
