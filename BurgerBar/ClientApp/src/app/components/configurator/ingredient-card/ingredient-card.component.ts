@@ -35,24 +35,7 @@ export class IngredientCardComponent implements OnInit {//, ControlValueAccessor
             data => this.ingredients = data);
     }
 
-    //writeValue(obj: any): void {
-    //    if (obj !== undefined)
-    //        this.ingredient = obj;
-    //    this.onChange(this.ingredient)
-    //}
-    //registerOnChange(fn: any): void {
-    //    this.onChange = fn;
-    //}
-    //registerOnTouched(fn: any) {
-
-    //}
-
-    //onIngredientSelected(event: any) {
-    //    this.onChange(this.ingredient);
-    //}
-
     deleteIngredient() {
-        console.log(this.ingredient);
         this.deleted.emit(this.index);
     }
 

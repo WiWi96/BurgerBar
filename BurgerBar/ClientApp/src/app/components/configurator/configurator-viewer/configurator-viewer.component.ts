@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BurgerDetails } from '../../../models/burger-details';
 import { BurgerService } from '../../../services/burger/burger.service';
+import { Burger } from '../../../models/burger';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-configurator-viewer',
@@ -9,8 +10,12 @@ import { BurgerService } from '../../../services/burger/burger.service';
     styleUrls: ['./configurator-viewer.component.scss']
 })
 export class ConfiguratorViewerComponent implements OnInit {
-    burger: BurgerDetails;
+    burger: Burger;
     code: string;
+
+    showDetails = false;
+
+    faAngleDown = faAngleDown;
 
     constructor(private activatedRoute: ActivatedRoute,
         private service: BurgerService) { }
@@ -18,7 +23,13 @@ export class ConfiguratorViewerComponent implements OnInit {
     ngOnInit() {
         this.activatedRoute.params.subscribe(params => this.code = params.code);
 
-
+        if (this.code) {
+            this.service.getBurgerByCode(this.code).subscribe(
+                data => this.burger = data);
+        }
     }
 
+    expandDetails() {
+        this.showDetails = true;
+    }
 }

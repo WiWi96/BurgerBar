@@ -26,8 +26,8 @@ namespace BurgerBar.Entities
         [Required(ErrorMessageResourceName = "PriceRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
         public decimal Price { get; set; }
 
-        public string TopPicture { get; set; }
+        public File TopPicture { get; set; }
 
-        public string BottomPicture { get; set; }
+        public File BottomPicture { get; set; }
     }
 }

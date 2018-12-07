@@ -1,7 +1,10 @@
+import { IngredientType } from './ingredient-type';
+
 export class Ingredient {
     id: number;
     name: string;
     price?: number;
-    typeId: number;
+    description: string;
+    type: IngredientType;
     picture?: string;
 }

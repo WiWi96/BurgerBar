@@ -20,9 +20,7 @@ form {
         }
 
         .section-body {
-            border: 1px solid $border-color;
-            border-radius: 3px;
-            box-shadow: $border-color 0 10px 15px;
+            @include card;
             padding: 20px 15px 30px;
         }
     }

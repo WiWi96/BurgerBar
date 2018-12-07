@@ -1,6 +1,8 @@
+import { ProductType } from './product-type';
+
 export class Product {
     id?: number;
     name: string;
     price: number;
-    typeId: number;
+    type: ProductType;
 }

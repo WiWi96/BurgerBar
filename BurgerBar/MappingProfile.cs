@@ -33,7 +33,7 @@ namespace BurgerBar
         private static IEnumerable<Ingredient> ConvertToIngredient(IEnumerable<BurgerIngredient> burgerIngredients)
         {
             List<Ingredient> ingredients = new List<Ingredient>();
-            burgerIngredients = (burgerIngredients as List<BurgerIngredient>).OrderBy(o => o.Position).AsEnumerable();
+            burgerIngredients = burgerIngredients.OrderBy(o => o.Position);
 
             foreach (BurgerIngredient bi in burgerIngredients)
             {

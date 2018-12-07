@@ -9,6 +9,7 @@ $green: rgba(208, 227, 127, 1);
 
 $gray: rgb(107, 107, 107);
 $gray-light: lighten($gray, 30%);
+$gray-lighter: lighten($gray, 50%);
 $gray-dark: darken($gray, 5%);
 
 $background: white;

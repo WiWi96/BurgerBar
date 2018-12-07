@@ -19,18 +19,22 @@ export class BurgerService {
     }
 
     public getBurgerDetails(id: number): Observable<BurgerDetails> {
-        return this.client.get<BurgerDetails>(this.apiPath + '/' + id);
+        return this.client.get<BurgerDetails>(`${this.apiPath}/${id}`);
     }
 
-    public postBurger(burger: BurgerToAdd): Observable<Burger> {
-        return this.client.post<Burger>(this.apiPath, burger);
+    public getBurgerByCode(code: string): Observable<Burger> {
+        return this.client.get<Burger>(`${this.apiPath}/code/${code}`)
+    }
+
+    public postBurger(burger: BurgerToAdd): Observable<any> {
+        return this.client.post(this.apiPath, burger);
     }
 
     public putBurger(id: number, burger: BurgerDetails): Observable<Burger> {
-        return this.client.put<Burger>(this.apiPath + '/' + id, burger);
+        return this.client.put<Burger>(`${this.apiPath}/${id}`, burger);
     }
 
     public deleteBurger(id: number): Observable<Burger> {
-        return this.client.delete<Burger>(this.apiPath + '/' + id);
+        return this.client.delete<Burger>(`${this.apiPath}/${id}`);
     }
 }

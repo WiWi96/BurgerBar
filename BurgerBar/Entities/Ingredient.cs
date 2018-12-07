@@ -24,7 +24,7 @@ namespace BurgerBar.Entities
         [Required(ErrorMessageResourceName = "ReferenceRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
         public IngredientType Type { get; set; }
 
-        public string Picture { get; set; }
+        public File Picture { get; set; }
 
         public bool Active { get; set; } = true;
 

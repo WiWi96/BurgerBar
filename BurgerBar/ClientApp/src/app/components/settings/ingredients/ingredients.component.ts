@@ -46,7 +46,7 @@ export class IngredientsComponent implements OnInit {
 
     getIngredientsOfType(type: IngredientType): Ingredient[] {
         if (this.ingredients) {
-            return this.ingredients.filter(x => (x.typeId === type.id));
+            return this.ingredients.filter(x => (x.type.id === type.id));
         }
     }
 

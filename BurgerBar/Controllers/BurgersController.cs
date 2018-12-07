@@ -10,6 +10,7 @@ using BurgerBar.Entities;
 using BurgerBar.Services;
 using AutoMapper;
 using BurgerBar.ViewModels;
+using System.Net;
 
 namespace BurgerBar.Controllers
 {
@@ -54,6 +55,27 @@ namespace BurgerBar.Controllers
             return Ok(burger);
         }
 
+        // GET: api/Burgers/5
+        [HttpGet("code/{code}")]
+        public async Task<IActionResult> GetBurgerByCode([FromRoute] string code)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var burger = await _burgersService.GetByCodeAsync(code);
+
+            if (burger == null)
+            {
+                return NotFound();
+            }
+
+            var model = _mapper.Map<BurgerDTO>(burger);
+
+            return Ok(model);
+        }
+
         // PUT: api/Burgers/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBurger([FromRoute] long id, [FromBody] Burger burger)
@@ -93,7 +115,7 @@ namespace BurgerBar.Controllers
             await _burgersService.AddAsync(burger);
             var model = _mapper.Map<BurgerDTO>(burger);
 
-            return CreatedAtAction("GetBurger", new { id = burger.Id }, model);
+            return StatusCode((int)HttpStatusCode.Created, new { code = model.Code });
         }
 
         // DELETE: api/Burgers/5

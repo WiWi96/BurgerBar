@@ -44,7 +44,7 @@ export class ProductsComponent implements OnInit {
 
     getProductsOfType(type: ProductType): Product[] {
         if (this.products) {
-            return this.products.filter(x => (x.typeId === type.id));
+            return this.products.filter(x => (x.type.id === type.id));
         }
         return null;
     }

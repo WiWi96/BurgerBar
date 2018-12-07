@@ -1,3 +1,9 @@
 @import '~bootstrap/scss/_functions.scss';
 @import '~bootstrap/scss/_variables.scss';
 @import '~bootstrap/scss/mixins/_breakpoints.scss';
+
+@mixin card {
+    border: 1px solid $border-color;
+    border-radius: 3px;
+    box-shadow: $border-color 0 10px 15px;
+}
