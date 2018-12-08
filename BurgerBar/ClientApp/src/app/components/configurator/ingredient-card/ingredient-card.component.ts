@@ -46,5 +46,5 @@ export class IngredientCardComponent implements OnInit {//, ControlValueAccessor
         );
     }
 
-    compare = (a, b) => a == b;
+    compare = (a, b) => a && b ? a.id === b.id : a === b;
 }

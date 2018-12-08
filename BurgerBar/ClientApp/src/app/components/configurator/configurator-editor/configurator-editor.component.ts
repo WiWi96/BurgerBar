@@ -5,12 +5,10 @@ import { BurgerDetails } from '../../../models/burger-details';
 import { BunService } from '../../../services/bun/bun.service';
 import { Bun } from '../../../models/bun';
 import { Ingredient } from '../../../models/ingredient';
-import { IngredientDetails } from '../../../models/ingredient-details';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { BunDetails } from '../../../models/bun-details';
 import { ValidationService } from '../../../services/validation/validation.service';
-import { BurgerToAdd } from '../../../models/burger-to-add';
 
 @Component({
     selector: 'app-configurator-editor',
@@ -20,10 +18,8 @@ import { BurgerToAdd } from '../../../models/burger-to-add';
 export class ConfiguratorEditorComponent implements OnInit {
     public form: FormGroup;
 
-    burger: BurgerToAdd;
     buns: Bun[] = [];
     ingredients: Ingredient[] = [];
-    code: string;
     bun: BunDetails;
     price = 0.0;
     formSubmitted: boolean = false;
@@ -36,13 +32,9 @@ export class ConfiguratorEditorComponent implements OnInit {
         private validationService: ValidationService) { }
 
     ngOnInit() {
-        this.activatedRoute.params.subscribe(params => this.code = params.code);
-        if (this.code) {
+        let code: string;
+        this.activatedRoute.params.subscribe(params => code = params.code);
 
-        }
-        else {
-            //this.burger = new BurgerToAdd();
-        }
         this.bunService.getBuns().subscribe(data => this.buns = data);
 
         this.form = this.formBuilder.group({
@@ -52,6 +44,17 @@ export class ConfiguratorEditorComponent implements OnInit {
                 this.initIngredient()
             ], this.validationService.minLengthArray(2))
         });
+
+        if (code) {
+            this.burgerService.getBurgerByCode(code).subscribe(data => {
+                const burger = data;
+                this.form.patchValue(burger);
+
+                const ingredientsFGs = burger.ingredients.map(item => this.initIngredient(item));
+                const ingredientsFormArray = this.formBuilder.array(ingredientsFGs);
+                this.form.setControl('ingredients', ingredientsFormArray);
+            });
+        }
 
         this.onChanges();
     }
@@ -66,9 +69,9 @@ export class ConfiguratorEditorComponent implements OnInit {
         });
     }
 
-    initIngredient() {
+    initIngredient(model = null) {
         return this.formBuilder.group({
-            ingredient: ['', [Validators.required]]
+            ingredient: [model, [Validators.required]]
         });
     }
 
@@ -116,6 +119,6 @@ export class ConfiguratorEditorComponent implements OnInit {
         );
     }
 
-    compare = (a, b) => a == b;
+    compare = (a, b) => a && b ? a.id === b.id : a === b;
 
 }

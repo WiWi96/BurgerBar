@@ -3,4 +3,6 @@ export class Bun {
     name: string;
     description: string;
     price?: number;
+    topPicture?: string;
+    bottomPicture?: string;
 }
