@@ -1,58 +1,60 @@
-<div class="row">
-    <div class="col col-lg-7">
-        <h2>{{burger?.name}}</h2>
-        <p class="text-muted">Burger</p>
+<div class="container">
+    <div class="row">
+        <div class="col col-lg-7">
+            <h2>{{burger?.name}}</h2>
+            <p class="text-muted">Burger</p>
+        </div>
+        <div class="burger-code-outer col col-lg-5">
+            <pre class="burger-code display-4">{{burger?.code}}</pre>
+            <p class="desc">
+                <small>This is the unique burger code. You can use it to share with friends or find this burger configuration in the future. Copy and save the code in a safe place.</small>
+            </p>
+        </div>
     </div>
-    <div class="burger-code-outer col col-lg-5">
-        <pre class="burger-code display-4">{{burger?.code}}</pre>
-        <p class="desc">
-            <small>This is the unique burger code. You can use it to share with friends or find this burger configuration in the future. Copy and save the code in a safe place.</small>
+    <div *ngIf="burger">
+        <h3>{{burger.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</h3>
+        <p *ngIf="burger.bun">
+            <strong>Bun:</strong> {{burger.bun.name}}
         </p>
+        <p *ngIf="burger.ingredients">
+            <strong>Ingredients: </strong>
+            <span *ngFor="let item of burger.ingredients; let isLast=last">{{item.name}}{{isLast ? '' : ', '}}</span>
+        </p>
+        <a href="javascript:void(0)" (click)="expandDetails()" *ngIf="!showDetails">See details <fa-icon [icon]="faAngleDown"></fa-icon></a>
     </div>
-</div>
-<div *ngIf="burger">
-    <h3>{{burger.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</h3>
-    <p *ngIf="burger.bun">
-        <strong>Bun:</strong> {{burger.bun.name}}
-    </p>
-    <p *ngIf="burger.ingredients">
-        <strong>Ingredients: </strong>
-        <span *ngFor="let item of burger.ingredients; let isLast=last">{{item.name}}{{isLast ? '' : ', '}}</span>
-    </p>
-    <a href="javascript:void(0)" (click)="expandDetails()" *ngIf="!showDetails">See details <fa-icon [icon]="faAngleDown"></fa-icon></a>
-</div>
-<div class="details" *ngIf="showDetails && burger">
-    <div class="row details-card bun-details">
-        <div class="col">
-            <h5>{{burger.bun.name}}</h5>
-            <p>{{burger.bun.description}}</p>
-            <h6>{{burger.bun.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</h6>
-        </div>
-        <div class="col">
+    <div class="details" *ngIf="showDetails && burger">
+        <div class="row details-card bun-details">
+            <div class="col">
+                <h5>{{burger.bun.name}}</h5>
+                <p>{{burger.bun.description}}</p>
+                <h6>{{burger.bun.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</h6>
+            </div>
+            <div class="col">
 
+            </div>
         </div>
-    </div>
-    <div class="row details-card ingredient-details" *ngFor="let item of burger?.ingredients">
-        <div class="col">
-            <h5>{{item.name}}</h5>
-            <p>{{item.description}}</p>
-            <h6>{{item.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</h6>
-        </div>
-        <div class="col">
+        <div class="row details-card ingredient-details" *ngFor="let item of burger?.ingredients">
+            <div class="col">
+                <h5>{{item.name}}</h5>
+                <p>{{item.description}}</p>
+                <h6>{{item.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</h6>
+            </div>
+            <div class="col">
 
+            </div>
         </div>
-    </div>
-    <div class="row details-card bun-details">
-        <div class="col">
-            <h5>{{burger.bun.name}}</h5>
-            <p>{{burger.bun.description}}</p>
-        </div>
-        <div class="col offset-6">
+        <div class="row details-card bun-details">
+            <div class="col">
+                <h5>{{burger.bun.name}}</h5>
+                <p>{{burger.bun.description}}</p>
+            </div>
+            <div class="col offset-6">
 
+            </div>
         </div>
     </div>
-</div>
-<div class="row my-3 justify-content-center float-md-right">
-    <button [routerLink]="['/edit', burger?.code]" class="btn mr-1">Edit configuration</button>
-    <button class="btn btn-primary">Order for {{burger?.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</button>
+    <div class="row my-3 justify-content-center float-md-right">
+        <button [routerLink]="['/edit', burger?.code]" class="btn mr-1">Edit configuration</button>
+        <button class="btn btn-primary">Order for {{burger?.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</button>
+    </div>
 </div>
