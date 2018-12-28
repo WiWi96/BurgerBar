@@ -17,6 +17,10 @@ export class BunService {
         return this.client.get<Bun[]>(this.apiPath);
     }
 
+    public getAvailableBuns(): Observable<Bun[]> {
+        return this.client.get<Bun[]>(`${this.apiPath}/available`);
+    }
+
     public getBunDetails(id: number): Observable<BunDetails> {
         return this.client.get<BunDetails>(this.apiPath + '/' + id);
     }

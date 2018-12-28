@@ -18,4 +18,9 @@
             <h5 class="text-right"><strong>{{ingredientDetails?.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</strong></h5>
         </div>
     </div>
+    <div class="col-md-6 text-center">
+        <div *ngIf="ingredientDetails?.picture && ingredientDetails.picture.name" class="photo-container">
+            <img [src]="fileService.getPhotoUrl(ingredientDetails.picture)" />
+        </div>
+    </div>
 </div>

@@ -41,4 +41,11 @@ form {
             left: calc(20% + 20px);
         }
     }
+
+    .photo-container {
+        img {
+            max-width: 90%;
+            max-height: 150px;
+        }
+    }
 }

@@ -19,6 +19,10 @@ export class IngredientService {
         return this.client.get<Ingredient[]>(this.apiPath);
     }
 
+    public getAvailableIngredients(): Observable<Ingredient[]> {
+        return this.client.get<Ingredient[]>(`${this.apiPath}/available`);
+    }
+
     public getIngredientDetails(id: number): Observable<IngredientDetails> {
         return this.client.get<IngredientDetails>(this.apiPath + '/' + id);
     }

@@ -4,6 +4,7 @@ import { IngredientService } from '../../../services/ingredient/ingredient.servi
 import { Ingredient } from '../../../models/ingredient';
 import { FormGroup } from '@angular/forms';
 import { faTh, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { FileService } from '../../../services/file/file.service';
 
 @Component({
     selector: 'app-ingredient-card',
@@ -28,11 +29,15 @@ export class IngredientCardComponent implements OnInit {//, ControlValueAccessor
 
     ingredients: Ingredient[] = [];
 
-    constructor(private ingredientService: IngredientService) { }
+    constructor(private ingredientService: IngredientService,
+    private fileService: FileService) { }
 
     ngOnInit() {
-        this.ingredientService.getIngredients().subscribe(
-            data => this.ingredients = data);
+        this.ingredientService.getAvailableIngredients().subscribe(
+            data => {
+                this.ingredients = data
+                this.ingredientSelected();
+            });
     }
 
     deleteIngredient() {

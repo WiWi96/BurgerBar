@@ -9,6 +9,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { BunDetails } from '../../../models/bun-details';
 import { ValidationService } from '../../../services/validation/validation.service';
+import { FileService } from '../../../services/file/file.service';
 
 @Component({
     selector: 'app-configurator-editor',
@@ -29,13 +30,15 @@ export class ConfiguratorEditorComponent implements OnInit {
         private formBuilder: FormBuilder,
         private burgerService: BurgerService,
         private bunService: BunService,
-        private validationService: ValidationService) { }
+        private validationService: ValidationService,
+        private fileService: FileService
+    ) { }
 
     ngOnInit() {
         let code: string;
         this.activatedRoute.params.subscribe(params => code = params.code);
 
-        this.bunService.getBuns().subscribe(data => this.buns = data);
+        this.bunService.getAvailableBuns().subscribe(data => this.buns = data);
 
         this.form = this.formBuilder.group({
             name: ['', [Validators.required, Validators.minLength(5)]],
@@ -53,6 +56,8 @@ export class ConfiguratorEditorComponent implements OnInit {
                 const ingredientsFGs = burger.ingredients.map(item => this.initIngredient(item));
                 const ingredientsFormArray = this.formBuilder.array(ingredientsFGs);
                 this.form.setControl('ingredients', ingredientsFormArray);
+
+                this.bunSelected();
             });
         }
 

@@ -9,6 +9,7 @@ namespace BurgerBar.Services
     public interface IIngredientsService
     {
         Task<IEnumerable<Ingredient>> GetAllAsync();
+        Task<IEnumerable<Ingredient>> GetAllAvailableAsync();
         Task<Ingredient> GetAsync(long id);
         Task<Ingredient> UpdateAsync(long id, Ingredient obj);
         Task<Ingredient> AddAsync(Ingredient obj);

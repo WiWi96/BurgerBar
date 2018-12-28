@@ -24,9 +24,18 @@ namespace BurgerBar.Controllers
 
         // GET: api/Buns
         [HttpGet]
-        public async Task<IEnumerable<BunDTO>> GetBuns()
+        public async Task<IEnumerable<BunDTO>> GetAllBuns()
         {
             var buns = await _bunsService.GetAllAsync();
+            var model = _mapper.Map<IEnumerable<BunDTO>>(buns);
+            return model;
+        } 
+        
+        // GET: api/Buns/available
+        [HttpGet("available")]
+        public async Task<IEnumerable<BunDTO>> GetAvailableBuns()
+        {
+            var buns = await _bunsService.GetAvailableAsync();
             var model = _mapper.Map<IEnumerable<BunDTO>>(buns);
             return model;
         }

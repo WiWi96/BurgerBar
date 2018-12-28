@@ -2,7 +2,7 @@
     <input id="pictureUploader" class="form-control-file" type="file" #fileInput (change)="uploadPhoto()">
     <div *ngIf="photo && photo.name" class="image-container">
         <img [src]="fileService.getPhotoUrl(photo)" />
-        <button class="clear-photo btn btn-danger btn-sm" (click)="clearPicture()">
+        <button class="clear-photo btn btn-danger btn-sm" (click)="clearPhoto()">
             <fa-icon [icon]="faTimes"></fa-icon>
         </button>
     </div>

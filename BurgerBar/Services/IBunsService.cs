@@ -9,6 +9,7 @@ namespace BurgerBar.Services
     public interface IBunsService
     {
         Task<IEnumerable<Bun>> GetAllAsync();
+        Task<IEnumerable<Bun>> GetAvailableAsync();
         Task<Bun> GetAsync(long id);
         Task<Bun> UpdateAsync(long id, Bun bun);
         Task<Bun> AddAsync(Bun burger);

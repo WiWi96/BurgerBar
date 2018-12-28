@@ -61,6 +61,15 @@ namespace BurgerBar.Services
             return await Task.FromResult(dbSet.AsEnumerable());
         }
 
+        public async Task<IEnumerable<Bun>> GetAvailableAsync()
+        {
+            return await Task.FromResult(dbSet
+                .Where(x => x.Active)
+                .Include(x => x.TopPicture)
+                .Include(x => x.BottomPicture)
+                .AsEnumerable());
+        }
+
         public async Task<Bun> UpdateAsync(long id, Bun bun)
         {
             if (bun != null)

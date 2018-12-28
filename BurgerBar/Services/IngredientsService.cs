@@ -60,6 +60,15 @@ namespace BurgerBar.Services
             return await Task.FromResult(ingredientsSet.Include(x => x.Type).AsEnumerable());
         }
 
+        public async Task<IEnumerable<Ingredient>> GetAllAvailableAsync()
+        {
+            return await Task.FromResult(ingredientsSet
+                                .Where(x => x.Active)
+                                .Include(x => x.Type)
+                                .Include(x => x.Picture)
+                                .AsEnumerable());
+        }
+
         public async Task<Ingredient> UpdateAsync(long id, Ingredient obj)
         {
             if (obj != null)
