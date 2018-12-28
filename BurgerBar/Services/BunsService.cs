@@ -21,6 +21,16 @@ namespace BurgerBar.Services
         public async Task<Bun> AddAsync(Bun bun)
         {
             dbSet.Add(bun);
+
+            if (bun.BottomPicture != null)
+            {
+                context.Entry(bun.BottomPicture).State = EntityState.Unchanged;
+            }
+            if (bun.TopPicture != null)
+            {
+                context.Entry(bun.TopPicture).State = EntityState.Unchanged;
+            }
+
             await context.SaveChangesAsync();
             return bun;
         }
@@ -40,7 +50,10 @@ namespace BurgerBar.Services
 
         public async Task<Bun> GetAsync(long id)
         {
-            return await dbSet.FindAsync(id);
+            return await dbSet
+                .Include(x => x.BottomPicture)
+                .Include(x => x.TopPicture)
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<IEnumerable<Bun>> GetAllAsync()
@@ -53,6 +66,16 @@ namespace BurgerBar.Services
             if (bun != null)
             {
                 context.Entry(bun).State = EntityState.Modified;
+
+                if (bun.BottomPicture != null)
+                {
+                    context.Entry(bun.BottomPicture).State = EntityState.Unchanged;
+                }
+                if (bun.TopPicture != null)
+                {
+                    context.Entry(bun.TopPicture).State = EntityState.Unchanged;
+                }
+
                 try
                 {
                     await context.SaveChangesAsync();

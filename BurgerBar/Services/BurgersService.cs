@@ -134,8 +134,12 @@ namespace BurgerBar.Services
         {
             return await dbSet
                 .Include(x => x.Bun)
+                .ThenInclude(x => x.BottomPicture)
+                .Include(x => x.Bun)
+                .ThenInclude(x => x.TopPicture)
                 .Include(x => x.Ingredients)
                 .ThenInclude(x => x.Ingredient)
+                .ThenInclude(x => x.Picture)
                 .FirstOrDefaultAsync(x => x.Code.Equals(code, StringComparison.CurrentCultureIgnoreCase));
         }
     }

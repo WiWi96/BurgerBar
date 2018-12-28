@@ -19,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let item of buns; let i = index;">
+        <tr *ngFor="let item of buns">
             <td class="text-center">
                 <a href="">
                     <fa-icon [icon]="faAngleDown"></fa-icon>
@@ -29,7 +29,7 @@
             <td>{{item.name}}</td>
             <td>{{item.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</td>
             <td>
-                <button class="btn btn-link" (click)="editBun(i)">
+                <button class="btn btn-link" (click)="editBun(item.id)">
                     <fa-icon [icon]="faWrench"></fa-icon>
                 </button>
             </td>

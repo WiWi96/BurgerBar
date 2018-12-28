@@ -37,4 +37,16 @@ export class BunModalComponent implements OnInit {
         this.onClose.next(data);
         this.bsModalRef.hide();
     }
+
+    //uploadPhoto() {
+    //    let fi = this.fileInput.nativeElement;
+    //    if (fi.files && fi.files[0]) {
+    //        let fileToUpload = fi.files[0];
+    //        this.fileService
+    //            .upload(fileToUpload)
+    //            .subscribe(res => {
+    //                this.photo = res;
+    //            });
+    //    }
+    //}
 }

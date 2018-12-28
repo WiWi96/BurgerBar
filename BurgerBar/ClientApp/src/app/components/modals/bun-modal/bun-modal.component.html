@@ -22,6 +22,14 @@
             <label for="bunPriceInput">Price</label>
             <input type="number" class="form-control" id="bunPriceInput" placeholder="Price" [(ngModel)]="bun.price" name="price" />
         </div>
+        <div class="form-group">
+            <label for="topPictureUploader">Top picture</label>
+            <app-upload id="topPictureUploader" [(photo)]="bun.topPicture"></app-upload>
+        </div>
+        <div class="form-group">
+            <label for="bottomPictureUploader">Bottom picture</label>
+            <app-upload id="bottomPictureUploader" [(photo)]="bun.bottomPicture"></app-upload>
+        </div>
     </form>
 </div>
 <div class="modal-footer">

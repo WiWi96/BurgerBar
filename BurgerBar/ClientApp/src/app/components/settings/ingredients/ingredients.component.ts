@@ -40,8 +40,8 @@ export class IngredientsComponent implements OnInit {
         this.openIngredientModal();
     }
 
-    editIngredient(index: number) {
-        this.openIngredientModal(index);
+    editIngredient(id: number) {
+        this.openIngredientModal(id);
     }
 
     getIngredientsOfType(type: IngredientType): Ingredient[] {
@@ -50,14 +50,14 @@ export class IngredientsComponent implements OnInit {
         }
     }
 
-    openIngredientModal(index?: any) {
+    openIngredientModal(id?: any) {
         const initialState = {
-            id: typeof (index) === 'number' ? this.ingredients[index].id : null
+            id
         };
         this.bsModalRef = this.modalService.show(IngredientModalComponent, { initialState });
         this.bsModalRef.content.onClose.subscribe(result => {
-            if (typeof (index) === 'number') {
-                this.ingredients[index] = result;
+            if (typeof (id) === 'number') {
+                this.ingredients.filter((elem) => elem.id === id)[0] = result;
             } else {
                 this.ingredients.push(result);
             }

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BurgerService } from '../../../services/burger/burger.service';
 import { Burger } from '../../../models/burger';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { FileService } from '../../../services/file/file.service';
 
 @Component({
     selector: 'app-configurator-viewer',
@@ -18,7 +19,8 @@ export class ConfiguratorViewerComponent implements OnInit {
     faAngleDown = faAngleDown;
 
     constructor(private activatedRoute: ActivatedRoute,
-        private service: BurgerService) { }
+        private service: BurgerService,
+        private fileService: FileService) { }
 
     ngOnInit() {
         this.activatedRoute.params.subscribe(params => this.code = params.code);

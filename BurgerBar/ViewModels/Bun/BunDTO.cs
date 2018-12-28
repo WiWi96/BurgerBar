@@ -1,4 +1,5 @@
 
+using BurgerBar.Entities;
 using System;
 
 namespace BurgerBar.ViewModels
@@ -14,8 +15,8 @@ namespace BurgerBar.ViewModels
 
         public string Description { get; set; }
 
-        public string TopPicture { get; set; }
+        public File TopPicture { get; set; }
 
-        public string BottomPicture { get; set; }
+        public File BottomPicture { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 import { IngredientType } from './ingredient-type';
+import { File } from './file';
 
 export class Ingredient {
     id: number;
@@ -6,5 +7,5 @@ export class Ingredient {
     price?: number;
     description: string;
     type: IngredientType;
-    picture?: string;
+    picture?: File;
 }

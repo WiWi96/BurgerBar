@@ -32,18 +32,18 @@ export class BunsComponent implements OnInit {
         this.openBunModal();
     }
 
-    editBun(index: number) {
-        this.openBunModal(index);
+    editBun(id: number) {
+        this.openBunModal(id);
     }
 
-    openBunModal(index?: any) {
+    openBunModal(id?: any) {
         const initialState = {
-            id: typeof (index) === 'number' ? this.buns[index].id : null
+            id
         };
         this.bsModalRef = this.modalService.show(BunModalComponent, { initialState });
         this.bsModalRef.content.onClose.subscribe(result => {
-            if (typeof (index) === 'number') {
-                this.buns[index] = result;
+            if (typeof (id) === 'number') {
+                this.buns.filter((elem) => elem.id === id)[0] = result;
             } else {
                 this.buns.push(result);
             }

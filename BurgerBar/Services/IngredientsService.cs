@@ -24,6 +24,12 @@ namespace BurgerBar.Services
         {
             ingredientsSet.Add(obj);
             context.Entry(obj.Type).State = EntityState.Unchanged;
+
+            if (obj.Picture != null)
+            {
+                context.Entry(obj.Picture).State = EntityState.Unchanged;
+            }
+
             await context.SaveChangesAsync();
             return obj;
         }
@@ -43,7 +49,10 @@ namespace BurgerBar.Services
 
         public async Task<Ingredient> GetAsync(long id)
         {
-            return await ingredientsSet.Include(x => x.Type).FirstOrDefaultAsync(x => x.Id == id);
+            return await ingredientsSet
+                .Include(x => x.Type)
+                .Include(x => x.Picture)
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<IEnumerable<Ingredient>> GetAllAsync()
@@ -56,6 +65,13 @@ namespace BurgerBar.Services
             if (obj != null)
             {
                 context.Entry(obj).State = EntityState.Modified;
+                context.Entry(obj.Type).State = EntityState.Unchanged;
+
+                if (obj.Picture != null)
+                {
+                    context.Entry(obj.Picture).State = EntityState.Unchanged;
+                }
+
                 try
                 {
                     await context.SaveChangesAsync();

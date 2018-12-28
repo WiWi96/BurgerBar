@@ -21,12 +21,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let ingredient of ingredientsOfType; let i = index;">
+                    <tr *ngFor="let ingredient of ingredientsOfType">
                         <td class="text-center">{{ingredient.id}}</td>
                         <td>{{ingredient.name}}</td>
                         <td>{{ingredient.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</td>
                         <td class="text-center">
-                            <button class="btn btn-link" (click)="editIngredient(i)">
+                            <button class="btn btn-link" (click)="editIngredient(ingredient.id)">
                                 <fa-icon [icon]="faWrench"></fa-icon>
                             </button>
                         </td>

@@ -1,9 +1,11 @@
+import { File } from './file';
+
 export class BunDetails {
     id?: number;
     name: string;
     description?: string;
     price?: number;
-    topPicture?: string;
-    bottomPicture?: string;
+    topPicture?: File;
+    bottomPicture?: File;
     active: boolean;
 }

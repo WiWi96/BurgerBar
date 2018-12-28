@@ -88,5 +88,6 @@ namespace BurgerBar.Data
         public DbSet<DeliveryType> DeliveryType { get; set; }
         public DbSet<PaymentType> PaymentType { get; set; }
         public DbSet<User> User { get; set; }
+        public DbSet<File> File { get; set; }
     }
 }

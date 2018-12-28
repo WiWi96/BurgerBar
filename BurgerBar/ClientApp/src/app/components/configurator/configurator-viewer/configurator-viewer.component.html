@@ -29,8 +29,10 @@
                 <p>{{burger.bun.description}}</p>
                 <h6>{{burger.bun.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</h6>
             </div>
-            <div class="col">
-
+            <div class="col text-center">
+                <div *ngIf="burger.bun.topPicture && burger.bun.topPicture.name" class="photo-container">
+                    <img [src]="fileService.getPhotoUrl(burger.bun.topPicture)" />
+                </div>
             </div>
         </div>
         <div class="row details-card ingredient-details" *ngFor="let item of burger?.ingredients">
@@ -39,8 +41,10 @@
                 <p>{{item.description}}</p>
                 <h6>{{item.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</h6>
             </div>
-            <div class="col">
-
+            <div class="col text-center">
+                <div *ngIf="item.picture && item.picture.name" class="photo-container">
+                    <img [src]="fileService.getPhotoUrl(item.picture)" />
+                </div>
             </div>
         </div>
         <div class="row details-card bun-details">
@@ -48,8 +52,10 @@
                 <h5>{{burger.bun.name}}</h5>
                 <p>{{burger.bun.description}}</p>
             </div>
-            <div class="col offset-6">
-
+            <div class="col text-center">
+                <div *ngIf="burger.bun.bottomPicture && burger.bun.bottomPicture.name" class="photo-container">
+                    <img [src]="fileService.getPhotoUrl(burger.bun.bottomPicture)" />
+                </div>
             </div>
         </div>
     </div>

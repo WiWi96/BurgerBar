@@ -34,6 +34,8 @@ import { ConfiguratorEditorComponent } from './components/configurator/configura
 import { IngredientCardComponent } from './components/configurator/ingredient-card/ingredient-card.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ValidationService } from './services/validation/validation.service';
+import { FileService } from './services/file/file.service';
+import { UploadComponent } from './components/settings/upload/upload.component';
 
 registerLocaleData(localePl, 'pl');
 
@@ -55,7 +57,8 @@ registerLocaleData(localePl, 'pl');
         BunModalComponent,
         BurgerModalComponent,
         ConfiguratorEditorComponent,
-        IngredientCardComponent
+        IngredientCardComponent,
+        UploadComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -77,8 +80,8 @@ registerLocaleData(localePl, 'pl');
             { path: 'settings', component: SettingsComponent, pathMatch: 'full' }
         ])
     ],
-    providers: [{ provide: LOCALE_ID, useValue: 'pl' }, BurgerService, IngredientService, ProductService, BunService, DeliveryTypeService, OrderService, PaymentTypeService, ValidationService],
+    providers: [{ provide: LOCALE_ID, useValue: 'pl' }, BurgerService, IngredientService, ProductService, BunService, DeliveryTypeService, OrderService, PaymentTypeService, ValidationService, FileService],
     bootstrap: [AppComponent],
-    entryComponents: [IngredientModalComponent, ProductModalComponent, BunModalComponent, BurgerModalComponent, IngredientCardComponent]
+    entryComponents: [IngredientModalComponent, ProductModalComponent, BunModalComponent, BurgerModalComponent, IngredientCardComponent, UploadComponent]
 })
 export class AppModule { }
