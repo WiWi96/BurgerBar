@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { faAngleDown, faWrench } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faWrench, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 import { BurgerService } from '../../../services/burger/burger.service';
 import { Burger } from '../../../models/burger';
 
@@ -12,6 +13,8 @@ export class BurgersComponent implements OnInit {
     burgers: Burger[];
     faWrench = faWrench;
     faAngleDown = faAngleDown;
+    faCheckCircle = faCheckCircle;
+    faTimesCircle = faTimesCircle;
 
     constructor(private service: BurgerService) { }
 

@@ -101,6 +101,14 @@ namespace BurgerBar.Services
             return await Task.FromResult(dbSet.AsEnumerable());
         }
 
+        public async Task<IEnumerable<Burger>> GetAllInMenuAsync()
+        {
+            return await Task.FromResult(dbSet
+                .Where(x => x.IsInMenu && x.Active)
+                .Include(x => x.Ingredients)
+                .AsEnumerable());
+        }
+
         public async Task<Burger> UpdateAsync(long id, Burger burger)
         {
             if (burger != null)

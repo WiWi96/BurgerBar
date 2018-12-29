@@ -14,8 +14,8 @@ namespace BurgerBar
             CreateMap<Ingredient, IngredientDTO>();
             CreateMap<IngredientDTO, Ingredient>();
 
-            CreateMap<Product, ProductDTO>();
-            CreateMap<ProductDTO, Product>();
+            CreateMap<OtherProduct, ProductDTO>();
+            CreateMap<ProductDTO, OtherProduct>();
 
             CreateMap<Burger, BurgerDTO>()
                 .ForMember(o => o.Ingredients, m => m.MapFrom(obj => ConvertToIngredient(obj.Ingredients)));

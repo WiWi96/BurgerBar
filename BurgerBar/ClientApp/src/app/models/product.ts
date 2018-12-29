@@ -5,4 +5,6 @@ export class Product {
     name: string;
     price: number;
     type: ProductType;
+    active?: boolean;
+    isInMenu?: boolean;
 }

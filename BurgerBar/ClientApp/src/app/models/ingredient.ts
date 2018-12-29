@@ -8,4 +8,5 @@ export class Ingredient {
     description: string;
     type: IngredientType;
     picture?: File;
+    active: boolean;
 }

@@ -5,7 +5,7 @@
     <div *ngFor="let type of types">
         <h4>{{type.name}}</h4>
         <div *ngIf="getIngredientsOfType(type) as ingredientsOfType; else noIngredients">
-            <table class="table" *ngIf="ingredientsOfType?.length; else noIngredients">
+            <table class="table settings-table" *ngIf="ingredientsOfType?.length; else noIngredients">
                 <colgroup>
                     <col style="width: 10%" />
                     <col style="width: 50%" />
@@ -21,7 +21,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let ingredient of ingredientsOfType">
+                    <tr *ngFor="let ingredient of ingredientsOfType" [class.inactive-row]="!ingredient.active">
                         <td class="text-center">{{ingredient.id}}</td>
                         <td>{{ingredient.name}}</td>
                         <td>{{ingredient.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</td>

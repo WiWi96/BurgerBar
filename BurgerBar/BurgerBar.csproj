@@ -49,6 +49,7 @@
     <Compile Remove="Migrations\20181103152240_PaymentType.cs" />
     <Compile Remove="Migrations\20181115221548_BaseEntity.cs" />
     <Compile Remove="Migrations\20181117000917_ForeignKey.cs" />
+    <Compile Remove="Migrations\20181228220720_OtherProduct.cs" />
   </ItemGroup>
 
   <ItemGroup>

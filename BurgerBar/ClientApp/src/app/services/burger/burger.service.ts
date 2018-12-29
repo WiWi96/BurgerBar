@@ -18,6 +18,10 @@ export class BurgerService {
         return this.client.get<Burger[]>(this.apiPath);
     }
 
+    public getMenuBurgers(): Observable<Burger[]> {
+        return this.client.get<Burger[]>(`${this.apiPath}/menu`);
+    }
+
     public getBurgerDetails(id: number): Observable<BurgerDetails> {
         return this.client.get<BurgerDetails>(`${this.apiPath}/${id}`);
     }

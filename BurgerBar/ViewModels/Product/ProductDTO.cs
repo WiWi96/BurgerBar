@@ -13,5 +13,9 @@ namespace BurgerBar.ViewModels
         public decimal Price { get; set; }
 
         public ProductType Type { get; set; }
+
+        public bool IsInMenu { get; set; }
+
+        public bool Active { get; set; }
     }
 }

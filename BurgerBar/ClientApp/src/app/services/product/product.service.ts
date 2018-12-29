@@ -19,6 +19,10 @@ export class ProductService {
         return this.client.get<Product[]>(this.apiPath);
     }
 
+    public getMenuProducts(): Observable<Product[]> {
+        return this.client.get<Product[]>(`${this.apiPath}/menu`);
+    }
+
     public getProductDetails(id: number): Observable<ProductDetails> {
         return this.client.get<ProductDetails>(this.apiPath + '/' + id);
     }

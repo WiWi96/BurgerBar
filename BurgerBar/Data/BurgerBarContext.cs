@@ -83,7 +83,7 @@ namespace BurgerBar.Data
         public DbSet<IngredientType> IngredientType { get; set; }
         public DbSet<ProductType> ProductType { get; set; }
         public DbSet<Order> Order { get; set; }
-        public DbSet<Product> Product { get; set; }
+        public DbSet<OtherProduct> OtherProduct { get; set; }
         public DbSet<Bun> Bun { get; set; }
         public DbSet<DeliveryType> DeliveryType { get; set; }
         public DbSet<PaymentType> PaymentType { get; set; }

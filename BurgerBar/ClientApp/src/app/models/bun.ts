@@ -7,4 +7,5 @@ export class Bun {
     price?: number;
     topPicture?: File;
     bottomPicture?: File;
+    active: boolean;
 }

@@ -28,9 +28,18 @@ namespace BurgerBar.Controllers
 
         // GET: api/Products
         [HttpGet]
-        public async Task<IEnumerable<ProductDTO>> GetProduct()
+        public async Task<IEnumerable<ProductDTO>> GetProducts()
         {
             var products = await _productsService.GetAllAsync();
+            var model = _mapper.Map<IEnumerable<ProductDTO>>(products);
+            return model;
+        }
+
+        // GET: api/Products/menu
+        [HttpGet("menu")]
+        public async Task<IEnumerable<ProductDTO>> GetMenuProducts()
+        {
+            var products = await _productsService.GetAllInMenuAsync();
             var model = _mapper.Map<IEnumerable<ProductDTO>>(products);
             return model;
         }
@@ -56,7 +65,7 @@ namespace BurgerBar.Controllers
 
         // PUT: api/Products/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProduct([FromRoute] long id, [FromBody] Product product)
+        public async Task<IActionResult> PutProduct([FromRoute] long id, [FromBody] OtherProduct product)
         {
             if (!ModelState.IsValid)
             {
@@ -82,7 +91,7 @@ namespace BurgerBar.Controllers
 
         // POST: api/Products
         [HttpPost]
-        public async Task<IActionResult> PostProduct([FromBody] Product product)
+        public async Task<IActionResult> PostProduct([FromBody] OtherProduct product)
         {
             if (!ModelState.IsValid)
             {

@@ -43,7 +43,8 @@ export class BunsComponent implements OnInit {
         this.bsModalRef = this.modalService.show(BunModalComponent, { initialState });
         this.bsModalRef.content.onClose.subscribe(result => {
             if (typeof (id) === 'number') {
-                this.buns.filter((elem) => elem.id === id)[0] = result;
+                const index = this.buns.findIndex((elem) => elem.id === result.id);
+                this.buns[index] = result;
             } else {
                 this.buns.push(result);
             }

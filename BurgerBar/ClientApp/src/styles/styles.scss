@@ -21,6 +21,18 @@ tabset {
     }
 }
 
+table.settings-table {
+    td, th {
+        vertical-align: middle;
+    }
+}
+
+.inactive-row {
+    color: $gray;
+    background-color: $gray-lighter;
+    border-left: 4px solid $gray;
+}
+
 @include media-breakpoint-up(md) {
     .sticky-tabs {
         ul.nav.nav-tabs, .sticky-buttons {

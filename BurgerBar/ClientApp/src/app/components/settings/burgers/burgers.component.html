@@ -1,12 +1,13 @@
 <div class="tab-buttons sticky-buttons">
     <button class="btn btn-primary"  [routerLink]="['/edit']">Add burger</button>
 </div>
-<table class="table" *ngIf="burgers?.length;else noBurgers">
+<table class="table settings-table" *ngIf="burgers?.length;else noBurgers">
     <colgroup>
         <col style="width: 5%" />
         <col style="width: 5%" />
-        <col style="width: 60%" />
+        <col style="width: 50%" />
         <col style="width: 25%" />
+        <col style="width: 10%" />
         <col style="width: 5%" />
     </colgroup>
     <thead>
@@ -15,6 +16,7 @@
             <th class="text-center">Id</th>
             <th>Name</th>
             <th>Code</th>
+            <th class="text-center">In menu</th>
             <th></th>
         </tr>
     </thead>
@@ -28,6 +30,16 @@
             <td class="text-center">{{item.id}}</td>
             <td>{{item.name}}</td>
             <td>{{item.code}}</td>
+            <td class="text-center">
+                <span *ngIf="item.isInMenu; else notInMenu" class="text-success">
+                    <fa-icon [icon]="faCheckCircle"></fa-icon>
+                </span>
+                <ng-template #notInMenu>
+                    <span class="text-danger">
+                        <fa-icon [icon]="faTimesCircle"></fa-icon>
+                    </span>
+                </ng-template>
+            </td>
             <td class="text-center">
                 <button class="btn btn-link" [routerLink]="['/configure', item.code]">
                     <fa-icon [icon]="faWrench"></fa-icon>

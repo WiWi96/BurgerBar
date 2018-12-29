@@ -14,5 +14,6 @@ namespace BurgerBar.Services
         Task<Burger> AddAsync(Burger burger);
         Task<Burger> DeleteAsync(long id);
         Task<Burger> GetByCodeAsync(string code);
+        Task<IEnumerable<Burger>> GetAllInMenuAsync();
     }
 }

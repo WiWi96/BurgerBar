@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductType } from '../../../models/product-type';
-import { faWrench } from '@fortawesome/free-solid-svg-icons';
+import { faWrench, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ProductService } from '../../../services/product/product.service';
 import { ProductModalComponent } from '../../modals/product-modal/product-modal.component';
@@ -15,6 +16,8 @@ export class ProductsComponent implements OnInit {
     products: Product[];
     types: ProductType[];
     faWrench = faWrench;
+    faCheckCircle = faCheckCircle;
+    faTimesCircle = faTimesCircle;
 
     bsModalRef: BsModalRef;
 
@@ -38,8 +41,8 @@ export class ProductsComponent implements OnInit {
         this.openProductModal();
     }
 
-    editProduct(index: number) {
-        this.openProductModal(index);
+    editProduct(id: number) {
+        this.openProductModal(id);
     }
 
     getProductsOfType(type: ProductType): Product[] {
@@ -49,13 +52,14 @@ export class ProductsComponent implements OnInit {
         return null;
     }
 
-    openProductModal(index?: any) {
+    openProductModal(id?: any) {
         const initialState = {
-            id: typeof (index) === 'number' ? this.products[index].id : null
+            id
         };
         this.bsModalRef = this.modalService.show(ProductModalComponent, { initialState });
         this.bsModalRef.content.onClose.subscribe(result => {
-            if (typeof (index) === 'number') {
+            if (typeof (id) === 'number') {
+                const index = this.products.findIndex((elem) => elem.id === result.id);
                 this.products[index] = result;
             } else {
                 this.products.push(result);

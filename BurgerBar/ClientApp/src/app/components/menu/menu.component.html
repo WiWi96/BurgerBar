@@ -1,3 +1,72 @@
+<h1>Food menu</h1>
 <p>
-  menu works!
+    menu works!
 </p>
+<hr />
+<h4>Burgers</h4>
+<p>Not satisfied? Check out the <a [routerLink]="['/configure']">burger configurator</a>!</p>
+<div *ngIf="burgers?.length">
+    <table class="table">
+        <colgroup>
+            <col style="width: 20%" />
+            <col style="width: 40%" />
+            <col style="width: 20%" />
+            <col style="width: 20%" />
+        </colgroup>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Ingredients</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let burger of burgers">
+                <td>{{burger.name}}</td>
+                <td>
+                    <span *ngFor="let item of burger.ingredients; let isLast=last">{{item.name}}{{isLast ? '' : ', '}}</span>
+                </td>
+                <td>{{burger.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</td>
+                <td class="text-center">
+                    <button class="btn" (click)="orderBurger(burger.id)">
+                        Add to cart
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div *ngFor="let type of types">
+    <div *ngIf="getProductsOfType(type) as productsOfType">
+        <div *ngIf="productsOfType?.length">
+            <h4>{{type.name}}</h4>
+            <table class="table">
+                <colgroup>
+                    <col style="width: 50%" />
+                    <col style="width: 30%" />
+                    <col style="width: 20%" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of productsOfType">
+                        <td>{{product.name}}</td>
+                        <td>{{product.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</td>
+                        <td class="text-center">
+                            <button class="btn" (click)="orderProduct(product.id)">
+                                Add to cart
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

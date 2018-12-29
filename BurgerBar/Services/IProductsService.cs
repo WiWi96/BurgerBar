@@ -8,11 +8,12 @@ namespace BurgerBar.Services
 {
     public interface IProductsService
     {
-        Task<IEnumerable<Product>> GetAllAsync();
-        Task<Product> GetAsync(long id);
-        Task<Product> UpdateAsync(long id, Product product);
-        Task<Product> AddAsync(Product burger);
-        Task<Product> DeleteAsync(long id);
+        Task<IEnumerable<OtherProduct>> GetAllAsync();
+        Task<OtherProduct> GetAsync(long id);
+        Task<OtherProduct> UpdateAsync(long id, OtherProduct product);
+        Task<OtherProduct> AddAsync(OtherProduct burger);
+        Task<OtherProduct> DeleteAsync(long id);
         Task<IEnumerable<ProductType>> GetProductTypes();
+        Task<IEnumerable<OtherProduct>> GetAllInMenuAsync();
     }
 }

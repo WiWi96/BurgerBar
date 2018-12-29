@@ -18,5 +18,7 @@ namespace BurgerBar.ViewModels
         public File TopPicture { get; set; }
 
         public File BottomPicture { get; set; }
+
+        public bool Active { get; set; }
     }
 }

@@ -17,5 +17,7 @@ namespace BurgerBar.ViewModels
         public IngredientType Type { get; set; }
 
         public decimal Price { get; set; }
+
+        public bool Active { get; set; }
     }
 }

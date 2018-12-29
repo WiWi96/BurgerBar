@@ -77,7 +77,8 @@ registerLocaleData(localePl, 'pl');
             { path: 'configure/:code', component: ConfiguratorViewerComponent, pathMatch: 'full' },
             { path: 'edit', component: ConfiguratorEditorComponent, pathMatch: 'full' },
             { path: 'edit/:code', component: ConfiguratorEditorComponent, pathMatch: 'full' },
-            { path: 'settings', component: SettingsComponent, pathMatch: 'full' }
+            { path: 'settings', component: SettingsComponent, pathMatch: 'full' },
+            { path: 'menu', component: MenuComponent, pathMatch: 'full' }
         ])
     ],
     providers: [{ provide: LOCALE_ID, useValue: 'pl' }, BurgerService, IngredientService, ProductService, BunService, DeliveryTypeService, OrderService, PaymentTypeService, ValidationService, FileService],

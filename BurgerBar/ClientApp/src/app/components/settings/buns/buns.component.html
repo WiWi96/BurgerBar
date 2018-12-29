@@ -1,7 +1,7 @@
 <div class="tab-buttons sticky-buttons">
     <button class="btn btn-primary" (click)="addBun()">Add bun</button>
 </div>
-<table class="table" *ngIf="buns?.length;else noBuns">
+<table class="table settings-table" *ngIf="buns?.length;else noBuns">
     <colgroup>
         <col style="width: 5%" />
         <col style="width: 15%" />
@@ -19,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let item of buns">
+        <tr *ngFor="let item of buns" [class.inactive-row]="!item.active">
             <td class="text-center">
                 <a href="">
                     <fa-icon [icon]="faAngleDown"></fa-icon>

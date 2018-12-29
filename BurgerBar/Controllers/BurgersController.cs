@@ -29,9 +29,18 @@ namespace BurgerBar.Controllers
 
         // GET: api/Burgers
         [HttpGet]
-        public async Task<IEnumerable<BurgerDTO>> GetAllBurgersAsync()
+        public async Task<IEnumerable<BurgerDTO>> GetAllBurgers()
         {
             var burgers = await _burgersService.GetAllAsync();
+            var model = _mapper.Map<IEnumerable<BurgerDTO>>(burgers);
+            return model;
+        }
+
+        // GET: api/Burgers/menu
+        [HttpGet("menu")]
+        public async Task<IEnumerable<BurgerDTO>> GetMenuBurgers()
+        {
+            var burgers = await _burgersService.GetAllInMenuAsync();
             var model = _mapper.Map<IEnumerable<BurgerDTO>>(burgers);
             return model;
         }

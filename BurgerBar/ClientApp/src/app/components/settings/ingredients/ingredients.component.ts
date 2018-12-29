@@ -57,7 +57,8 @@ export class IngredientsComponent implements OnInit {
         this.bsModalRef = this.modalService.show(IngredientModalComponent, { initialState });
         this.bsModalRef.content.onClose.subscribe(result => {
             if (typeof (id) === 'number') {
-                this.ingredients.filter((elem) => elem.id === id)[0] = result;
+                const index = this.ingredients.findIndex((elem) => elem.id === result.id);
+                this.ingredients[index] = result;
             } else {
                 this.ingredients.push(result);
             }

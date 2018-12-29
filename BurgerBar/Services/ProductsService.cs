@@ -10,15 +10,15 @@ namespace BurgerBar.Services
     public class ProductsService : IProductsService
     {
         private readonly BurgerBarContext context;
-        private readonly DbSet<Product> dbSet;
+        private readonly DbSet<OtherProduct> dbSet;
 
         public ProductsService(BurgerBarContext context)
         {
             this.context = context;
-            dbSet = context.Product;
+            dbSet = context.OtherProduct;
         }
 
-        public async Task<Product> AddAsync(Product product)
+        public async Task<OtherProduct> AddAsync(OtherProduct product)
         {
             dbSet.Add(product);
             context.Entry(product.Type).State = EntityState.Unchanged;
@@ -26,7 +26,7 @@ namespace BurgerBar.Services
             return product;
         }
 
-        public async Task<Product> DeleteAsync(long id)
+        public async Task<OtherProduct> DeleteAsync(long id)
         {
             var product = await GetAsync(id);
             if (product == null)
@@ -39,17 +39,25 @@ namespace BurgerBar.Services
             return product;
         }
 
-        public async Task<Product> GetAsync(long id)
+        public async Task<OtherProduct> GetAsync(long id)
         {
             return await dbSet.Include(x => x.Type).FirstOrDefaultAsync(x => x.Id == id); ;
         }
 
-        public async Task<IEnumerable<Product>> GetAllAsync()
+        public async Task<IEnumerable<OtherProduct>> GetAllAsync()
         {
             return await Task.FromResult(dbSet.Include(x => x.Type).AsEnumerable());
         }
 
-        public async Task<Product> UpdateAsync(long id, Product product)
+        public async Task<IEnumerable<OtherProduct>> GetAllInMenuAsync()
+        {
+            return await Task.FromResult(dbSet
+                .Where(x => x.IsInMenu && x.Active)
+                .Include(x => x.Type)
+                .AsEnumerable());
+        }
+
+        public async Task<OtherProduct> UpdateAsync(long id, OtherProduct product)
         {
             if (product != null)
             {
