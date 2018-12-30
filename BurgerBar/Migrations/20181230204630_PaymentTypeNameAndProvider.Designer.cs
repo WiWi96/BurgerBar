@@ -4,14 +4,16 @@ using BurgerBar.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BurgerBar.Migrations
 {
     [DbContext(typeof(BurgerBarContext))]
-    partial class BurgerBarContextModelSnapshot : ModelSnapshot
+    [Migration("20181230204630_PaymentTypeNameAndProvider")]
+    partial class PaymentTypeNameAndProvider
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -144,6 +146,7 @@ namespace BurgerBar.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Provider")
+                        .IsRequired()
                         .HasMaxLength(15);
 
                     b.HasKey("Id");
@@ -283,6 +286,7 @@ namespace BurgerBar.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Provider")
+                        .IsRequired()
                         .HasMaxLength(15);
 
                     b.HasKey("Id");

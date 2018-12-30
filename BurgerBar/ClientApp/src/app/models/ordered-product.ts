@@ -1,14 +1,11 @@
 import { Product } from './product';
 
 export class OrderedProduct {
-    id?: number;
-    product: Product;
+    productId: number;
     quantity: number;
 
-    constructor(product: Product);
-    constructor(product: Product, quantity: number);
-    constructor(product: Product, quantity?: number) {
-        this.product = product;
-        this.quantity = quantity || 1;
+    constructor(productId: number, quantity: number) {
+        this.productId = productId;
+        this.quantity = quantity;
     }
 }

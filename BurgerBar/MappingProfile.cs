@@ -1,9 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using AutoMapper;
 using BurgerBar.Entities;
 using BurgerBar.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BurgerBar
 {
@@ -14,8 +13,8 @@ namespace BurgerBar
             CreateMap<Ingredient, IngredientDTO>();
             CreateMap<IngredientDTO, Ingredient>();
 
-            CreateMap<OtherProduct, ProductDTO>();
-            CreateMap<ProductDTO, OtherProduct>();
+            CreateMap<OtherProduct, OtherProductDTO>();
+            CreateMap<OtherProductDTO, OtherProduct>();
 
             CreateMap<Burger, BurgerDTO>()
                 .ForMember(o => o.Ingredients, m => m.MapFrom(obj => ConvertToIngredient(obj.Ingredients)));
@@ -28,6 +27,13 @@ namespace BurgerBar
 
             CreateMap<Bun, BunDTO>();
             CreateMap<BunDTO, Bun>();
+
+            CreateMap<AddOrderDTO, Order>()
+                .ForMember(o => o.PaymentType, m => m.MapFrom(dto => new PaymentType { Id = dto.PaymentTypeId }))
+                .ForMember(o => o.DeliveryType, m => m.MapFrom(dto => new DeliveryType { Id = dto.DeliveryTypeId }));
+
+            CreateMap<OrderedProductDTO, OrderedProduct>()
+                .ForMember(o => o.Product, m => m.MapFrom(dto => new Product { Id = dto.ProductId }));
         }
 
         private static IEnumerable<Ingredient> ConvertToIngredient(IEnumerable<BurgerIngredient> burgerIngredients)

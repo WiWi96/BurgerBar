@@ -1,21 +1,31 @@
 import { Injectable } from '@angular/core';
-import { OrderedProduct } from '../../models/ordered-product';
+import { HttpClient } from '@angular/common/http';
+import { Order } from '../../models/order';
+import { Observable } from 'rxjs';
+import { OrderDetails } from '../../models/order-details';
+import { environment } from '../../../environments/environment';
+import { OrderedProductDetails } from '../../models/ordered-product-details';
 
 @Injectable({
     providedIn: 'root'
 })
 export class OrderService {
+    private apiPath = environment.api + '/Orders';
 
-    constructor() { }
+    constructor(private client: HttpClient) { }
 
-    getPrice(op: OrderedProduct): number {
+    getPrice(op: OrderedProductDetails): number {
         if (op && op.product)
             return op.quantity * op.product.price;
     }
 
-    getFullPrice(ops: OrderedProduct[]): number {
+    getFullPrice(ops: OrderedProductDetails[]): number {
         let price = 0;
         ops.forEach(op => price += this.getPrice(op));
         return price;
+    }
+
+    public postOrder(order: Order): Observable<OrderDetails> {
+        return this.client.post<OrderDetails>(this.apiPath, order);
     }
 }

@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Order } from '../../models/order';
+import { OrderDetails } from '../../models/order-details';
 import { CartService } from '../../services/cart/cart.service';
 import { OrderService } from '../../services/order/order.service';
 import { take } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { OrderedProduct } from '../../models/ordered-product';
+import { OrderedProductDetails } from '../../models/ordered-product-details';
 import { PaymentType } from '../../models/payment-type';
 import { DeliveryType } from '../../models/delivery-type';
 import { DeliveryTypeService } from '../../services/delivery-type/delivery-type.service';
 import { PaymentTypeService } from '../../services/payment-type/payment-type.service';
+import { Order } from '../../models/order';
+import { OrderedProduct } from '../../models/ordered-product';
 
-const nameRegex = '^([0-9]|[A-Za-zÀ-ÿ])([0-9]|[A-Za-zÀ-ÿ]|[ \-&,.])+';
+const nameRegex = '^([0-9]|[A-Za-z\u00C0-\u017F])([0-9A-Za-z\u00C0-\u017F \-&,.])+';
 
 @Component({
     selector: 'app-order-form',
@@ -19,7 +21,7 @@ const nameRegex = '^([0-9]|[A-Za-zÀ-ÿ])([0-9]|[A-Za-zÀ-ÿ]|[ \-&,.])+';
 })
 export class OrderFormComponent implements OnInit {
 
-    products: OrderedProduct[];
+    products: OrderedProductDetails[];
     price: number;
     fullPrice: number;
 
@@ -77,17 +79,22 @@ export class OrderFormComponent implements OnInit {
 
     save(model: any) {
         this.formSubmitted = true;
-        const tmpModel: Order = { ...model.value };
 
-        tmpModel.products = this.products;
+        const order = new Order();
+        order.customer = model.value.customer;
+        order.deliveryTypeId = model.value.deliveryType.id;
+        order.paymentTypeId = model.value.paymentType.id;
+        order.products = this.products.map(x => new OrderedProduct(x.product.id, x.quantity));
 
-        //this.burgerService
-        //    .postBurger(tmpModel)
-        //    .subscribe(
-        //        data => this.router.navigateByUrl(`/configure/${data.code}`),
-        //        _ => {
-        //            this.formSubmitted = false
-        //        });
+        this.orderService
+            .postOrder(order)
+            .subscribe(
+                data => {
+                    this.cartService.clearCart();
+                },
+                _ => {
+                    this.formSubmitted = false
+                });
     }
 
     calculateFullPrice() {

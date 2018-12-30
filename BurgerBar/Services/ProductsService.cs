@@ -90,5 +90,13 @@ namespace BurgerBar.Services
         {
             return await Task.FromResult(context.ProductType.AsEnumerable());
         }
+
+        public Task<decimal> GetProductPriceAsync(long id)
+        {
+            return dbSet
+                .Where(b => b.Id == id)
+                .Select(b => b.Price)
+                .FirstOrDefaultAsync();
+        }
     }
 }

@@ -1,9 +1,10 @@
-using BurgerBar.Entities;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BurgerBar.ViewModels
 {
-    [Serializable]
     public class ProductDTO
     {
         public long Id { get; set; }
@@ -11,8 +12,6 @@ namespace BurgerBar.ViewModels
         public string Name { get; set; }
 
         public decimal Price { get; set; }
-
-        public ProductType Type { get; set; }
 
         public bool IsInMenu { get; set; }
 

@@ -15,5 +15,6 @@ namespace BurgerBar.Services
         Task<OtherProduct> DeleteAsync(long id);
         Task<IEnumerable<ProductType>> GetProductTypes();
         Task<IEnumerable<OtherProduct>> GetAllInMenuAsync();
+        Task<decimal> GetProductPriceAsync(long id);
     }
 }

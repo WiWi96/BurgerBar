@@ -86,7 +86,7 @@ registerLocaleData(localePl, 'pl');
             { path: 'edit/:code', component: ConfiguratorEditorComponent, pathMatch: 'full' },
             { path: 'settings', component: SettingsComponent, pathMatch: 'full' },
             { path: 'menu', component: MenuComponent, pathMatch: 'full' },
-            { path: 'cart', component: CartComponent, pathMatch: 'full' }
+            { path: 'cart', component: CartComponent, pathMatch: 'full' },
             { path: 'order', component: OrderFormComponent, pathMatch: 'full' }
         ])
     ],

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { OrderedProduct } from '../../../models/ordered-product';
+import { OrderedProductDetails } from '../../../models/ordered-product-details';
 import { CartService } from '../../../services/cart/cart.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { CartService } from '../../../services/cart/cart.service';
     styleUrls: ['./product-counter.component.scss']
 })
 export class ProductCounterComponent implements OnInit {
-    @Input() product: OrderedProduct;
+    @Input() product: OrderedProductDetails;
 
     faMinus = faMinus;
     faPlus = faPlus;

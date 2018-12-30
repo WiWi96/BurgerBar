@@ -1,4 +1,11 @@
-<h1>Your cart</h1>
+<div class="d-flex align-items-center">
+    <h1>Your cart</h1>
+    <div class="top-buttons">
+        <button class="btn btn-danger" (click)="clearCart()">
+            Clear cart
+        </button>
+    </div>
+</div>
 <div *ngIf="products?.length; else empty">
     <table class="table settings-table">
         <colgroup>

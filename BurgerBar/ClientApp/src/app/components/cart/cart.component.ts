@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart/cart.service';
-import { OrderedProduct } from '../../models/ordered-product';
+import { OrderedProductDetails } from '../../models/ordered-product-details';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { OrderService } from '../../services/order/order.service';
 
@@ -11,7 +11,7 @@ import { OrderService } from '../../services/order/order.service';
 })
 export class CartComponent implements OnInit {
 
-    products: OrderedProduct[];
+    products: OrderedProductDetails[];
     faTimes = faTimes;
 
     constructor(private cartService: CartService,
@@ -23,8 +23,11 @@ export class CartComponent implements OnInit {
         );
     }
 
-    deleteProduct(op: OrderedProduct) {
+    deleteProduct(op: OrderedProductDetails) {
         this.cartService.removeProduct(op.product.id);
     }
 
+    clearCart() {
+        this.cartService.clearCart();
+    }
 }

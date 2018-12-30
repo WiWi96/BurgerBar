@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../../models/product';
-import { OrderedProduct } from '../../models/ordered-product';
+import { OrderedProductDetails } from '../../models/ordered-product-details';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-    private orderedProducts: OrderedProduct[] = [];
+    private orderedProducts: OrderedProductDetails[] = [];
 
-    private subject = new BehaviorSubject<OrderedProduct[]>([]);
+    private subject = new BehaviorSubject<OrderedProductDetails[]>([]);
     private countSubject = new BehaviorSubject<number>(0);
 
     cartState = this.subject.asObservable();
@@ -30,7 +30,7 @@ export class CartService {
             this.orderedProducts[existingProductIndex].quantity++;
         }
         else {
-            this.orderedProducts.push(new OrderedProduct(product));
+            this.orderedProducts.push(new OrderedProductDetails(product));
         }
         this.saveCart();
     }

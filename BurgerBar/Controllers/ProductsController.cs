@@ -28,19 +28,19 @@ namespace BurgerBar.Controllers
 
         // GET: api/Products
         [HttpGet]
-        public async Task<IEnumerable<ProductDTO>> GetProducts()
+        public async Task<IEnumerable<OtherProductDTO>> GetProducts()
         {
             var products = await _productsService.GetAllAsync();
-            var model = _mapper.Map<IEnumerable<ProductDTO>>(products);
+            var model = _mapper.Map<IEnumerable<OtherProductDTO>>(products);
             return model;
         }
 
         // GET: api/Products/menu
         [HttpGet("menu")]
-        public async Task<IEnumerable<ProductDTO>> GetMenuProducts()
+        public async Task<IEnumerable<OtherProductDTO>> GetMenuProducts()
         {
             var products = await _productsService.GetAllInMenuAsync();
-            var model = _mapper.Map<IEnumerable<ProductDTO>>(products);
+            var model = _mapper.Map<IEnumerable<OtherProductDTO>>(products);
             return model;
         }
 
@@ -84,7 +84,7 @@ namespace BurgerBar.Controllers
                 return NotFound();
             }
 
-            var model = _mapper.Map<ProductDTO>(product);
+            var model = _mapper.Map<OtherProductDTO>(product);
 
             return Ok(model);
         }
@@ -99,7 +99,7 @@ namespace BurgerBar.Controllers
             }
 
             await _productsService.AddAsync(product);
-            var model = _mapper.Map<ProductDTO>(product);
+            var model = _mapper.Map<OtherProductDTO>(product);
 
             return CreatedAtAction("GetProduct", new { id = product.Id }, model);
         }
@@ -118,7 +118,7 @@ namespace BurgerBar.Controllers
             {
                 return NotFound();
             }
-            var model = _mapper.Map<ProductDTO>(product);
+            var model = _mapper.Map<OtherProductDTO>(product);
 
             return Ok(model);
         }

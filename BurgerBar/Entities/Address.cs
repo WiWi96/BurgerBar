@@ -12,7 +12,7 @@ namespace BurgerBar.Entities
         public string Street { get; set; }
 
         [Display(ResourceType = typeof(Labels), Name = "ApartmentNumber")]
-        [StringLength(8, MinimumLength = 1, ErrorMessageResourceName = "StringLengthError", ErrorMessageResourceType = typeof(ErrorMessages))]
+        [StringLength(8, ErrorMessageResourceName = "StringLengthError", ErrorMessageResourceType = typeof(ErrorMessages))]
         public string ApartmentNumber { get; set; }
 
         [Display(ResourceType = typeof(Labels), Name = "HouseNumber")]

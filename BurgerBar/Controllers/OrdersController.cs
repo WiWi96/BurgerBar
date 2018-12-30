@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using BurgerBar.Entities;
 using BurgerBar.Services;
+using AutoMapper;
+using BurgerBar.ViewModels;
 
 namespace BurgerBar.Controllers
 {
@@ -12,10 +14,12 @@ namespace BurgerBar.Controllers
     public class OrdersController : ControllerBase
     {
         private readonly IOrdersService _ordersService;
+        private readonly IMapper _mapper;
 
-        public OrdersController(IOrdersService ordersService)
+        public OrdersController(IOrdersService ordersService, IMapper mapper)
         {
             _ordersService = ordersService;
+            _mapper = mapper;
         }
 
         // GET: api/Orders
@@ -70,12 +74,14 @@ namespace BurgerBar.Controllers
 
         // POST: api/Orders
         [HttpPost]
-        public async Task<IActionResult> PostOrder([FromBody] Order order)
+        public async Task<IActionResult> PostOrder([FromBody] AddOrderDTO orderDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+
+            var order = _mapper.Map<Order>(orderDTO);
 
             await _ordersService.AddAsync(order);
 
