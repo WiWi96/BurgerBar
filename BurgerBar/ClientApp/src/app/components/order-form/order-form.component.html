@@ -1,5 +1,4 @@
 <h1>Your order</h1>
-<hr />
 <table class="table settings-table">
     <colgroup>
         <col style="width: 60%" />
@@ -124,11 +123,13 @@
         </div>
     </div>
     <hr />
-    <div class="float-md-right text-right">
+    <div class="text-right">
         <p>Overall price:</p>
         <h3>{{fullPrice|currency:'PLN':'symbol-narrow':undefined:'pl'}}</h3>
         <hr />
-        <button class="btn btn-primary btn-lg" type="submit" [disabled]="!form.valid||formSubmitted">Place the order</button>
     </div>
-    <button class="btn" [routerLink]="['/cart']">Go back to cart</button>
+    <div class="btn-group btn-group-lg float-md-right">
+        <button class="btn" [routerLink]="['/cart']">Go back to cart</button>
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid||formSubmitted">Place the order</button>
+    </div>
 </form>
