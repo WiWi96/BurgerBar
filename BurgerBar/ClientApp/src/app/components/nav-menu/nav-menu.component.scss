@@ -1,87 +1,127 @@
 @import 'colors.scss';
 @import 'mixins.scss';
 
-/* Keep the nav menu independent of scrolling and on top of other items */
-.main-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  background-color: $primary;
-
-  .navbar {
-    .navbar-header {
-      .navbar-toggler {
-        margin-right: 10px;
-      }
-    }
-  }
-
-  .nav-link {
-    display: flex;
-    align-items: center;
-
-  .nav-link-item {
+@mixin menu-icon {
     display: inline-block;
     font-size: 1.3em;
-    color: $light;
     margin-right: 5px;
     width: 25px;
     margin-right: 14px;
     text-align: center;
-  }
-  }
+}
+
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: $primary;
+
+    .navbar {
+        .navbar-header {
+            .navbar-toggler {
+                margin-right: 10px;
+            }
+        }
+
+        .spacer {
+            flex-grow: 1;
+        }
+
+        .cart-button {
+            width: fit-content;
+            border-radius: 10px;
+            padding: 10px 16px;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.1);
+
+            .cart-icon {
+                @include menu-icon;
+                color: $light;
+            }
+
+            .cart-label {
+                color: rgba(255,255,255,.5);
+            }
+
+            &:not(.empty) {
+                background-color: $light;
+
+                .cart-icon {
+                    @include menu-icon;
+                    color: $primary;
+                }
+
+                .cart-label {
+                    color: $orange;
+                }
+            }
+        }
+    }
+
+    .nav-link {
+        display: flex;
+        align-items: center;
+
+        .nav-link-item {
+            @include menu-icon;
+            color: $light;
+        }
+    }
 }
 
 @include media-breakpoint-up(md) {
-  .main-nav {
-    height: 100%;
-    width: calc(20% + 20px);
+    .main-nav {
+        height: 100%;
+        width: calc(20% + 20px);
 
-    .navbar {
-      border-radius: 0px;
-      border-width: 0px;
-      height: 100%;
-      display: block;
-
-      a {
-        /* If a menu item's text is too long, truncate it */
-        width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .navbar-header {
-        display: flex;
-
-        .navbar-toggler {
-          display: none;
-        }
-      }
-
-      #nav-menu {
-        padding: 0px;
-        margin-top: 10px;
-        border-radius: 10px;
-        background-color: rgba(255, 255, 255, 0.1);
-
-        ul {
-          float: none;
-
-          li {
-            float: none;
-            font-size: 15px;
-            margin: 6px;
+        .navbar {
+            border-radius: 0px;
+            border-width: 0px;
+            height: 100%;
+            align-items: normal;
+            flex-direction: column;
+            flex-wrap: nowrap;
 
             a {
-              padding: 10px 16px;
-              border-radius: 4px;
+                /* If a menu item's text is too long, truncate it */
+                width: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
-          }
+
+            .navbar-header {
+                display: flex;
+
+                .navbar-toggler {
+                    display: none;
+                }
+            }
+
+            #nav-menu {
+                padding: 0px;
+                margin-top: 10px;
+                border-radius: 10px;
+                background-color: rgba(255, 255, 255, 0.1);
+                flex-grow: 0;
+                flex-basis: auto;
+
+                ul {
+                    float: none;
+
+                    li {
+                        float: none;
+                        font-size: 15px;
+                        margin: 6px;
+
+                        a {
+                            padding: 10px 16px;
+                        }
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }

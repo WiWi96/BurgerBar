@@ -65,8 +65,8 @@
     <None Remove="ClientApp\src\app\models\ingredient.ts" />
     <None Remove="ClientApp\src\app\models\order.ts" />
     <None Remove="ClientApp\src\app\models\ordered-product.ts" />
+    <None Remove="ClientApp\src\app\models\other-product.ts" />
     <None Remove="ClientApp\src\app\models\payment-type.ts" />
-    <None Remove="ClientApp\src\app\models\product.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -95,7 +95,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\models\file.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\enums\creation-type.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\ingredient-type.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\models\product.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\other-product.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\payment-type.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\ordered-product.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\order.ts" />

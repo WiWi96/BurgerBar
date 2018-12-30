@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../models/product';
+import { OtherProduct } from '../../models/other-product';
 import { ProductService } from '../../services/product/product.service';
 import { ProductType } from '../../models/product-type';
 import { BurgerService } from '../../services/burger/burger.service';
 import { Burger } from '../../models/burger';
+import { Product } from '../../models/product';
+import { CartService } from '../../services/cart/cart.service';
 
 @Component({
     selector: 'app-menu',
@@ -11,12 +13,13 @@ import { Burger } from '../../models/burger';
     styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-    products: Product[];
+    products: OtherProduct[];
     types: ProductType[];
     burgers: Burger[];
 
     constructor(private burgerService: BurgerService,
-        private productService: ProductService) { }
+        private productService: ProductService,
+        private cartService: CartService) { }
 
     ngOnInit() {
         this.getBurgers();
@@ -35,10 +38,14 @@ export class MenuComponent implements OnInit {
         this.productService.getProductTypes().subscribe(data => this.types = data);
     }
 
-    getProductsOfType(type: ProductType): Product[] {
+    getProductsOfType(type: ProductType): OtherProduct[] {
         if (this.products) {
             return this.products.filter(x => (x.type.id === type.id));
         }
         return null;
+    }
+
+    orderProduct(product: Product) {
+        this.cartService.addProduct(product);
     }
 }

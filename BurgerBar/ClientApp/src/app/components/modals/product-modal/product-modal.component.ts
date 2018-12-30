@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../services/product/product.service';
 import { BsModalRef } from 'ngx-bootstrap';
-import { ProductDetails } from '../../../models/product-details';
+import { OtherProduct } from '../../../models/other-product';
 import { ProductType } from '../../../models/product-type';
 import { Subject } from 'rxjs';
 
@@ -11,11 +11,11 @@ import { Subject } from 'rxjs';
     styleUrls: ['./product-modal.component.scss']
 })
 export class ProductModalComponent implements OnInit {
-    public onClose: Subject<ProductDetails>;
+    public onClose: Subject<OtherProduct>;
 
     id: any;
     productTypes: ProductType[];
-    product: ProductDetails = new ProductDetails();
+    product: OtherProduct = new OtherProduct();
 
     constructor(public bsModalRef: BsModalRef,
         private productsService: ProductService) { }
@@ -25,7 +25,7 @@ export class ProductModalComponent implements OnInit {
         this.productsService.getProductTypes().subscribe(
             data => this.productTypes = data);
         if (typeof (this.id) === 'number') {
-            this.productsService.getProductDetails(this.id).subscribe(data => this.product = data);
+            this.productsService.getOtherProduct(this.id).subscribe(data => this.product = data);
         }
     }
 

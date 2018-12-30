@@ -5,7 +5,7 @@ import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ProductService } from '../../../services/product/product.service';
 import { ProductModalComponent } from '../../modals/product-modal/product-modal.component';
-import { Product } from '../../../models/product';
+import { OtherProduct } from '../../../models/other-product';
 
 @Component({
     selector: 'app-products',
@@ -13,7 +13,7 @@ import { Product } from '../../../models/product';
     styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-    products: Product[];
+    products: OtherProduct[];
     types: ProductType[];
     faWrench = faWrench;
     faCheckCircle = faCheckCircle;
@@ -45,7 +45,7 @@ export class ProductsComponent implements OnInit {
         this.openProductModal(id);
     }
 
-    getProductsOfType(type: ProductType): Product[] {
+    getProductsOfType(type: ProductType): OtherProduct[] {
         if (this.products) {
             return this.products.filter(x => (x.type.id === type.id));
         }

@@ -1,70 +1,81 @@
 <div class='main-nav'>
-  <nav class='navbar navbar-dark'>
-    <div class='navbar-header'>
-      <button type='button' class='navbar-toggler' data-toggle='collapse' data-target='#nav-menu' [attr.aria-expanded]='isExpanded' (click)='toggle()' aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <a class='navbar-brand' [routerLink]='["/"]'>BurgerBar</a>
-    </div>
-    <div id="nav-menu" class='navbar-collapse collapse' [ngClass]='{ "show": isExpanded || innerWidth > 767 }'>
-      <ul class='nav navbar-nav'>
-        <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
-          <a class="nav-link" [routerLink]='["/"]' (click)='collapse()'>
-            <span class="nav-link-item">
-              <fa-icon [icon]="faHome"></fa-icon>
+    <nav class='navbar navbar-dark'>
+        <div class='navbar-header'>
+            <button type='button' class='navbar-toggler' data-toggle='collapse' data-target='#nav-menu' [attr.aria-expanded]='isExpanded' (click)='toggle()' aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class='navbar-brand' [routerLink]='["/"]'>BurgerBar</a>
+        </div>
+        <div id="nav-menu" class='navbar-collapse collapse' [ngClass]='{ "show": isExpanded || innerWidth > 767 }'>
+            <ul class='nav navbar-nav'>
+                <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+                    <a class="nav-link" [routerLink]='["/"]' (click)='collapse()'>
+                        <span class="nav-link-item">
+                            <fa-icon [icon]="faHome"></fa-icon>
+                        </span>
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+                    <a class="nav-link" [routerLink]='["/menu"]' (click)='collapse()'>
+                        <span class="nav-link-item">
+                            <fa-icon [icon]="faUtensils"></fa-icon>
+                        </span>
+                        Menu
+                    </a>
+                </li>
+                <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+                    <a class="nav-link" [routerLink]='["/configure"]' (click)='collapse()'>
+                        <span class="nav-link-item">
+                            <fa-icon [icon]="faConciergeBell"></fa-icon>
+                        </span>
+                        Configurator
+                    </a>
+                </li>
+                <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+                    <a class="nav-link" [routerLink]='["/"]' (click)='collapse()'>
+                        <span class="nav-link-item">
+                            <fa-icon [icon]="faStoreAlt"></fa-icon>
+                        </span>
+                        Our restaurant
+                    </a>
+                </li>
+                <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+                    <a class="nav-link" [routerLink]='["/"]' (click)='collapse()'>
+                        <span class="nav-link-item">
+                            <fa-icon [icon]="faQuestionCircle"></fa-icon>
+                        </span>
+                        FAQ
+                    </a>
+                </li>
+                <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+                    <a class="nav-link" [routerLink]='["/"]' (click)='collapse()'>
+                        <span class="nav-link-item">
+                            <fa-icon [icon]="faPhone"></fa-icon>
+                        </span>
+                        Contact
+                    </a>
+                </li>
+                <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+                    <a class="nav-link" [routerLink]='["/settings"]' (click)='collapse()'>
+                        <span class="nav-link-item">
+                            <fa-icon [icon]="faCog"></fa-icon>
+                        </span>
+                        Settings
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="spacer"></div>
+        <div class="cart-button" [class.empty]="!cartCount">
+            <div class="cart-icon">
+                <fa-icon [icon]="faShoppingCart"></fa-icon>
+            </div>
+            <span class="cart-label">
+                <span class="cart-count">
+                    {{cartCount}}
+                </span>
             </span>
-            Home
-          </a>
-        </li>
-        <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
-          <a class="nav-link" [routerLink]='["/menu"]' (click)='collapse()'>
-            <span class="nav-link-item">
-              <fa-icon [icon]="faUtensils"></fa-icon>
-            </span>
-            Menu
-          </a>
-        </li>
-        <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
-          <a class="nav-link" [routerLink]='["/configure"]' (click)='collapse()'>
-            <span class="nav-link-item">
-              <fa-icon [icon]="faConciergeBell"></fa-icon>
-            </span>
-            Configurator
-          </a>
-        </li>
-        <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
-          <a class="nav-link" [routerLink]='["/"]' (click)='collapse()'>
-            <span class="nav-link-item">
-              <fa-icon [icon]="faStoreAlt"></fa-icon>
-            </span>
-            Our restaurant
-          </a>
-        </li>
-        <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
-          <a class="nav-link" [routerLink]='["/"]' (click)='collapse()'>
-            <span class="nav-link-item">
-              <fa-icon [icon]="faQuestionCircle"></fa-icon>
-            </span>
-            FAQ
-          </a>
-        </li>
-        <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
-          <a class="nav-link" [routerLink]='["/"]' (click)='collapse()'>
-            <span class="nav-link-item">
-              <fa-icon [icon]="faPhone"></fa-icon>
-            </span>
-            Contact
-          </a>
-        </li>
-        <li class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
-          <a class="nav-link" [routerLink]='["/settings"]' (click)='collapse()'>
-            <span class="nav-link-item">
-              <fa-icon [icon]="faCog"></fa-icon>
-            </span>
-            Settings
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+        </div>
+    </nav>
 </div>

@@ -36,6 +36,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ValidationService } from './services/validation/validation.service';
 import { FileService } from './services/file/file.service';
 import { UploadComponent } from './components/settings/upload/upload.component';
+import { CartService } from './services/cart/cart.service';
 
 registerLocaleData(localePl, 'pl');
 
@@ -81,7 +82,7 @@ registerLocaleData(localePl, 'pl');
             { path: 'menu', component: MenuComponent, pathMatch: 'full' }
         ])
     ],
-    providers: [{ provide: LOCALE_ID, useValue: 'pl' }, BurgerService, IngredientService, ProductService, BunService, DeliveryTypeService, OrderService, PaymentTypeService, ValidationService, FileService],
+    providers: [{ provide: LOCALE_ID, useValue: 'pl' }, BurgerService, IngredientService, ProductService, BunService, DeliveryTypeService, OrderService, PaymentTypeService, ValidationService, FileService, CartService],
     bootstrap: [AppComponent],
     entryComponents: [IngredientModalComponent, ProductModalComponent, BunModalComponent, BurgerModalComponent, IngredientCardComponent, UploadComponent]
 })

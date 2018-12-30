@@ -1,7 +1,14 @@
-import { ProductDetails } from './product-details';
+import { Product } from './product';
 
 export class OrderedProduct {
-  id?: number;
-  product: ProductDetails;
-  quantity: number;
+    id?: number;
+    product: Product;
+    quantity: number;
+
+    constructor(product: Product);
+    constructor(product: Product, quantity: number);
+    constructor(product: Product, quantity?: number) {
+        this.product = product;
+        this.quantity = quantity || 1;
+    }
 }

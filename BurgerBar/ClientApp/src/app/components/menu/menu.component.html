@@ -29,7 +29,7 @@
                 </td>
                 <td>{{burger.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</td>
                 <td class="text-center">
-                    <button class="btn" (click)="orderBurger(burger.id)">
+                    <button class="btn" (click)="orderProduct(burger)">
                         Add to cart
                     </button>
                 </td>
@@ -60,7 +60,7 @@
                         <td>{{product.name}}</td>
                         <td>{{product.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</td>
                         <td class="text-center">
-                            <button class="btn" (click)="orderProduct(product.id)">
+                            <button class="btn" (click)="orderProduct(product)">
                                 Add to cart
                             </button>
                         </td>
