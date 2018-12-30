@@ -61,6 +61,6 @@
     </div>
     <div class="row my-3 justify-content-center float-md-right">
         <button [routerLink]="['/edit', burger?.code]" class="btn mr-1">Edit configuration</button>
-        <button class="btn btn-primary">Order for {{burger?.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</button>
+        <button class="btn btn-primary" (click)="order()">Order for {{burger?.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</button>
     </div>
 </div>

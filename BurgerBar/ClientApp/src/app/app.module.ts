@@ -37,6 +37,8 @@ import { ValidationService } from './services/validation/validation.service';
 import { FileService } from './services/file/file.service';
 import { UploadComponent } from './components/settings/upload/upload.component';
 import { CartService } from './services/cart/cart.service';
+import { CartComponent } from './components/cart/cart.component';
+import { ProductCounterComponent } from './components/cart/product-counter/product-counter.component';
 
 registerLocaleData(localePl, 'pl');
 
@@ -59,7 +61,9 @@ registerLocaleData(localePl, 'pl');
         BurgerModalComponent,
         ConfiguratorEditorComponent,
         IngredientCardComponent,
-        UploadComponent
+        UploadComponent,
+        CartComponent,
+        ProductCounterComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -79,7 +83,8 @@ registerLocaleData(localePl, 'pl');
             { path: 'edit', component: ConfiguratorEditorComponent, pathMatch: 'full' },
             { path: 'edit/:code', component: ConfiguratorEditorComponent, pathMatch: 'full' },
             { path: 'settings', component: SettingsComponent, pathMatch: 'full' },
-            { path: 'menu', component: MenuComponent, pathMatch: 'full' }
+            { path: 'menu', component: MenuComponent, pathMatch: 'full' },
+            { path: 'cart', component: CartComponent, pathMatch: 'full' }
         ])
     ],
     providers: [{ provide: LOCALE_ID, useValue: 'pl' }, BurgerService, IngredientService, ProductService, BunService, DeliveryTypeService, OrderService, PaymentTypeService, ValidationService, FileService, CartService],

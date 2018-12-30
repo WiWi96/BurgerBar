@@ -1,0 +1,9 @@
+<div class="btn-group btn-group-sm">
+    <button class="btn" (click)="decrementProduct()">
+        <fa-icon [icon]="faMinus"></fa-icon>
+    </button>
+    <input type="number" min="0" class="form-control form-control-sm text-right" [(ngModel)]="product.quantity" (change)="quantityChanged()"/>
+    <button class="btn" (click)="incrementProduct()">
+        <fa-icon [icon]="faPlus"></fa-icon>
+    </button>
+</div>

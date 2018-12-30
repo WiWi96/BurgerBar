@@ -66,8 +66,7 @@
                 </li>
             </ul>
         </div>
-        <div class="spacer"></div>
-        <div class="cart-button" [class.empty]="!cartCount">
+        <div class="cart-button" [class.empty]="!cartCount" [routerLink]="['cart']">
             <div class="cart-icon">
                 <fa-icon [icon]="faShoppingCart"></fa-icon>
             </div>

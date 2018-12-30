@@ -33,6 +33,15 @@ table.settings-table {
     border-left: 4px solid $gray;
 }
 
+.burger-code {
+    padding: 0 5px;
+    text-align: center;
+    background-color: $green;
+    border: 1px solid $border-color;
+    border-radius: 3px;
+    box-shadow: $border-color 0 10px 15px;
+}
+
 @include media-breakpoint-up(md) {
     .sticky-tabs {
         ul.nav.nav-tabs, .sticky-buttons {
