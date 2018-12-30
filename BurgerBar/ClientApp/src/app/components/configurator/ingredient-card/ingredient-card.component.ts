@@ -45,10 +45,12 @@ export class IngredientCardComponent implements OnInit {//, ControlValueAccessor
     }
 
     ingredientSelected() {
-        let id = +this.ingredientForm.get('ingredient').value.id;
-        this.ingredientService.getIngredientDetails(id).subscribe(
-            data => this.ingredientDetails = data
-        );
+        if (this.ingredientForm.get('ingredient').value) {
+            const id = +this.ingredientForm.get('ingredient').value.id;
+            this.ingredientService.getIngredientDetails(id).subscribe(
+                data => this.ingredientDetails = data
+            );
+        }
     }
 
     compare = (a, b) => a && b ? a.id === b.id : a === b;
