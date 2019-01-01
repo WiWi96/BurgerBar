@@ -106,6 +106,7 @@ namespace BurgerBar.Services
             return await Task.FromResult(dbSet
                 .Where(x => x.IsInMenu && x.Active)
                 .Include(x => x.Ingredients)
+                .ThenInclude(x => x.Ingredient)
                 .AsEnumerable());
         }
 

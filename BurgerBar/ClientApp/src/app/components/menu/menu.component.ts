@@ -6,6 +6,7 @@ import { BurgerService } from '../../services/burger/burger.service';
 import { Burger } from '../../models/burger';
 import { Product } from '../../models/product';
 import { CartService } from '../../services/cart/cart.service';
+import { faWrench } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-menu',
@@ -16,6 +17,8 @@ export class MenuComponent implements OnInit {
     products: OtherProduct[];
     types: ProductType[];
     burgers: Burger[];
+
+    faWrench = faWrench;
 
     constructor(private burgerService: BurgerService,
         private productService: ProductService,

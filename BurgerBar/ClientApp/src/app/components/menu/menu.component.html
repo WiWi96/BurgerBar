@@ -3,7 +3,7 @@
 <h4>Burgers</h4>
 <p>Not satisfied? Check out the <a [routerLink]="['/configure']">burger configurator</a>!</p>
 <div *ngIf="burgers?.length">
-    <table class="table">
+    <table class="table settings-table">
         <colgroup>
             <col style="width: 20%" />
             <col style="width: 40%" />
@@ -20,9 +20,14 @@
         </thead>
         <tbody>
             <tr *ngFor="let burger of burgers">
-                <td>{{burger.name}}</td>
+                <td>
+                    <a [routerLink]="['/configure', burger.code]">{{burger.name}}</a>
+                </td>
                 <td>
                     <span *ngFor="let item of burger.ingredients; let isLast=last">{{item.name}}{{isLast ? '' : ', '}}</span>
+                    <button class="btn btn-link" [routerLink]="['/edit', burger.code]">
+                        <fa-icon [icon]="faWrench"></fa-icon>
+                    </button>
                 </td>
                 <td>{{burger.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</td>
                 <td class="text-center">
@@ -39,7 +44,7 @@
     <div *ngIf="getProductsOfType(type) as productsOfType">
         <div *ngIf="productsOfType?.length">
             <h4>{{type.name}}</h4>
-            <table class="table">
+            <table class="table settings-table">
                 <colgroup>
                     <col style="width: 50%" />
                     <col style="width: 30%" />
