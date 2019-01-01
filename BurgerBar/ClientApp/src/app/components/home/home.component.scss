@@ -1,0 +1,24 @@
+@import './colors.scss';
+@import 'mixins.scss';
+
+.home {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 0;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url("/assets/images/background.jpg");
+    background-color: $primary;
+    background-size: cover;
+    background-position: center;
+
+    .jumbotron {
+        background-color: rgba($light, 0.78);
+        margin: 0;
+
+        @include media-breakpoint-down(sm) {
+            margin-top: 50px;
+        }
+    }
+}

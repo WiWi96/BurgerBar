@@ -23,6 +23,10 @@
             .navbar-toggler {
                 margin-right: 10px;
             }
+            .navbar-brand {
+                color: $primary-dark;
+                font-weight: bold;
+            }
         }
 
         .spacer {
@@ -74,7 +78,7 @@
 @include media-breakpoint-up(md) {
     .main-nav {
         height: 100%;
-        width: calc(20% + 20px);
+        width: 25%;//calc(20% + 20px);
 
         .navbar {
             border-radius: 0px;
