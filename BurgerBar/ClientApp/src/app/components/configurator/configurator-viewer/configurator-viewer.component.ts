@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BurgerService } from '../../../services/burger/burger.service';
 import { Burger } from '../../../models/burger';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
@@ -20,6 +20,7 @@ export class ConfiguratorViewerComponent implements OnInit {
     faAngleDown = faAngleDown;
 
     constructor(private activatedRoute: ActivatedRoute,
+        private router: Router,
         private service: BurgerService,
         private fileService: FileService,
         private cartService: CartService) { }
@@ -29,7 +30,11 @@ export class ConfiguratorViewerComponent implements OnInit {
 
         if (this.code) {
             this.service.getBurgerByCode(this.code).subscribe(
-                data => this.burger = data);
+                data => this.burger = data,
+                _ => {
+                    this.router.navigate(['/configure']);
+                }
+            );
         }
     }
 

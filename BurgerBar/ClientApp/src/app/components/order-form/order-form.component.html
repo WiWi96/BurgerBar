@@ -55,9 +55,39 @@
 <hr />
 <form [formGroup]="form" (ngSubmit)="save(form)" class="container">
     <ng-container [formGroup]="customerGroup">
+        <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+             class="alert alert-danger">
+            <div *ngIf="firstName.errors.required">
+                First name is required.
+            </div>
+            <div *ngIf="firstName.errors.minlength">
+                First name must be at least 2 characters long.
+            </div>
+            <div *ngIf="firstName.errors.maxlength">
+                First name must be at most 30 characters long.
+            </div>
+            <div *ngIf="firstName.errors.pattern">
+                First name doesn't match the pattern.
+            </div>
+        </div>
         <div class="form-group">
             <label for="firstNameInput">First Name</label>
             <input class="form-control" id="firstNameInput" formControlName="firstName" name="firstName" />
+        </div>
+        <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+             class="alert alert-danger">
+            <div *ngIf="lastName.errors.required">
+                Last name is required.
+            </div>
+            <div *ngIf="lastName.errors.minlength">
+                Last name must be at least 2 characters long.
+            </div>
+            <div *ngIf="lastName.errors.maxlength">
+                Last name must be at most 30 characters long.
+            </div>
+            <div *ngIf="lastName.errors.pattern">
+                Last name doesn't match the pattern.
+            </div>
         </div>
         <div class="form-group">
             <label for="lastNameInput">Last Name</label>
@@ -66,26 +96,86 @@
         <ng-container [formGroup]="addressGroup">
             <hr />
             <h6>Address</h6>
+            <div *ngIf="street.invalid && (street.dirty || street.touched)"
+                 class="alert alert-danger">
+                <div *ngIf="street.errors.required">
+                    Street is required.
+                </div>
+                <div *ngIf="street.errors.minlength">
+                    Street must be at least 3 characters long.
+                </div>
+                <div *ngIf="street.errors.maxlength">
+                    Street must be at most 50 characters long.
+                </div>
+                <div *ngIf="street.errors.pattern">
+                    Street doesn't match the pattern.
+                </div>
+            </div>
             <div class="form-group">
                 <label for="streetInput">Street</label>
                 <input class="form-control" id="streetInput" formControlName="street" name="street" />
             </div>
             <div class="form-row">
                 <div class="form-group col-6">
+                    <div *ngIf="houseNumber.invalid && (houseNumber.dirty || houseNumber.touched)"
+                         class="alert alert-danger">
+                        <div *ngIf="houseNumber.errors.required">
+                            House number is required.
+                        </div>
+                        <div *ngIf="houseNumber.errors.maxlength">
+                            House number must be at most 8 characters long.
+                        </div>
+                    </div>
                     <label for="houseNoInput">House Number</label>
                     <input class="form-control" id="houseNoInput" formControlName="houseNumber" name="houseNumber" />
                 </div>
                 <div class="form-group col-6">
+                    <div *ngIf="apartmentNumber.invalid && (apartmentNumber.dirty || apartmentNumber.touched)"
+                         class="alert alert-danger">
+                        <div *ngIf="apartmentNumber.errors.maxlength">
+                            Apartment number must be at most 8 characters long.
+                        </div>
+                    </div>
                     <label for="apartmentNumberInput">Apartment Number</label>
                     <input class="form-control" id="apartmentNumberInput" formControlName="apartmentNumber" name="apartmentNumber" />
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-4">
+                    <div *ngIf="postalCode.invalid && (postalCode.dirty || postalCode.touched)"
+                         class="alert alert-danger">
+                        <div *ngIf="postalCode.errors.required">
+                            Zip code is required.
+                        </div>
+                        <div *ngIf="postalCode.errors.minlength">
+                            Zip code must be at least 4 characters long.
+                        </div>
+                        <div *ngIf="postalCode.errors.maxlength">
+                            Zip code must be at most 10 characters long.
+                        </div>
+                        <div *ngIf="postalCode.errors.pattern">
+                            Zip code doesn't match the pattern.
+                        </div>
+                    </div>
                     <label for="postalCodeInput">Zip code</label>
                     <input class="form-control" id="postalCodeInput" formControlName="postalCode" name="postalCode" />
                 </div>
                 <div class="form-group col-8">
+                    <div *ngIf="town.invalid && (town.dirty || town.touched)"
+                         class="alert alert-danger">
+                        <div *ngIf="town.errors.required">
+                            Town is required.
+                        </div>
+                        <div *ngIf="town.errors.minlength">
+                            Town must be at least 3 characters long.
+                        </div>
+                        <div *ngIf="town.errors.maxlength">
+                            Town must be at most 50 characters long.
+                        </div>
+                        <div *ngIf="town.errors.pattern">
+                            Town doesn't match the pattern.
+                        </div>
+                    </div>
                     <label for="townInput">Town</label>
                     <input class="form-control" id="townInput" formControlName="town" name="town" />
                 </div>
@@ -93,9 +183,27 @@
         </ng-container>
         <hr />
         <h6>Contact</h6>
+        <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)"
+             class="alert alert-danger">
+            <div *ngIf="phoneNumber.errors.minlength">
+                Phone Number must be at least 9 characters long.
+            </div>
+            <div *ngIf="phoneNumber.errors.maxlength">
+                Phone Number must be at most 11 characters long.
+            </div>
+            <div *ngIf="phoneNumber.errors.pattern">
+                Phone Number doesn't match the pattern.
+            </div>
+        </div>
         <div class="form-group">
             <label for="phoneInput">Phone Number</label>
             <input class="form-control" id="phoneInput" formControlName="phoneNumber" name="phoneNumber" type="tel" />
+        </div>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)"
+             class="alert alert-danger">
+            <div *ngIf="email.errors.email">
+                E-mail is incorrect.
+            </div>
         </div>
         <div class="form-group">
             <label for="emailInput">E-mail</label>
@@ -106,6 +214,12 @@
     <h6>Delivery and payment</h6>
     <div class="form-row">
         <div class="form-group col-md-6">
+            <div *ngIf="deliveryType.invalid && (deliveryType.dirty || deliveryType.touched)"
+                 class="alert alert-danger">
+                <div *ngIf="deliveryType.errors.required">
+                    Delivery type is required.
+                </div>
+            </div>
             <label for="deliverySelect">Delivery type</label>
             <select class="form-control" id="deliverySelect" formControlName="deliveryType" name="deliveryType" (change)="calculateFullPrice()">
                 <option *ngFor="let dt of deliveryTypes" [ngValue]="dt">
@@ -114,6 +228,12 @@
             </select>
         </div>
         <div class="form-group col-md-6">
+            <div *ngIf="paymentType.invalid && (paymentType.dirty || paymentType.touched)"
+                 class="alert alert-danger">
+                <div *ngIf="paymentType.errors.required">
+                    Payment type is required.
+                </div>
+            </div>
             <label for="paymentSelect">Payment type</label>
             <select class="form-control" id="paymentSelect" formControlName="paymentType" name="paymentType" (change)="calculateFullPrice()">
                 <option *ngFor="let pt of paymentTypes" [ngValue]="pt">

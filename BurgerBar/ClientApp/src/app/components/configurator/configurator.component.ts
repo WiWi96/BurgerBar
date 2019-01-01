@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class ConfiguratorComponent implements OnInit {
 
     code: string;
+    wrongInput = false;
 
     constructor(private router: Router) { }
 
@@ -16,6 +17,10 @@ export class ConfiguratorComponent implements OnInit {
     }
 
     findConfiguration() {
-        this.router.navigateByUrl(`/configure/${this.code}`);
+        if (this.code && this.code.length <= 8) {
+            this.router.navigateByUrl(`/configure/${this.code}`);
+        } else {
+            this.wrongInput = true;
+        }
     }
 }

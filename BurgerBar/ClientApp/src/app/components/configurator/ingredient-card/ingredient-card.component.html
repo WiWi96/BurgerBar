@@ -9,6 +9,12 @@
             </div>
         </div>
         <div class="content col">
+            <div *ngIf="ingredientSelect.invalid && (ingredientSelect.dirty || ingredientSelect.touched)"
+                 class="alert alert-danger">
+                <div *ngIf="ingredientSelect.errors.required">
+                    Ingredient selection is required.
+                </div>
+            </div>
             <div class="form-group" [formGroup]="ingredientForm">
                 <select class="form-control" id="ingredientSelect" formControlName="ingredient" [compareWith]="compare" (change)="ingredientSelected()">
                     <option *ngFor="let item of ingredients" [ngValue]="item">{{item.name}}</option>

@@ -124,6 +124,18 @@ export class ConfiguratorEditorComponent implements OnInit {
         );
     }
 
+    get name() {
+        return this.form.get('name');
+    }
+
+    get bunSelect() {
+        return this.form.get('bun');
+    }
+
+    get ingredientsArray() {
+        return this.form.get('ingredients');
+    }
+
     compare = (a, b) => a && b ? a.id === b.id : a === b;
 
 }

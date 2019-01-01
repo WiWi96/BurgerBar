@@ -9,6 +9,7 @@
                     <h5 class="card-title">Browse existing configurations</h5>
                     <p class="card-text">Just enter the code and find the burger created by you or other users. Then you'll have an opportunity to edit the configuration or simply order it.</p>
                     <form>
+                        <div *ngIf="wrongInput" class="alert alert-danger">Invalid burger code.</div>
                         <div class="form-group">
                             <label for="burgerCodeInput">Burger unique code</label>
                             <input class="form-control" id="burgerCodeInput" placeholder="Burger code" name="burgerCode" [(ngModel)]="code" />

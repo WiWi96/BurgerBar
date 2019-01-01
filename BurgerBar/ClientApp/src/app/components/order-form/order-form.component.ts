@@ -102,4 +102,48 @@ export class OrderFormComponent implements OnInit {
         const paymentPrice: number = +this.form.get("paymentType").value.price || 0;
         this.fullPrice = this.price + deliveryPrice + paymentPrice;
     }
+
+    get firstName() {
+        return this.form.get('customer').get('firstName');
+    }
+
+    get lastName() {
+        return this.form.get('customer').get('lastName');
+    }
+
+    get phoneNumber() {
+        return this.form.get('customer').get('phoneNumber');
+    }
+
+    get email() {
+        return this.form.get('customer').get('email');
+    }
+
+    get deliveryType() {
+        return this.form.get('deliveryType');
+    }
+
+    get paymentType() {
+        return this.form.get('paymentType');
+    }
+
+    get street() {
+        return this.form.get('customer').get('address').get('street');
+    }
+
+    get apartmentNumber() {
+        return this.form.get('customer').get('address').get('apartmentNumber');
+    }
+
+    get houseNumber() {
+        return this.form.get('customer').get('address').get('houseNumber');
+    }
+
+    get postalCode() {
+        return this.form.get('customer').get('address').get('postalCode');
+    }
+
+    get town() {
+        return this.form.get('customer').get('address').get('town');
+    }
 }

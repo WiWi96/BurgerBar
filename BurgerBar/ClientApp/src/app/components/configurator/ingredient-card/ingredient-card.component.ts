@@ -53,5 +53,9 @@ export class IngredientCardComponent implements OnInit {//, ControlValueAccessor
         }
     }
 
+    get ingredientSelect() {
+        return this.ingredientForm.get('ingredient');
+    }
+
     compare = (a, b) => a && b ? a.id === b.id : a === b;
 }
