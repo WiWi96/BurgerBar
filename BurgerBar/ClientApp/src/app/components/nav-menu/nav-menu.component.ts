@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
-import { faHome, faUtensils, faQuestionCircle, faPhone, faConciergeBell, faStoreAlt, faCog, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faUtensils, faQuestionCircle, faPhone, faConciergeBell, faStoreAlt, faCog, faShoppingCart, faKey, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { CartService } from '../../services/cart/cart.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
     selector: 'app-nav-menu',
@@ -20,8 +21,11 @@ export class NavMenuComponent {
     faStoreAlt = faStoreAlt;
     faCog = faCog;
     faShoppingCart = faShoppingCart;
+    faSignInAlt = faSignInAlt;
+    faSignOutAlt = faSignOutAlt;
 
-    constructor(private cartService: CartService) {
+    constructor(private cartService: CartService,
+        private authService: AuthService) {
 
     }
 

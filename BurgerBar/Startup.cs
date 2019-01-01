@@ -1,5 +1,6 @@
 using AutoMapper;
 using BurgerBar.Data;
+using BurgerBar.Extensions;
 using BurgerBar.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,18 +26,9 @@ namespace BurgerBar
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowAll",
-                    builder =>
-                    {
-                        builder
-                        .AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials();
-                    });
-            });
+            services.ConfigureCors();
+
+            services.ConfigureAuthentication(Configuration);
 
             var mappingConfig = new MapperConfiguration(mc =>
             {
@@ -122,6 +114,8 @@ namespace BurgerBar
             });
 
             app.UseCors("AllowAll");
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

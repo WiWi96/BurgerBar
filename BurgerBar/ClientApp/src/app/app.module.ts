@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -40,6 +40,11 @@ import { CartService } from './services/cart/cart.service';
 import { CartComponent } from './components/cart/cart.component';
 import { ProductCounterComponent } from './components/cart/product-counter/product-counter.component';
 import { OrderFormComponent } from './components/order-form/order-form.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthService } from './services/auth/auth.service';
+import { AuthGuard } from './guards/auth-guard.service';
+import { Interceptor } from './app.interceptor';
+import { JwtHelper } from 'angular2-jwt';
 
 registerLocaleData(localePl, 'pl');
 
@@ -65,7 +70,8 @@ registerLocaleData(localePl, 'pl');
         UploadComponent,
         CartComponent,
         ProductCounterComponent,
-        OrderFormComponent
+        OrderFormComponent,
+        LoginComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -84,13 +90,18 @@ registerLocaleData(localePl, 'pl');
             { path: 'configure/:code', component: ConfiguratorViewerComponent, pathMatch: 'full' },
             { path: 'edit', component: ConfiguratorEditorComponent, pathMatch: 'full' },
             { path: 'edit/:code', component: ConfiguratorEditorComponent, pathMatch: 'full' },
-            { path: 'settings', component: SettingsComponent, pathMatch: 'full' },
+            { path: 'settings', component: SettingsComponent, pathMatch: 'full', canActivate: [AuthGuard] },
             { path: 'menu', component: MenuComponent, pathMatch: 'full' },
             { path: 'cart', component: CartComponent, pathMatch: 'full' },
-            { path: 'order', component: OrderFormComponent, pathMatch: 'full' }
+            { path: 'order', component: OrderFormComponent, pathMatch: 'full' },
+            { path: 'login', component: LoginComponent, pathMatch: 'full' }
         ])
     ],
-    providers: [{ provide: LOCALE_ID, useValue: 'pl' }, BurgerService, IngredientService, ProductService, BunService, DeliveryTypeService, OrderService, PaymentTypeService, ValidationService, FileService, CartService],
+    providers: [{ provide: LOCALE_ID, useValue: 'pl' }, BurgerService, IngredientService, ProductService, BunService, DeliveryTypeService, OrderService, PaymentTypeService, ValidationService, FileService, CartService, AuthService, AuthGuard, JwtHelper, {
+        provide: HTTP_INTERCEPTORS,
+        useClass: Interceptor,
+        multi: true
+    }],
     bootstrap: [AppComponent],
     entryComponents: [IngredientModalComponent, ProductModalComponent, BunModalComponent, BurgerModalComponent, IngredientCardComponent, UploadComponent]
 })

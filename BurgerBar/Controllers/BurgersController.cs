@@ -11,6 +11,7 @@ using BurgerBar.Services;
 using AutoMapper;
 using BurgerBar.ViewModels;
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BurgerBar.Controllers
 {
@@ -29,6 +30,7 @@ namespace BurgerBar.Controllers
 
         // GET: api/Burgers
         [HttpGet]
+        [Authorize]
         public async Task<IEnumerable<BurgerDTO>> GetAllBurgers()
         {
             var burgers = await _burgersService.GetAllAsync();

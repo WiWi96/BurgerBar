@@ -53,6 +53,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\app.interceptor.ts" />
     <None Remove="ClientApp\src\app\models\address.ts" />
     <None Remove="ClientApp\src\app\models\bun.ts" />
     <None Remove="ClientApp\src\app\models\burger-ingredient.ts" />
@@ -67,6 +68,7 @@
     <None Remove="ClientApp\src\app\models\ordered-product.ts" />
     <None Remove="ClientApp\src\app\models\other-product.ts" />
     <None Remove="ClientApp\src\app\models\payment-type.ts" />
+    <None Remove="ClientApp\src\app\models\user-credentials.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -88,10 +90,12 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\src\app\components\modals\" />
+    <Folder Include="ClientApp\src\app\guards\" />
     <Folder Include="ClientApp\src\assets\fonts\" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\app.interceptor.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\file.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\enums\creation-type.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\ingredient-type.ts" />
@@ -106,6 +110,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\models\burger.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\bun.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\address.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\user-credentials.ts" />
   </ItemGroup>
 
   <ItemGroup>
