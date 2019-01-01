@@ -45,6 +45,7 @@ import { AuthService } from './services/auth/auth.service';
 import { AuthGuard } from './guards/auth-guard.service';
 import { Interceptor } from './app.interceptor';
 import { JwtHelper } from 'angular2-jwt';
+import { OrdersComponent } from './components/settings/orders/orders.component';
 
 registerLocaleData(localePl, 'pl');
 
@@ -59,6 +60,7 @@ registerLocaleData(localePl, 'pl');
         ProductsComponent,
         BurgersComponent,
         BunsComponent,
+        OrdersComponent,
         MenuComponent,
         IngredientModalComponent,
         ProductModalComponent,

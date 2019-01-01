@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BurgerBar.Data;
 using BurgerBar.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BurgerBar.Controllers
 {
@@ -49,6 +50,7 @@ namespace BurgerBar.Controllers
 
         // PUT: api/PaymentTypes/5
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutPaymentType([FromRoute] long id, [FromBody] PaymentType paymentType)
         {
             if (!ModelState.IsValid)
@@ -84,6 +86,7 @@ namespace BurgerBar.Controllers
 
         // POST: api/PaymentTypes
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> PostPaymentType([FromBody] PaymentType paymentType)
         {
             if (!ModelState.IsValid)
@@ -99,6 +102,7 @@ namespace BurgerBar.Controllers
 
         // DELETE: api/PaymentTypes/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeletePaymentType([FromRoute] long id)
         {
             if (!ModelState.IsValid)

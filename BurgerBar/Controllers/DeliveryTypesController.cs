@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BurgerBar.Data;
 using BurgerBar.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BurgerBar.Controllers
 {
@@ -49,6 +50,7 @@ namespace BurgerBar.Controllers
 
         // PUT: api/DeliveryTypes/5
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutDeliveryType([FromRoute] long id, [FromBody] DeliveryType deliveryType)
         {
             if (!ModelState.IsValid)
@@ -84,6 +86,7 @@ namespace BurgerBar.Controllers
 
         // POST: api/DeliveryTypes
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> PostDeliveryType([FromBody] DeliveryType deliveryType)
         {
             if (!ModelState.IsValid)
@@ -99,6 +102,7 @@ namespace BurgerBar.Controllers
 
         // DELETE: api/DeliveryTypes/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteDeliveryType([FromRoute] long id)
         {
             if (!ModelState.IsValid)

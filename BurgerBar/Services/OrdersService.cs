@@ -58,12 +58,22 @@ namespace BurgerBar.Services
 
         public async Task<Order> GetAsync(long id)
         {
-            return await dbSet.FindAsync(id);
+            return await dbSet
+                .Include(x => x.Products)
+                .ThenInclude(x => x.Product)
+                .Include(x => x.DeliveryType)
+                .Include(x => x.PaymentType)
+                .Include(x => x.Customer)
+                .ThenInclude(x => x.Address)
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<IEnumerable<Order>> GetAllAsync()
         {
-            return await Task.FromResult(dbSet.AsEnumerable());
+            return await Task.FromResult(dbSet
+                .Include(x => x.Customer)
+                .Include(x => x.Products)
+                .AsEnumerable());
         }
 
         public async Task<Order> UpdateAsync(long id, Order obj)

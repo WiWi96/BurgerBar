@@ -9,7 +9,7 @@ import { PaymentType } from '../../models/payment-type';
 import { DeliveryType } from '../../models/delivery-type';
 import { DeliveryTypeService } from '../../services/delivery-type/delivery-type.service';
 import { PaymentTypeService } from '../../services/payment-type/payment-type.service';
-import { Order } from '../../models/order';
+import { OrderToAdd } from '../../models/order-to-add';
 import { OrderedProduct } from '../../models/ordered-product';
 
 const nameRegex = '^([0-9]|[A-Za-z\u00C0-\u017F])([0-9A-Za-z\u00C0-\u017F \-&,.])+';
@@ -80,7 +80,7 @@ export class OrderFormComponent implements OnInit {
     save(model: any) {
         this.formSubmitted = true;
 
-        const order = new Order();
+        const order = new OrderToAdd();
         order.customer = model.value.customer;
         order.deliveryTypeId = model.value.deliveryType.id;
         order.paymentTypeId = model.value.paymentType.id;

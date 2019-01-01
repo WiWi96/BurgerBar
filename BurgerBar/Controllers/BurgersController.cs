@@ -49,6 +49,7 @@ namespace BurgerBar.Controllers
 
         // GET: api/Burgers/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<IActionResult> GetBurger([FromRoute] long id)
         {
             if (!ModelState.IsValid)
@@ -89,6 +90,7 @@ namespace BurgerBar.Controllers
 
         // PUT: api/Burgers/5
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutBurger([FromRoute] long id, [FromBody] Burger burger)
         {
             if (!ModelState.IsValid)
@@ -131,6 +133,7 @@ namespace BurgerBar.Controllers
 
         // DELETE: api/Burgers/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteBurger([FromRoute] long id)
         {
             if (!ModelState.IsValid)

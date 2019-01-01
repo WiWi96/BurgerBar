@@ -10,6 +10,7 @@ using BurgerBar.Entities;
 using BurgerBar.Services;
 using AutoMapper;
 using BurgerBar.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BurgerBar.Controllers
 {
@@ -28,6 +29,7 @@ namespace BurgerBar.Controllers
 
         // GET: api/Products
         [HttpGet]
+        [Authorize]
         public async Task<IEnumerable<OtherProductDTO>> GetProducts()
         {
             var products = await _productsService.GetAllAsync();
@@ -65,6 +67,7 @@ namespace BurgerBar.Controllers
 
         // PUT: api/Products/5
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutProduct([FromRoute] long id, [FromBody] OtherProduct product)
         {
             if (!ModelState.IsValid)
@@ -91,6 +94,7 @@ namespace BurgerBar.Controllers
 
         // POST: api/Products
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> PostProduct([FromBody] OtherProduct product)
         {
             if (!ModelState.IsValid)
@@ -106,6 +110,7 @@ namespace BurgerBar.Controllers
 
         // DELETE: api/Products/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteProduct([FromRoute] long id)
         {
             if (!ModelState.IsValid)

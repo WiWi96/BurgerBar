@@ -1,9 +1,7 @@
-import { Customer } from './customer';
-import { OrderedProduct } from './ordered-product';
-
 export class Order {
-    customer: Customer;
-    products: Array<OrderedProduct> = [];
-    deliveryTypeId: number;
-    paymentTypeId: number;
+    id: number;
+    customerFirstName: string;
+    customerLastName: string;
+    productsCount: number;
+    price: number;
 }

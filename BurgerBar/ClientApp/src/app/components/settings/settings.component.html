@@ -1,8 +1,8 @@
 <h1>Settings</h1>
 <tabset class="sticky-tabs">
-	<tab heading="Common">
+	<!--<tab heading="Common">
 
-	</tab>
+	</tab>-->
 	<tab heading="Buns" (select)="bunsLoaded = true" (deselect)="bunsLoaded = false">
 		<app-buns *ngIf="bunsLoaded"></app-buns>
 	</tab>
@@ -14,5 +14,8 @@
 	</tab>
     <tab heading="Products" (select)="productsLoaded = true" (deselect)="productsLoaded = false">
 		<app-products *ngIf="productsLoaded"></app-products>
+	</tab>
+    <tab heading="Orders" (select)="ordersLoaded = true" (deselect)="ordersLoaded = false">
+		<app-orders *ngIf="ordersLoaded"></app-orders>
 	</tab>
 </tabset>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BurgerBar.Data;
 using BurgerBar.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +28,7 @@ namespace BurgerBar.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Upload(IFormFile filesData)
         {
             if (filesData == null) return BadRequest("Null File");

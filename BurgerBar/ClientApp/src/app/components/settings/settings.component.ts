@@ -11,6 +11,7 @@ export class SettingsComponent implements OnInit {
     burgersLoaded = false;
     ingredientsLoaded = false;
     productsLoaded = false;
+    ordersLoaded = false;
 
     constructor() { }
 

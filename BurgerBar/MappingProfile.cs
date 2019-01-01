@@ -31,6 +31,10 @@ namespace BurgerBar
             CreateMap<AddOrderDTO, Order>()
                 .ForMember(o => o.PaymentType, m => m.MapFrom(dto => new PaymentType { Id = dto.PaymentTypeId }))
                 .ForMember(o => o.DeliveryType, m => m.MapFrom(dto => new DeliveryType { Id = dto.DeliveryTypeId }));
+            CreateMap<Order, OrderDTO>()
+                .ForMember(o => o.CustomerFirstName, m => m.MapFrom(obj => obj.Customer.FirstName))
+                .ForMember(o => o.CustomerLastName, m => m.MapFrom(obj => obj.Customer.LastName))
+                .ForMember(o => o.ProductsCount, m => m.MapFrom(obj => obj.Products.Count));
 
             CreateMap<OrderedProductDTO, OrderedProduct>()
                 .ForMember(o => o.Product, m => m.MapFrom(dto => new Product { Id = dto.ProductId }));
