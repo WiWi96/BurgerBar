@@ -45,6 +45,18 @@ table.settings-table {
     }
 }
 
+.bold {
+    font-weight: bold;
+}
+
+.table {
+    tfoot {
+        td {
+            border-top: 2px solid #dee2e6;
+        }
+    }
+}
+
 .inactive-row {
     color: $gray;
     background-color: $gray-lighter;

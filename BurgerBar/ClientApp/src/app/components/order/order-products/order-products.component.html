@@ -1,0 +1,48 @@
+<table class="table settings-table">
+    <colgroup>
+        <col style="width: 60%" />
+        <col style="width: 20%" />
+        <col style="width: 20%" />
+    </colgroup>
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th class="text-center">Quantity</th>
+            <th class="text-right">Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let op of products">
+            <td>
+                {{op.product?.name}}
+                <div *ngIf="op.product?.code" class="d-flex">
+                    <p class="product-type text-muted">
+                        <small>
+                            Burgers
+                        </small>
+                    </p>
+                </div>
+                <p class="product-type text-muted">
+                    <small>
+                        {{op.product?.type?.name}}
+                    </small>
+                </p>
+            </td>
+            <td class="text-right">
+                {{op.quantity}}
+            </td>
+            <td class="text-right">{{orderService.getPrice(op)|currency:'PLN':'symbol-narrow':undefined:'pl'}}</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td></td>
+            <td></td>
+            <td class="text-right">
+                <strong>
+                    {{price|currency:'PLN':'symbol-narrow':undefined:'pl'}}
+                </strong>
+            </td>
+        </tr>
+    </tfoot>
+</table>

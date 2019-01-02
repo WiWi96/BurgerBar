@@ -21,9 +21,11 @@ export class OrderService {
     }
 
     getFullPrice(ops: OrderedProductDetails[]): number {
-        let price = 0;
-        ops.forEach(op => price += this.getPrice(op));
-        return price;
+        if (ops) {
+            let price = 0;
+            ops.forEach(op => price += this.getPrice(op));
+            return price;
+        }
     }
 
     public postOrder(order: OrderToAdd): Observable<OrderDetails> {

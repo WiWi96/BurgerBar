@@ -4,4 +4,5 @@ export class Order {
     customerLastName: string;
     productsCount: number;
     price: number;
+    date: Date;
 }

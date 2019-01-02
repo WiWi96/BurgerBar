@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BurgerBar.ViewModels
 {
@@ -12,5 +9,6 @@ namespace BurgerBar.ViewModels
         public string CustomerLastName { get; set; }
         public int ProductsCount { get; set; }
         public decimal Price { get; set; }
+        public DateTime Date { get; set; }
     }
 }

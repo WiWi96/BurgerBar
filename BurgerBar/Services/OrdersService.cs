@@ -1,6 +1,7 @@
 using BurgerBar.Data;
 using BurgerBar.Entities;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -31,6 +32,7 @@ namespace BurgerBar.Services
         {
             dbSet.Add(obj);
             obj.Price = await CalculateOrderPriceAsync(obj);
+            obj.Date = DateTime.Now;
             context.Entry(obj.PaymentType).State = EntityState.Unchanged;
             context.Entry(obj.DeliveryType).State = EntityState.Unchanged;
 
@@ -61,6 +63,7 @@ namespace BurgerBar.Services
             return await dbSet
                 .Include(x => x.Products)
                 .ThenInclude(x => x.Product)
+                .ThenInclude(x => (x as OtherProduct).Type)
                 .Include(x => x.DeliveryType)
                 .Include(x => x.PaymentType)
                 .Include(x => x.Customer)

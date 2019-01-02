@@ -4,10 +4,11 @@ import { DeliveryType } from './delivery-type';
 import { PaymentType } from './payment-type';
 
 export class OrderDetails {
-  id?: number;
-  customer: Customer;
-  products: Array<OrderedProductDetails> = [];
-  price: number;
-  deliveryType: DeliveryType;
-  paymentType: PaymentType;
+    id?: number;
+    customer: Customer;
+    products: Array<OrderedProductDetails> = [];
+    price: number;
+    deliveryType: DeliveryType;
+    paymentType: PaymentType;
+    date: Date;
 }

@@ -1,14 +1,16 @@
 <table class="table settings-table" *ngIf="orders?.length;else noOrders">
     <colgroup>
         <col style="width: 10%" />
-        <col style="width: 40%" />
-        <col style="width: 10%" />
+        <col style="width: 20%" />
         <col style="width: 30%" />
+        <col style="width: 10%" />
+        <col style="width: 20%" />
         <col style="width: 10%" />
     </colgroup>
     <thead>
         <tr>
             <th class="text-center">Id</th>
+            <th>Date</th>
             <th>Customer</th>
             <th>Products count</th>
             <th>Price</th>
@@ -18,11 +20,12 @@
     <tbody>
         <tr *ngFor="let item of orders">
             <td class="text-center">{{item.id}}</td>
+            <td>{{item.date | date:'dd.MM.yyyy HH:mm' }}</td>
             <td>{{item.customerFirstName}} {{item.customerLastName}}</td>
             <td>{{item.productsCount}}</td>
             <td>{{item.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</td>
             <td class="text-center">
-                <button class="btn btn-link">
+                <button class="btn btn-link" [routerLink]="['/order', item.id]">
                     Details
                 </button>
             </td>

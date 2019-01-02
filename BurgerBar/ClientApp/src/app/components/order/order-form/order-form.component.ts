@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderDetails } from '../../models/order-details';
-import { CartService } from '../../services/cart/cart.service';
-import { OrderService } from '../../services/order/order.service';
+import { OrderDetails } from '../../../models/order-details';
+import { CartService } from '../../../services/cart/cart.service';
+import { OrderService } from '../../../services/order/order.service';
 import { take } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { OrderedProductDetails } from '../../models/ordered-product-details';
-import { PaymentType } from '../../models/payment-type';
-import { DeliveryType } from '../../models/delivery-type';
-import { DeliveryTypeService } from '../../services/delivery-type/delivery-type.service';
-import { PaymentTypeService } from '../../services/payment-type/payment-type.service';
-import { OrderToAdd } from '../../models/order-to-add';
-import { OrderedProduct } from '../../models/ordered-product';
+import { OrderedProductDetails } from '../../../models/ordered-product-details';
+import { PaymentType } from '../../../models/payment-type';
+import { DeliveryType } from '../../../models/delivery-type';
+import { DeliveryTypeService } from '../../../services/delivery-type/delivery-type.service';
+import { PaymentTypeService } from '../../../services/payment-type/payment-type.service';
+import { OrderToAdd } from '../../../models/order-to-add';
+import { OrderedProduct } from '../../../models/ordered-product';
 
 const nameRegex = '^([0-9]|[A-Za-z\u00C0-\u017F])([0-9A-Za-z\u00C0-\u017F \-&,.])+';
 

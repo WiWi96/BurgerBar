@@ -1,0 +1,52 @@
+<h1>Order summary</h1>
+<hr />
+<div *ngIf="order && order.customer">
+    <div class="float-md-right text-right">
+        <p><strong>Order ID:</strong> {{order.id}}</p>
+        <p><strong>Order date:</strong> {{order.date | date:'dd.MM.yyyy HH:mm' }}</p>
+    </div>
+    <p>
+        <strong>Customer:</strong><br />
+        {{order.customer.firstName}} {{order.customer.lastName}}<br />
+        {{order.customer.address?.street}} {{order.customer.address?.houseNumber}}<span *ngIf="order?.customer?.address?.apartmentNumber">/{{order.customer.address.apartmentNumber}}</span><br />
+        {{order.customer.address?.postalCode}} {{order.customer.address?.town}}<br />
+        <span *ngIf="order.customer.email">
+            Email: {{order.customer.email}}
+        </span><br />
+        <span *ngIf="order.customer.phoneNumber">
+            Phone: {{order.customer.phoneNumber}}
+        </span>
+    </p>
+</div>
+<app-order-products [products]="order?.products"></app-order-products>
+<div *ngIf="order">
+    <table class="table settings-table">
+        <colgroup>
+            <col style="width: 30%" />
+            <col style="width: 50%" />
+            <col style="width: 30%" />
+        </colgroup>
+        <tbody>
+            <tr>
+                <td class="bold">Delivery type</td>
+                <td>{{order.deliveryType?.name}}</td>
+                <td class="text-right">{{order.deliveryType?.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</td>
+            </tr>
+            <tr>
+                <td class="bold">Payment type</td>
+                <td>{{order.paymentType?.name}}</td>
+                <td class="text-right">{{order.paymentType?.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td class="bold text-right" colspan="2">
+                    Order price
+                </td>
+                <td class="text-right">
+                    {{order.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

@@ -28,5 +28,7 @@ namespace BurgerBar.Entities
         [Display(ResourceType = typeof(Labels), Name = "PaymentType")]
         [Required(ErrorMessageResourceName = "ReferenceRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
         public PaymentType PaymentType { get; set; }
+
+        public DateTime Date { get; set; }
     }
 }

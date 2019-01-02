@@ -39,7 +39,7 @@ import { UploadComponent } from './components/settings/upload/upload.component';
 import { CartService } from './services/cart/cart.service';
 import { CartComponent } from './components/cart/cart.component';
 import { ProductCounterComponent } from './components/cart/product-counter/product-counter.component';
-import { OrderFormComponent } from './components/order-form/order-form.component';
+import { OrderFormComponent } from './components/order/order-form/order-form.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthService } from './services/auth/auth.service';
 import { AuthGuard } from './guards/auth-guard.service';
@@ -47,6 +47,8 @@ import { Interceptor } from './app.interceptor';
 import { JwtHelper } from 'angular2-jwt';
 import { OrdersComponent } from './components/settings/orders/orders.component';
 import { MenuService } from './services/menu/menu.service';
+import { OrderSummaryComponent } from './components/order/order-summary/order-summary.component';
+import { OrderProductsComponent } from './components/order/order-products/order-products.component';
 
 registerLocaleData(localePl, 'pl');
 
@@ -74,7 +76,9 @@ registerLocaleData(localePl, 'pl');
         CartComponent,
         ProductCounterComponent,
         OrderFormComponent,
-        LoginComponent
+        LoginComponent,
+        OrderSummaryComponent,
+        OrderProductsComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -97,7 +101,8 @@ registerLocaleData(localePl, 'pl');
             { path: 'menu', component: MenuComponent, pathMatch: 'full' },
             { path: 'cart', component: CartComponent, pathMatch: 'full' },
             { path: 'order', component: OrderFormComponent, pathMatch: 'full' },
-            { path: 'login', component: LoginComponent, pathMatch: 'full' }
+            { path: 'login', component: LoginComponent, pathMatch: 'full' },
+            { path: 'order/:id', component: OrderSummaryComponent, pathMatch: 'full', canActivate: [AuthGuard] }
         ])
     ],
     providers: [{ provide: LOCALE_ID, useValue: 'pl' }, BurgerService, IngredientService, ProductService, BunService, DeliveryTypeService, OrderService, PaymentTypeService, MenuService, ValidationService, FileService, CartService, AuthService, AuthGuard, JwtHelper, {
