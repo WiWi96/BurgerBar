@@ -16,7 +16,7 @@ namespace BurgerBar.Entities
         public Bun Bun { get; set; }
 
         [Required(ErrorMessageResourceName = "IngredientsRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
-        [MinLength(1, ErrorMessageResourceName = "IngredientsRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
+        [MinLength(2, ErrorMessageResourceName = "IngredientsRequiredError", ErrorMessageResourceType = typeof(ErrorMessages))]
         public ICollection<BurgerIngredient> Ingredients { get; set; }
 
         public CreationType CreationType { get; set; }

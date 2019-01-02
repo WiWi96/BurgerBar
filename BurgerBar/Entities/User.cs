@@ -14,7 +14,7 @@ namespace BurgerBar.Entities
         public string Username { get; set; }
 
         [Required]
-        [StringLength(25, MinimumLength = 6)]
+        [StringLength(255, MinimumLength = 6)]
         public string Password { get; set; }
     }
 }

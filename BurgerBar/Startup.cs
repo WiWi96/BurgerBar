@@ -66,6 +66,7 @@ namespace BurgerBar
             services.AddScoped<IFileService, FileService>();
             services.AddScoped<IPaymentTypesService, PaymentTypesService>();
             services.AddScoped<IDeliveryTypesService, DeliveryTypesService>();
+            services.AddScoped<IAuthService, AuthService>();
 
             services.AddLocalization(o => o.ResourcesPath = "Resources");
             services.Configure<RequestLocalizationOptions>(options =>

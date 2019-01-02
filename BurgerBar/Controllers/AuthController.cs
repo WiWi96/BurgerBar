@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using BurgerBar.Entities;
+using BurgerBar.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -18,14 +19,16 @@ namespace BurgerBar.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IConfiguration configuration;
+        private readonly IAuthService authService;
 
-        public AuthController(IConfiguration configuration)
+        public AuthController(IConfiguration configuration, IAuthService authService)
         {
             this.configuration = configuration;
+            this.authService = authService;
         }
 
         [HttpPost, Route("login")]
-        public IActionResult Login([FromBody]User user)
+        public async Task<IActionResult> LoginAsync([FromBody]User user)
         {
             if (user == null)
             {
@@ -34,9 +37,9 @@ namespace BurgerBar.Controllers
 
             var settings = configuration.GetSection("Authentication");
 
-            if (user.Username == "johndoe" && user.Password == "def@123")
+            if (await authService.GetUserAuthenticationAsync(user.Username, user.Password) != null)
             {
-                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superSecretKey@345"));
+                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(settings.GetValue<string>("Secret")));
                 var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
                 var tokeOptions = new JwtSecurityToken(
