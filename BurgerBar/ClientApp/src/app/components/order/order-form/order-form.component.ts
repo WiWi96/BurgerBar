@@ -53,19 +53,19 @@ export class OrderFormComponent implements OnInit {
             });
 
         this.addressGroup = this.formBuilder.group({
-            street: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(nameRegex)]],
-            apartmentNumber: ['', [Validators.maxLength(8)]],
-            houseNumber: ['', [Validators.required, Validators.maxLength(8)]],
-            postalCode: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(10), Validators.pattern('[0-9\-]+')]],
-            town: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(nameRegex)]]
+            street: [undefined, [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(nameRegex)]],
+            apartmentNumber: [undefined, [Validators.maxLength(8)]],
+            houseNumber: [undefined, [Validators.required, Validators.maxLength(8)]],
+            postalCode: [undefined, [Validators.required, Validators.minLength(4), Validators.maxLength(10), Validators.pattern('[0-9\-]+')]],
+            town: [undefined, [Validators.required, Validators.minLength(3), Validators.maxLength(50), Validators.pattern(nameRegex)]]
         });
 
         this.customerGroup = this.formBuilder.group({
-            firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30), Validators.pattern(nameRegex)]],
-            lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(30), Validators.pattern(nameRegex)]],
+            firstName: [undefined, [Validators.required, Validators.minLength(2), Validators.maxLength(30), Validators.pattern(nameRegex)]],
+            lastName: [undefined, [Validators.required, Validators.minLength(2), Validators.maxLength(30), Validators.pattern(nameRegex)]],
             address: this.addressGroup,
-            phoneNumber: ['', [Validators.minLength(9), Validators.maxLength(11), Validators.pattern('[0-9]+')]],
-            email: ['', [Validators.email]]
+            phoneNumber: [undefined, [Validators.minLength(9), Validators.maxLength(11), Validators.pattern('[0-9]+')]],
+            email: [undefined, [Validators.email]]
         });
 
         this.form = this.formBuilder.group({

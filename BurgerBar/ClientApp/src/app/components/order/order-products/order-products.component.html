@@ -14,19 +14,27 @@
     <tbody>
         <tr *ngFor="let op of products">
             <td>
-                {{op.product?.name}}
-                <div *ngIf="op.product?.code" class="d-flex">
+                <div *ngIf="op.product?.code; else otherProduct">
+                    <a [routerLink]="['/configure', op.product.code]">
+                        {{op.product.name}}
+                    </a>
+                    <div class="d-flex">
+                        <p class="product-type text-muted">
+                            <small>
+                                Burgers
+                            </small>
+                        </p>
+                        <pre class="burger-code">{{op.product.code}}</pre>
+                    </div>
+                </div>
+                <ng-template #otherProduct>
+                    {{op.product?.name}}
                     <p class="product-type text-muted">
                         <small>
-                            Burgers
+                            {{op.product?.type?.name}}
                         </small>
                     </p>
-                </div>
-                <p class="product-type text-muted">
-                    <small>
-                        {{op.product?.type?.name}}
-                    </small>
-                </p>
+                </ng-template>
             </td>
             <td class="text-right">
                 {{op.quantity}}

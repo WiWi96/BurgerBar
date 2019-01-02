@@ -70,7 +70,7 @@ namespace BurgerBar.Services
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductExists(id))
+                    if (!OtherProductExists(id))
                     {
                         return null;
                     }
@@ -83,7 +83,7 @@ namespace BurgerBar.Services
             return product;
         }
 
-        private bool ProductExists(long id)
+        private bool OtherProductExists(long id)
         {
             return otherProductsSet.Any(e => e.Id == id);
         }
@@ -95,7 +95,7 @@ namespace BurgerBar.Services
 
         public Task<decimal> GetProductPriceAsync(long id)
         {
-            return otherProductsSet
+            return productsSet
                 .Where(b => b.Id == id)
                 .Select(b => b.Price)
                 .FirstOrDefaultAsync();
@@ -113,7 +113,7 @@ namespace BurgerBar.Services
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProductExists(id))
+                if (!OtherProductExists(id))
                 {
                     return null;
                 }
