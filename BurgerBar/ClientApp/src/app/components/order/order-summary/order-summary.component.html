@@ -1,7 +1,7 @@
 <h1>Order summary</h1>
 <hr />
 <div *ngIf="order && order.customer">
-    <div class="float-md-right text-right">
+    <div class="float-md-right text-md-right">
         <p><strong>Order ID:</strong> {{order.id}}</p>
         <p><strong>Order date:</strong> {{order.date | date:'dd.MM.yyyy HH:mm' }}</p>
     </div>

@@ -20,12 +20,17 @@
 
     .navbar {
         .navbar-header {
+            flex-grow: 1;
+            display: flex;
+
             .navbar-toggler {
                 margin-right: 10px;
             }
+
             .navbar-brand {
                 color: $primary-dark;
                 font-weight: bold;
+                flex-grow: 1;
             }
         }
 
@@ -78,8 +83,7 @@
 @include media-breakpoint-up(md) {
     .main-nav {
         height: 100%;
-        width: 25%;//calc(20% + 20px);
-
+        width: 25%; //calc(20% + 20px);
         .navbar {
             border-radius: 0px;
             border-width: 0px;
@@ -97,7 +101,7 @@
             }
 
             .navbar-header {
-                display: flex;
+                flex-grow: 0;
 
                 .navbar-toggler {
                     display: none;

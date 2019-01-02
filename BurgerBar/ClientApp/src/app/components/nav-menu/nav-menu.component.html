@@ -4,7 +4,9 @@
             <button type='button' class='navbar-toggler' data-toggle='collapse' data-target='#nav-menu' [attr.aria-expanded]='isExpanded' (click)='toggle()' aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class='navbar-brand text-center' [routerLink]='["/"]'>Burgerland</a>
+            <button class='navbar-brand text-center btn btn-link' [routerLink]='["/"]'>
+                <span class="logo"></span>
+            </button>
         </div>
         <div id="nav-menu" class='navbar-collapse collapse' [ngClass]='{ "show": isExpanded || innerWidth > 767 }'>
             <ul class='nav navbar-nav'>
