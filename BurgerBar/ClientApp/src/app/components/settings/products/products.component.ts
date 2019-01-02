@@ -6,6 +6,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { ProductService } from '../../../services/product/product.service';
 import { ProductModalComponent } from '../../modals/product-modal/product-modal.component';
 import { OtherProduct } from '../../../models/other-product';
+import { Product } from '../../../models/product';
+import { MenuService } from '../../../services/menu/menu.service';
 
 @Component({
     selector: 'app-products',
@@ -22,7 +24,8 @@ export class ProductsComponent implements OnInit {
     bsModalRef: BsModalRef;
 
     constructor(private service: ProductService,
-        private modalService: BsModalService) { }
+        private modalService: BsModalService,
+        private menuService: MenuService) { }
 
     ngOnInit() {
         this.getProductTypes();
@@ -65,5 +68,15 @@ export class ProductsComponent implements OnInit {
                 this.products.push(result);
             }
         });
+    }
+
+    addToMenu(item: Product) {
+        this.menuService.addToMenu(item.id).subscribe(data =>
+            item.isInMenu = data);
+    }
+
+    deleteFromMenu(item: Product) {
+        this.menuService.deleteFromMenu(item.id).subscribe(data =>
+            item.isInMenu = data);
     }
 }

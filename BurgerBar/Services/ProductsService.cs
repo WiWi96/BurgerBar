@@ -10,17 +10,19 @@ namespace BurgerBar.Services
     public class ProductsService : IProductsService
     {
         private readonly BurgerBarContext context;
-        private readonly DbSet<OtherProduct> dbSet;
+        private readonly DbSet<OtherProduct> otherProductsSet;
+        private readonly DbSet<Product> productsSet;
 
         public ProductsService(BurgerBarContext context)
         {
             this.context = context;
-            dbSet = context.OtherProduct;
+            otherProductsSet = context.OtherProduct;
+            productsSet = context.Product;
         }
 
         public async Task<OtherProduct> AddAsync(OtherProduct product)
         {
-            dbSet.Add(product);
+            otherProductsSet.Add(product);
             context.Entry(product.Type).State = EntityState.Unchanged;
             await context.SaveChangesAsync();
             return product;
@@ -34,24 +36,24 @@ namespace BurgerBar.Services
                 return null;
             }
 
-            dbSet.Remove(product);
+            otherProductsSet.Remove(product);
             await context.SaveChangesAsync();
             return product;
         }
 
         public async Task<OtherProduct> GetAsync(long id)
         {
-            return await dbSet.Include(x => x.Type).FirstOrDefaultAsync(x => x.Id == id); ;
+            return await otherProductsSet.Include(x => x.Type).FirstOrDefaultAsync(x => x.Id == id); ;
         }
 
         public async Task<IEnumerable<OtherProduct>> GetAllAsync()
         {
-            return await Task.FromResult(dbSet.Include(x => x.Type).AsEnumerable());
+            return await Task.FromResult(otherProductsSet.Include(x => x.Type).AsEnumerable());
         }
 
         public async Task<IEnumerable<OtherProduct>> GetAllInMenuAsync()
         {
-            return await Task.FromResult(dbSet
+            return await Task.FromResult(otherProductsSet
                 .Where(x => x.IsInMenu && x.Active)
                 .Include(x => x.Type)
                 .AsEnumerable());
@@ -83,7 +85,7 @@ namespace BurgerBar.Services
 
         private bool ProductExists(long id)
         {
-            return dbSet.Any(e => e.Id == id);
+            return otherProductsSet.Any(e => e.Id == id);
         }
 
         public async Task<IEnumerable<ProductType>> GetProductTypes()
@@ -93,10 +95,35 @@ namespace BurgerBar.Services
 
         public Task<decimal> GetProductPriceAsync(long id)
         {
-            return dbSet
+            return otherProductsSet
                 .Where(b => b.Id == id)
                 .Select(b => b.Price)
                 .FirstOrDefaultAsync();
+        }
+
+        public async Task<Product> SetProductInMenu(long id, bool inMenu)
+        {
+            var product = await productsSet.FindAsync(id);
+            product.IsInMenu = inMenu;
+
+            context.Entry(product).State = EntityState.Modified;
+            try
+            {
+                await context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProductExists(id))
+                {
+                    return null;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return product;
         }
     }
 }

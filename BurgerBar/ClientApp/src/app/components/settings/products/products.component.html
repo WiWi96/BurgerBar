@@ -27,13 +27,17 @@
                         <td class="text-center">{{product.id}}</td>
                         <td>{{product.name}}</td>
                         <td class="text-center">
-                            <span *ngIf="product.isInMenu; else notInMenu" class="text-success">
-                                <fa-icon [icon]="faCheckCircle"></fa-icon>
-                            </span>
-                            <ng-template #notInMenu>
-                                <span class="text-danger">
-                                    <fa-icon [icon]="faTimesCircle"></fa-icon>
+                            <button *ngIf="product.isInMenu; else notInMenu" class="btn btn-link" (click)="deleteFromMenu(product)">
+                                <span class="text-success">
+                                    <fa-icon [icon]="faCheckCircle"></fa-icon>
                                 </span>
+                            </button>
+                            <ng-template #notInMenu>
+                                <button class="btn btn-link" (click)="addToMenu(product)">
+                                    <span class="text-danger">
+                                        <fa-icon [icon]="faTimesCircle"></fa-icon>
+                                    </span>
+                                </button>
                             </ng-template>
                         </td>
                         <td>{{product.price|currency:'PLN':'symbol-narrow':undefined:'pl'}}</td>

@@ -7,6 +7,7 @@ import { Burger } from '../../models/burger';
 import { Product } from '../../models/product';
 import { CartService } from '../../services/cart/cart.service';
 import { faWrench } from '@fortawesome/free-solid-svg-icons';
+import { MenuService } from '../../services/menu/menu.service';
 
 @Component({
     selector: 'app-menu',
@@ -22,7 +23,8 @@ export class MenuComponent implements OnInit {
 
     constructor(private burgerService: BurgerService,
         private productService: ProductService,
-        private cartService: CartService) { }
+        private cartService: CartService,
+        private menuService: MenuService) { }
 
     ngOnInit() {
         this.getBurgers();
@@ -30,11 +32,11 @@ export class MenuComponent implements OnInit {
         this.getProducts();
     }
     getBurgers(): any {
-        this.burgerService.getMenuBurgers().subscribe(data => this.burgers = data);
+        this.menuService.getBurgers().subscribe(data => this.burgers = data);
     }
 
     getProducts() {
-        this.productService.getMenuProducts().subscribe(data => this.products = data);
+        this.menuService.getProducts().subscribe(data => this.products = data);
     }
 
     getProductTypes() {

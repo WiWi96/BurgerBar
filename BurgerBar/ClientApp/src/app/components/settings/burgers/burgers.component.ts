@@ -3,6 +3,8 @@ import { faAngleDown, faWrench, faTimesCircle } from '@fortawesome/free-solid-sv
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 import { BurgerService } from '../../../services/burger/burger.service';
 import { Burger } from '../../../models/burger';
+import { Product } from '../../../models/product';
+import { MenuService } from '../../../services/menu/menu.service';
 
 @Component({
   selector: 'app-burgers',
@@ -16,7 +18,8 @@ export class BurgersComponent implements OnInit {
     faCheckCircle = faCheckCircle;
     faTimesCircle = faTimesCircle;
 
-    constructor(private service: BurgerService) { }
+    constructor(private service: BurgerService,
+        private menuService: MenuService) { }
 
     ngOnInit() {
         this.getBurgers();
@@ -24,5 +27,15 @@ export class BurgersComponent implements OnInit {
 
     getBurgers() {
         this.service.getBurgers().subscribe(data => this.burgers = data);
+    }
+
+    addToMenu(item: Product) {
+        this.menuService.addToMenu(item.id).subscribe(data =>
+            item.isInMenu = data);
+    }
+
+    deleteFromMenu(item: Product) {
+        this.menuService.deleteFromMenu(item.id).subscribe(data =>
+            item.isInMenu = data);
     }
 }

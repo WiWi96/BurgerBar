@@ -46,6 +46,7 @@ import { AuthGuard } from './guards/auth-guard.service';
 import { Interceptor } from './app.interceptor';
 import { JwtHelper } from 'angular2-jwt';
 import { OrdersComponent } from './components/settings/orders/orders.component';
+import { MenuService } from './services/menu/menu.service';
 
 registerLocaleData(localePl, 'pl');
 
@@ -99,7 +100,7 @@ registerLocaleData(localePl, 'pl');
             { path: 'login', component: LoginComponent, pathMatch: 'full' }
         ])
     ],
-    providers: [{ provide: LOCALE_ID, useValue: 'pl' }, BurgerService, IngredientService, ProductService, BunService, DeliveryTypeService, OrderService, PaymentTypeService, ValidationService, FileService, CartService, AuthService, AuthGuard, JwtHelper, {
+    providers: [{ provide: LOCALE_ID, useValue: 'pl' }, BurgerService, IngredientService, ProductService, BunService, DeliveryTypeService, OrderService, PaymentTypeService, MenuService, ValidationService, FileService, CartService, AuthService, AuthGuard, JwtHelper, {
         provide: HTTP_INTERCEPTORS,
         useClass: Interceptor,
         multi: true

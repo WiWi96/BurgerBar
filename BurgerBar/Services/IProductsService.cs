@@ -16,5 +16,6 @@ namespace BurgerBar.Services
         Task<IEnumerable<ProductType>> GetProductTypes();
         Task<IEnumerable<OtherProduct>> GetAllInMenuAsync();
         Task<decimal> GetProductPriceAsync(long id);
+        Task<Product> SetProductInMenu(long id, bool inMenu);
     }
 }
