@@ -102,7 +102,8 @@ registerLocaleData(localePl, 'pl');
             { path: 'cart', component: CartComponent, pathMatch: 'full' },
             { path: 'order', component: OrderFormComponent, pathMatch: 'full' },
             { path: 'login', component: LoginComponent, pathMatch: 'full' },
-            { path: 'order/:id', component: OrderSummaryComponent, pathMatch: 'full', canActivate: [AuthGuard] }
+            { path: 'order/:id', component: OrderSummaryComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+            { path: 'order-summary', component: OrderSummaryComponent, pathMatch: 'full' }
         ])
     ],
     providers: [{ provide: LOCALE_ID, useValue: 'pl' }, BurgerService, IngredientService, ProductService, BunService, DeliveryTypeService, OrderService, PaymentTypeService, MenuService, ValidationService, FileService, CartService, AuthService, AuthGuard, JwtHelper, {

@@ -1,5 +1,6 @@
 <h1>Order summary</h1>
 <hr />
+<div *ngIf="successMessage" class="alert alert-success">The order has been successfully placed.</div>
 <div *ngIf="order && order.customer">
     <div class="float-md-right text-md-right">
         <p><strong>Order ID:</strong> {{order.id}}</p>

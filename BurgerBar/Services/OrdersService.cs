@@ -31,6 +31,7 @@ namespace BurgerBar.Services
         public async Task<Order> AddAsync(Order obj)
         {
             dbSet.Add(obj);
+
             obj.Price = await CalculateOrderPriceAsync(obj);
             obj.Date = DateTime.Now;
             context.Entry(obj.PaymentType).State = EntityState.Unchanged;
@@ -39,9 +40,14 @@ namespace BurgerBar.Services
             foreach (OrderedProduct op in obj.Products)
             {
                 context.Entry(op.Product).State = EntityState.Unchanged;
+                context.Entry(op.Product).Reload();
             }
 
+            context.Entry(obj.PaymentType).Reload();
+            context.Entry(obj.DeliveryType).Reload();
+
             await context.SaveChangesAsync();
+
             return obj;
         }
 

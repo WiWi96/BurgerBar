@@ -11,6 +11,7 @@ import { Order } from '../../models/order';
     providedIn: 'root'
 })
 export class OrderService {
+    order: OrderDetails;
     private apiPath = environment.api + '/Orders';
 
     constructor(private client: HttpClient) { }

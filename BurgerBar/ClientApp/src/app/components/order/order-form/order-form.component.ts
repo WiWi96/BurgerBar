@@ -11,6 +11,7 @@ import { DeliveryTypeService } from '../../../services/delivery-type/delivery-ty
 import { PaymentTypeService } from '../../../services/payment-type/payment-type.service';
 import { OrderToAdd } from '../../../models/order-to-add';
 import { OrderedProduct } from '../../../models/ordered-product';
+import { Router } from '@angular/router';
 
 const nameRegex = '^([0-9]|[A-Za-z\u00C0-\u017F])([0-9A-Za-z\u00C0-\u017F \-&,.])+';
 
@@ -37,7 +38,8 @@ export class OrderFormComponent implements OnInit {
         private orderService: OrderService,
         private deliveryTypeService: DeliveryTypeService,
         private paymentTypeService: PaymentTypeService,
-        private formBuilder: FormBuilder) { }
+        private formBuilder: FormBuilder,
+        private router: Router) { }
 
     ngOnInit() {
         this.deliveryTypeService.getDeliveryTypes().subscribe(
@@ -91,6 +93,8 @@ export class OrderFormComponent implements OnInit {
             .subscribe(
                 data => {
                     this.cartService.clearCart();
+                    this.orderService.order = data;
+                    this.router.navigate(['/order-summary']);
                 },
                 _ => {
                     this.formSubmitted = false

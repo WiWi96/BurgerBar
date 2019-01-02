@@ -89,7 +89,7 @@ namespace BurgerBar.Controllers
 
             var order = _mapper.Map<Order>(orderDTO);
 
-            await _ordersService.AddAsync(order);
+            order = await _ordersService.AddAsync(order);
 
             return CreatedAtAction("GetOrder", new { id = order.Id }, order);
         }
