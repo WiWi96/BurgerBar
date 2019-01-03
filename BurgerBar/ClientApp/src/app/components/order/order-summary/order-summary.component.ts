@@ -29,7 +29,10 @@ export class OrderSummaryComponent implements OnInit, OnDestroy {
             if (this.id) {
                 this.orderService.getOrderDetails(this.id).subscribe(data =>
                     this.order = data,
-                    _ => this.router.navigate(['/']));
+                    err => {
+                        this.router.navigate(['/']);
+                        throw err;
+                    });
             }
             else {
                 this.router.navigate(['/']);

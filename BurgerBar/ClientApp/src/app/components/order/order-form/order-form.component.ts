@@ -96,8 +96,9 @@ export class OrderFormComponent implements OnInit {
                     this.orderService.order = data;
                     this.router.navigate(['/order-summary']);
                 },
-                _ => {
-                    this.formSubmitted = false
+                err => {
+                    this.formSubmitted = false;
+                    throw err;
                 });
     }
 

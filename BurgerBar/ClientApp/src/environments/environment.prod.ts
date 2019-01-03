@@ -1,3 +1,8 @@
+const root = "https://www.burgerbar.com";
+
 export const environment = {
-  production: true
+    production: true,
+    root: root,
+    api: `${root}/api`,
+    uploads: `${root}/uploads`
 };

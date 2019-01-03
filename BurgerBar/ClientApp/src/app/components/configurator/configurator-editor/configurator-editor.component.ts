@@ -112,8 +112,9 @@ export class ConfiguratorEditorComponent implements OnInit {
             .postBurger(tmpModel)
             .subscribe(
                 data => this.router.navigateByUrl(`/configure/${data.code}`),
-                _ => {
-                    this.formSubmitted = false
+                err => {
+                    this.formSubmitted = false;
+                    throw err;
                 });
     }
 

@@ -1,7 +1,29 @@
 @import 'mixins.scss';
+@import 'colors.scss';
 
 .body-content {
   padding-top: 50px;
+}
+
+.notification {
+    width: 20rem;
+    padding: 1rem;
+    position: fixed;
+    color: $light;
+    background-color: $primary-light;
+    top: 90px;
+    right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 100;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    p {
+        margin: 0;
+    }
 }
 
 @include media-breakpoint-down(sm) {

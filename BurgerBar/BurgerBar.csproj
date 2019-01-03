@@ -54,6 +54,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\app.interceptor.ts" />
+    <None Remove="ClientApp\src\app\errors\service-errors.interceptor.ts" />
     <None Remove="ClientApp\src\app\models\address.ts" />
     <None Remove="ClientApp\src\app\models\bun.ts" />
     <None Remove="ClientApp\src\app\models\burger-ingredient.ts" />

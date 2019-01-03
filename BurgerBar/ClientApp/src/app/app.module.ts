@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule, LOCALE_ID, ErrorHandler } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -49,6 +49,8 @@ import { OrdersComponent } from './components/settings/orders/orders.component';
 import { MenuService } from './services/menu/menu.service';
 import { OrderSummaryComponent } from './components/order/order-summary/order-summary.component';
 import { OrderProductsComponent } from './components/order/order-products/order-products.component';
+import { NotificationService } from './services/notification/notification.service';
+import { ErrorsHandler } from './errors/errors-handler';
 
 registerLocaleData(localePl, 'pl');
 
@@ -103,13 +105,18 @@ registerLocaleData(localePl, 'pl');
             { path: 'order', component: OrderFormComponent, pathMatch: 'full' },
             { path: 'login', component: LoginComponent, pathMatch: 'full' },
             { path: 'order/:id', component: OrderSummaryComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-            { path: 'order-summary', component: OrderSummaryComponent, pathMatch: 'full' }
+            { path: 'order-summary', component: OrderSummaryComponent, pathMatch: 'full' },
+            { path: '**', redirectTo: '/' }
         ])
     ],
-    providers: [{ provide: LOCALE_ID, useValue: 'pl' }, BurgerService, IngredientService, ProductService, BunService, DeliveryTypeService, OrderService, PaymentTypeService, MenuService, ValidationService, FileService, CartService, AuthService, AuthGuard, JwtHelper, {
+    providers: [{ provide: LOCALE_ID, useValue: 'pl' }, BurgerService, IngredientService, ProductService, BunService, DeliveryTypeService, OrderService, PaymentTypeService, MenuService, ValidationService, FileService, CartService, AuthService, AuthGuard, JwtHelper, NotificationService, {
         provide: HTTP_INTERCEPTORS,
         useClass: Interceptor,
         multi: true
+    },
+    {
+        provide: ErrorHandler,
+        useClass: ErrorsHandler,
     }],
     bootstrap: [AppComponent],
     entryComponents: [IngredientModalComponent, ProductModalComponent, BunModalComponent, BurgerModalComponent, IngredientCardComponent, UploadComponent]
