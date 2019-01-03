@@ -57,7 +57,10 @@
         </div>
         <div class="ingredients-list" cdkDropList (cdkDropListDropped)="drop($event)">
             <div *ngFor="let ingredient of ingredientsArrayControls; let i = index;" cdkDrag>
-                <div class="my-3" [formGroupName]="i">
+                <div class="draggable-ingredient my-3" [formGroupName]="i">
+                    <div class="drag-handle" cdkDragHandle>
+                        <fa-icon [icon]="faTh"></fa-icon>
+                    </div>
                     <app-ingredient-card [index]="i" [group]="ingredientsArrayControls[i]" (deleted)="deleteIngredient($event)"></app-ingredient-card>
                 </div>
             </div>

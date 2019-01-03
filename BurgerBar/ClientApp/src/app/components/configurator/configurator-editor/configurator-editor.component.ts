@@ -10,6 +10,7 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { BunDetails } from '../../../models/bun-details';
 import { ValidationService } from '../../../services/validation/validation.service';
 import { FileService } from '../../../services/file/file.service';
+import { faTh } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-configurator-editor',
@@ -24,6 +25,7 @@ export class ConfiguratorEditorComponent implements OnInit {
     bun: BunDetails;
     price = 0.0;
     formSubmitted: boolean = false;
+    faTh = faTh;
 
     constructor(private activatedRoute: ActivatedRoute,
         private router: Router,

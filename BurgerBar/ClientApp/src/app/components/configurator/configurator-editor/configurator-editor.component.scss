@@ -48,4 +48,20 @@ form {
             max-height: 150px;
         }
     }
+
+    .draggable-ingredient {
+        position: relative;
+
+        .drag-handle {
+            cursor: move;
+            position: absolute;
+            z-index: 1;
+            top: 20px;
+            color: $gray-light;
+
+            &:hover {
+                color: $gray;
+            }
+        }
+    }
 }

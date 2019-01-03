@@ -9,6 +9,8 @@
 
     .left-pane {
         text-align: center;
+        display: flex;
+        align-items: flex-end;
 
         div {
             color: $gray-light;
@@ -17,10 +19,6 @@
                 color: $gray;
             }
         }
-    }
-
-    .drag-handle {
-        cursor: move;
     }
 
     .clickable {
