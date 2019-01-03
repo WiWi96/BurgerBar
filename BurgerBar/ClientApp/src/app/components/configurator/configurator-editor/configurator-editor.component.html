@@ -49,10 +49,16 @@
             <h1>3</h1>
             <h4>Add ingredients</h4>
         </div>
+        <div *ngIf="ingredientsArray.invalid && (ingredientsArray.dirty || ingredientsArray.touched) && ingredientsArray.errors"
+             class="alert alert-danger">
+            <div *ngIf="ingredientsArray.errors.minLengthArray">
+                It is required to choose at least 2 ingredients.
+            </div>
+        </div>
         <div class="ingredients-list" cdkDropList (cdkDropListDropped)="drop($event)">
-            <div *ngFor="let ingredient of form.controls.ingredients.controls; let i = index;" cdkDrag>
+            <div *ngFor="let ingredient of ingredientsArrayControls; let i = index;" cdkDrag>
                 <div class="my-3" [formGroupName]="i">
-                    <app-ingredient-card [index]="i" [group]="form.controls.ingredients.controls[i]" (deleted)="deleteIngredient($event)"></app-ingredient-card>
+                    <app-ingredient-card [index]="i" [group]="ingredientsArrayControls[i]" (deleted)="deleteIngredient($event)"></app-ingredient-card>
                 </div>
             </div>
         </div>

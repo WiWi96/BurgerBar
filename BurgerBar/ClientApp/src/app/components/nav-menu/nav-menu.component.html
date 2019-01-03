@@ -58,7 +58,7 @@
                         Contact
                     </a>
                 </li>
-                <li *ngIf="authService.isLoggedIn()" class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+                <li *ngIf="auth.isLoggedIn()" class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
                     <a class="nav-link" [routerLink]='["/settings"]' (click)='collapse()'>
                         <span class="nav-link-item">
                             <fa-icon [icon]="faCog"></fa-icon>
@@ -66,7 +66,7 @@
                         Settings
                     </a>
                 </li>
-                <li *ngIf="!authService.isLoggedIn()" class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+                <li *ngIf="!auth.isLoggedIn()" class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
                     <a class="nav-link" [routerLink]='["/login"]' (click)='collapse()'>
                         <span class="nav-link-item">
                             <fa-icon [icon]="faSignInAlt"></fa-icon>
@@ -74,7 +74,7 @@
                         Sign in
                     </a>
                 </li>
-                <li *ngIf="authService.isLoggedIn()" class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+                <li *ngIf="auth.isLoggedIn()" class="nav-item" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
                     <a href="#" class="nav-link" (click)='collapse(); authService.logOut()'>
                         <span class="nav-link-item">
                             <fa-icon [icon]="faSignOutAlt"></fa-icon>

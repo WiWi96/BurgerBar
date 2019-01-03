@@ -134,7 +134,11 @@ export class ConfiguratorEditorComponent implements OnInit {
     }
 
     get ingredientsArray() {
-        return this.form.get('ingredients');
+        return this.form.get('ingredients') as FormArray;
+    }
+
+    get ingredientsArrayControls() {
+        return this.ingredientsArray.controls;
     }
 
     compare = (a, b) => a && b ? a.id === b.id : a === b;

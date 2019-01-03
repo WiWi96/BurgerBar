@@ -47,4 +47,8 @@ export class NavMenuComponent {
     toggle() {
         this.isExpanded = !this.isExpanded;
     }
+
+    get auth() {
+        return this.authService;
+    }
 }

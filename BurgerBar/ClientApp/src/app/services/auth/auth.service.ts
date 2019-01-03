@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { UserCredentials } from '../../models/user-credentials';
-import { JwtHelper } from 'angular2-jwt';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class AuthService {
 
     private apiPath = environment.api + '/Auth';
 
-    constructor(private client: HttpClient, private jwtHelper: JwtHelper, private router: Router) { }
+    constructor(private client: HttpClient, private jwtHelper: JwtHelperService, private router: Router) { }
 
     login(credentials: UserCredentials): Observable<any> {
         return this.client.post(`${this.apiPath}/login`, credentials);

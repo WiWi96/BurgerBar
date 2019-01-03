@@ -22,7 +22,6 @@
 						],
 						"styles": [
 							"node_modules/bootstrap/dist/css/bootstrap.min.css",
-							"./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
 							"src/styles/styles.scss"
 						],
 						"stylePreprocessorOptions": {
@@ -79,7 +78,6 @@
 						"scripts": [],
 						"styles": [
 							"node_modules/bootstrap/dist/css/bootstrap.min.css",
-							"./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
 							"src/styles/styles.scss"
 						],
 						"stylePreprocessorOptions": {

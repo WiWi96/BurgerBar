@@ -44,15 +44,27 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthService } from './services/auth/auth.service';
 import { AuthGuard } from './guards/auth-guard.service';
 import { Interceptor } from './app.interceptor';
-import { JwtHelper } from 'angular2-jwt';
+import { JwtHelperService, JwtModule, JwtModuleOptions } from '@auth0/angular-jwt';
 import { OrdersComponent } from './components/settings/orders/orders.component';
 import { MenuService } from './services/menu/menu.service';
 import { OrderSummaryComponent } from './components/order/order-summary/order-summary.component';
 import { OrderProductsComponent } from './components/order/order-products/order-products.component';
 import { NotificationService } from './services/notification/notification.service';
 import { ErrorsHandler } from './errors/errors-handler';
+import { environment } from '../environments/environment';
 
 registerLocaleData(localePl, 'pl');
+
+export function tokenGetter() {
+    return localStorage.getItem('jwt');
+}
+
+const JWT_Module_Options: JwtModuleOptions = {
+    config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: [environment.root]
+    }
+};
 
 @NgModule({
     declarations: [
@@ -93,6 +105,7 @@ registerLocaleData(localePl, 'pl');
         BsDropdownModule.forRoot(),
         SortableModule.forRoot(),
         FontAwesomeModule,
+        JwtModule.forRoot(JWT_Module_Options),
         RouterModule.forRoot([
             { path: '', component: HomeComponent, pathMatch: 'full' },
             { path: 'configure', component: ConfiguratorComponent, pathMatch: 'full' },
@@ -109,7 +122,7 @@ registerLocaleData(localePl, 'pl');
             { path: '**', redirectTo: '/' }
         ])
     ],
-    providers: [{ provide: LOCALE_ID, useValue: 'pl' }, BurgerService, IngredientService, ProductService, BunService, DeliveryTypeService, OrderService, PaymentTypeService, MenuService, ValidationService, FileService, CartService, AuthService, AuthGuard, JwtHelper, NotificationService, {
+    providers: [{ provide: LOCALE_ID, useValue: 'pl' }, BurgerService, IngredientService, ProductService, BunService, DeliveryTypeService, OrderService, PaymentTypeService, MenuService, ValidationService, FileService, CartService, AuthService, AuthGuard, JwtHelperService, NotificationService, {
         provide: HTTP_INTERCEPTORS,
         useClass: Interceptor,
         multi: true
