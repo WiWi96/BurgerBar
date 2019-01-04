@@ -36,6 +36,7 @@ form {
         display: flex;
         text-align: center;
         align-items: center;
+        z-index: 50;
 
         @include media-breakpoint-up(md) {
             left: calc(20% + 20px);
