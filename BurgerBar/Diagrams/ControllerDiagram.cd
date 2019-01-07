@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BurgerBar.Controllers.AuthController">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAIAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\AuthController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Controllers.BunsController">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAACAAAAAABAAAAAAAAAAAAAIKAAQAAAQA=</HashCode>
+      <FileName>Controllers\BunsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Controllers.BurgersController">
+    <Position X="4" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAABCAAAAAgBAAAAAAAAAAAAAAAQAAAAAIA=</HashCode>
+      <FileName>Controllers\BurgersController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Controllers.DeliveryTypesController">
+    <Position X="10.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAADAABAAAAACAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Controllers\DeliveryTypesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Controllers.FileController">
+    <Position X="3.75" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAIAAAAgAAAAAAAAAAEgAAAAAAAA=</HashCode>
+      <FileName>Controllers\FileController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Controllers.IngredientsController">
+    <Position X="8" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAGAAAAAAABEAAAAAAABACCAAAAQAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\IngredientsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Controllers.MenuController">
+    <Position X="1.5" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAJAAAAEAABABAAAAAAgAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Controllers\MenuController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Controllers.OrdersController">
+    <Position X="8.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACQAAAAAAAAAAgAABAAAAAAAAAAIAAEAAAAAAAAg=</HashCode>
+      <FileName>Controllers\OrdersController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Controllers.PaymentTypesController">
+    <Position X="6" Y="4" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAQCAAAAAQAAAAAAAAAAQABAA=</HashCode>
+      <FileName>Controllers\PaymentTypesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Controllers.ProductsController">
+    <Position X="6" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAIAAAAAQABAAgAAAAAAAAAQAAACAAAAIA=</HashCode>
+      <FileName>Controllers\ProductsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

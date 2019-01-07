@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="BurgerBar.Entities.Address" HideInheritanceLine="true">
+    <Position X="1" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgQAAAAAIAAAAAAAAEAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Entities\Address.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Entities.Bun" HideInheritanceLine="true">
+    <Position X="14.25" Y="3.75" Width="1.75" />
+    <AssociationLine Name="TopPicture" Type="BurgerBar.Entities.File">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.405" Y="0.662" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="BottomPicture" Type="BurgerBar.Entities.File">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.593" Y="0.662" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAQAgAAAAAAAAAAQAAEAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Bun.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TopPicture" />
+      <Property Name="BottomPicture" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BurgerBar.Entities.Burger">
+    <Position X="11.5" Y="3.75" Width="1.5" />
+    <AssociationLine Name="Bun" Type="BurgerBar.Entities.Bun" FixedToPoint="true">
+      <Path>
+        <Point X="13" Y="4" />
+        <Point X="14.25" Y="4" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.424" Y="0.124" Height="0.182" Width="0.724" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Ingredients" Type="BurgerBar.Entities.BurgerIngredient">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.137" Y="0.262" Height="0.182" Width="1.093" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAABAAAAgACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Burger.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Bun" />
+      <Property Name="CreationType" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Ingredients" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="BurgerBar.Entities.BurgerIngredient" HideInheritanceLine="true">
+    <Position X="11.5" Y="5.5" Width="1.5" />
+    <AssociationLine Name="Burger" Type="BurgerBar.Entities.Burger">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="-0.928" Y="0.313" Height="0.182" Width="0.825" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Ingredient" Type="BurgerBar.Entities.Ingredient">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.11" Y="0.276" Height="0.182" Width="0.851" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Entities\BurgerIngredient.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Burger" />
+      <Property Name="Ingredient" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BurgerBar.Entities.Customer" HideInheritanceLine="true">
+    <Position X="1" Y="1" Width="2" />
+    <AssociationLine Name="Address" Type="BurgerBar.Entities.Address">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.138" Y="0.697" Height="0.182" Width="0.813" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAAAAAAAAQAAAAAAAAAACAAAAAAAAAAg=</HashCode>
+      <FileName>Entities\Customer.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Address" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BurgerBar.Entities.DeliveryType" HideInheritanceLine="true">
+    <Position X="6.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAQAEAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\DeliveryType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Entities.File" HideInheritanceLine="true">
+    <Position X="14.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\File.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Entities.Ingredient" HideInheritanceLine="true">
+    <Position X="11.5" Y="7.25" Width="1.75" />
+    <AssociationLine Name="Type" Type="BurgerBar.Entities.IngredientType">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.406" Y="0.068" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Picture" Type="BurgerBar.Entities.File">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.276" Y="0.074" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAQAgAAAAAAAAAAQAAAAAAAAgAQAAAAAAAAA=</HashCode>
+      <FileName>Entities\Ingredient.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Type" />
+      <Property Name="Picture" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BurgerBar.Entities.IngredientType" HideInheritanceLine="true">
+    <Position X="8.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\IngredientType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Entities.Order" HideInheritanceLine="true">
+    <Position X="4.5" Y="1" Width="2.25" />
+    <AssociationLine Name="Customer" Type="BurgerBar.Entities.Customer">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.65" Y="0.06" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Products" Type="BurgerBar.Entities.OrderedProduct">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.418" Y="0.06" Height="0.182" Width="0.983" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="DeliveryType" Type="BurgerBar.Entities.DeliveryType">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.457" Y="1.755" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="PaymentType" Type="BurgerBar.Entities.PaymentType">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.027" Y="1.084" Height="0.182" Width="1.117" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAEAAAQAAQAAAAAAAAAQAAAAAAAAAAABAAAAAAAAAAQ=</HashCode>
+      <FileName>Entities\Order.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Customer" />
+      <Property Name="DeliveryType" />
+      <Property Name="PaymentType" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Products" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="BurgerBar.Entities.OrderedProduct" HideInheritanceLine="true">
+    <Position X="8.25" Y="1" Width="1.5" />
+    <AssociationLine Name="Product" Type="BurgerBar.Entities.Product">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.212" Y="0.068" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Entities\OrderedProduct.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Product" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BurgerBar.Entities.OtherProduct">
+    <Position X="8.75" Y="3.75" Width="1.5" />
+    <AssociationLine Name="Type" Type="BurgerBar.Entities.ProductType">
+      <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
+        <Position X="0.096" Y="0.517" Height="0.182" Width="0.597" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Entities\OtherProduct.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Type" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BurgerBar.Entities.PaymentType" HideInheritanceLine="true">
+    <Position X="4.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAQAEAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\PaymentType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Entities.Product" HideInheritanceLine="true">
+    <Position X="10.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAQAAAAAAAAAAAAQAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Entities.ProductType" HideInheritanceLine="true">
+    <Position X="8.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\ProductType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Entities.User" HideInheritanceLine="true">
+    <Position X="4.75" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Entities.BaseEntity">
+    <Position X="2.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\BaseEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="BurgerBar.Entities.CreationType">
+    <Position X="13.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums\CreationType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

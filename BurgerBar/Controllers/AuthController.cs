@@ -46,7 +46,7 @@ namespace BurgerBar.Controllers
                     issuer: settings.GetValue<string>("Issuer"),
                     audience: settings.GetValue<string>("Audience"),
                     claims: new List<Claim>(),
-                    expires: DateTime.Now.AddMinutes(5),
+                    expires: DateTime.Now.AddMinutes(30),
                     signingCredentials: signinCredentials
                 );
 

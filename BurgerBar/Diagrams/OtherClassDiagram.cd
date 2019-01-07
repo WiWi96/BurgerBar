@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BurgerBar.MappingProfile">
+    <Position X="10" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>MappingProfile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Program">
+    <Position X="0.5" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Startup">
+    <Position X="2.75" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAACAAAAAA=</HashCode>
+      <FileName>Startup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Data.BurgerBarContext">
+    <Position X="7.5" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAMDBAQQAAAAAAAAAAAQAAAIEAAEIAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Data\BurgerBarContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Extensions.ServiceExtensions">
+    <Position X="4.75" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Extensions\ServiceExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Resources.Localization.ErrorMessages" Collapsed="true">
+    <Position X="12.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAABBEAAoAQAAIAAAAAIAIBACAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Resources.Localization.Labels" Collapsed="true">
+    <Position X="12.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAMCBEQQAiQkAAAAIAARECQIAUAAAAAAAAIAIAAAgIg=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BurgerBar.Utils.Cryptography">
+    <Position X="12.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utils\Cryptography.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

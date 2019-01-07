@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BurgerBar.Services.AuthService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="1.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Services\AuthService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BurgerBar.Services.BunsService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAECAAAAAAAAAAAAAAAAAAkAAAAAAAgACAAAKAAAQIA=</HashCode>
+      <FileName>Services\BunsService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BurgerBar.Services.BurgersService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACECAAAAAAAEAAAAAAAAAAEAEAACAAgACIAAIAQAAIA=</HashCode>
+      <FileName>Services\BurgersService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BurgerBar.Services.DeliveryTypesService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="1.5" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAECAIAAAAAAAAAAAAAAAAEAAAAAAAgACAAAIAEAAIA=</HashCode>
+      <FileName>Services\DeliveryTypesService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BurgerBar.Services.FileService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAEAAAAAAAAACAgAAAAAAAA=</HashCode>
+      <FileName>Services\FileService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BurgerBar.Services.IngredientsService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAECAAAAAAAAAAAAAAAAYAGAAAAAAAgAAAAAIAEAAIA=</HashCode>
+      <FileName>Services\IngredientsService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BurgerBar.Services.OrdersService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="1.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAECAAAAAAEAAAAAEAAAAAECAAAAAAgACAAAIAEAAoA=</HashCode>
+      <FileName>Services\OrdersService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BurgerBar.Services.PaymentTypesService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAECAIAAAAAAAAAAAAAAAAEAAAAAAAgACAAAIAEAAIA=</HashCode>
+      <FileName>Services\PaymentTypesService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="BurgerBar.Services.ProductsService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAECAIAgAAAAAAAAAQAACAEAEAAgAAgAAAAAIQAAAIA=</HashCode>
+      <FileName>Services\ProductsService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="BurgerBar.Services.IAuthService">
+    <Position X="7" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Services\IAuthService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BurgerBar.Services.IBunsService">
+    <Position X="9.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAEAAAAAAAgAAAAAKAAAQIA=</HashCode>
+      <FileName>Services\IBunsService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BurgerBar.Services.IBurgersService">
+    <Position X="11.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAEAEAACAAgAAAAAIAAAAIA=</HashCode>
+      <FileName>Services\IBurgersService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BurgerBar.Services.IDeliveryTypesService">
+    <Position X="7.25" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEAAIAAAAAAAAAAAAAAAAEAAAAAAAgAAAAAIAAAAIA=</HashCode>
+      <FileName>Services\IDeliveryTypesService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BurgerBar.Services.IFileService">
+    <Position X="9.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\IFileService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BurgerBar.Services.IIngredientsService">
+    <Position X="11.5" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAIAGAAAAAAAgAAAAAIAAAAIA=</HashCode>
+      <FileName>Services\IIngredientsService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BurgerBar.Services.IOrdersService">
+    <Position X="5.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAEAAAAAAAgAAAAAIAAAAIA=</HashCode>
+      <FileName>Services\IOrdersService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BurgerBar.Services.IPaymentTypesService">
+    <Position X="7.25" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEAAIAAAAAAAAAAAAAAAAEAAAAAAAgAAAAAIAAAAIA=</HashCode>
+      <FileName>Services\IPaymentTypesService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="BurgerBar.Services.IProductsService">
+    <Position X="9.25" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAQAACAEAEAAAAAgAAAAAIQAAAIA=</HashCode>
+      <FileName>Services\IProductsService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
